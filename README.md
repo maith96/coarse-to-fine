@@ -177,6 +177,7 @@ cd language && curl -sL -o shake.txt \
   https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 python vocab.py && python gatelm.py 1,4,8,12,13 999
 python chain.py 9999 && python sweep.py 9999
+python predict.py            # run the best L13 net as a word-level LM
 ```
 
 Maze audit (regenerates the 9×9 chain first — `ckpt/` is gitignored):
