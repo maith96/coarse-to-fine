@@ -1,0 +1,6 @@
+ckpt/
+*.pt
+*.npz
+shake.txt
+__pycache__/
+*.pyc
