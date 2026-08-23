@@ -160,8 +160,18 @@ granularity (−0.26 nats at full vocab, perplexity 101.9 vs 132.6).
 | 600 | 4.5720 | 4.6430 | **+0.071** |
 | 1200 | 4.5613 | 4.5548 | **−0.007** |
 
-Both converge to ~4.56. Same destination, reached sooner. Replicated on a second
-seed at 300 steps (+0.363).
+Both converge to ~4.56. Same destination, reached sooner.
+
+**Now with error bars** — five seeds, the whole chain rebuilt per seed
+(`multiseed.py`; the old replication reseeded only the control, see FINDINGS §9):
+
+| final-rung budget | gap (ctrl − anc) | 95% CI | seeds positive |
+|---|---|---|---|
+| 300 | **+0.2845** ± 0.019 | [+0.261, +0.308] | 5/5 |
+| 600 | **+0.0833** ± 0.022 | [+0.057, +0.110] | 5/5 |
+| 1200 | −0.0119 ± 0.020 | [−0.037, +0.013] | 3/5 |
+
+The decay is a measurement, not a single point, and the crossing is real.
 
 **At matched total compute the ladder loses.** The chain cost ~218s of wall clock
 (L1 2s, L4 52s, L8 57s, L12 53s, L13 54s) to reach 4.6245. The flat control
@@ -177,6 +187,8 @@ cd language && curl -sL -o shake.txt \
   https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 python vocab.py && python gatelm.py 1,4,8,12,13 999
 python chain.py 9999 && python sweep.py 9999
+python multiseed.py 1500 5   # 5-seed replication + corrected head expansion (~75 min)
+python handoff.py 1500 5     # final-handoff smoothing sweep (~9 min)
 python predict.py            # run the best L13 net as a word-level LM
 ```
 
@@ -202,19 +214,24 @@ identical seeds.
 
 ## Limitations
 
-- Decisive comparisons are **single-seed** except where noted, and the measured
-  single-seed noise floor (~±0.08 on maze deltas) is wider than most effects
-  claimed here. Multi-seed replication is the first thing this project needs;
-  none of it has been done.
+- Maze comparisons are **single-seed**, and the measured build-to-build noise
+  floor there (~±0.08 on maze deltas) is wider than most effects claimed for
+  that domain. Multi-seed replication in mazes is still the first thing this
+  project needs. The language ladder now has n=5 (FINDINGS §9), where the
+  seed-to-seed floor is ~±0.02 — the ±0.08 figure is a maze number and does not
+  transfer.
 - Language work is 290k tokens of Shakespeare, a 96-dim 3-layer model, 64-token
   context. The *pattern* has three independent confirmations; the magnitudes
   would not survive a real corpus.
-- The language crossing point (anc/ctrl at 1200 steps, −0.007) is one seed, and
-  −0.007 is far inside the noise floor above. "Both converge to ~4.56" survives
-  that; the exact crossing does not.
+- The language crossing point is no longer single-seed: −0.0119 ± 0.020 over
+  five seeds, a 95% CI of [−0.037, +0.013] that straddles zero. "Both converge
+  to ~4.56" and the crossing itself both survive.
 - The vocabulary bisection balances by word **type**, not token mass, so level 1
   is 96/4 and the coarse rungs carry little information. Fixing this should
   steepen the ladder — untested.
 - The head expansion inherits the parent row without the within-cluster log
   marginal, making zero-shot CE *worse* than predicting corpus frequencies
-  (5.137 vs 5.072 at L12). A few lines would fix it — untested.
+  (5.137 vs 5.072 at L12). ~~A few lines would fix it — untested.~~ Now tested
+  (FINDINGS §10): supplying `log p(child|parent)` improves zero-shot by up to
+  1.1 nats, exactly as predicted, and makes the trained model **0.04–0.05 nats
+  worse** at level 13 on every seed. A better handoff is not a better ladder.

@@ -199,6 +199,98 @@ What remains is the reframing, not the evidence for it: "accumulate capability
 without eroding it" is a better-posed problem than "train faster", and it is an
 open one. But this project produced no result supporting it, and one against.
 
+## 9. Multi-seed replication — language, with error bars
+
+The gap §4 said was missing. Five seeds, the **whole chain rebuilt per seed**,
+full-val deterministic evaluation (`language/multiseed.py`):
+
+| final-rung budget | ancestor | control | gap (ctrl − anc) | 95% CI (t₄) | seeds positive |
+|---|---|---|---|---|---|
+| 300 | 4.7166 | 5.0010 | **+0.2845** ± 0.019 | [+0.261, +0.308] | 5/5 |
+| 600 | 4.6666 | 4.7499 | **+0.0833** ± 0.022 | [+0.057, +0.110] | 5/5 |
+| 1200 | 4.6450 | 4.6332 | −0.0119 ± 0.020 | [−0.037, +0.013] | 3/5 |
+
+**The decay is real and the crossing is real.** The 300- and 600-step gaps are
+far outside seed noise; the 1200-step gap straddles zero. This confirms §3 with
+a measurement rather than a single point: the ladder arrives sooner and lands in
+the same place.
+
+Two corrections to how this project has been measuring things:
+
+**The published seed replication was asymmetric.** In `sweep.py`,
+`torch.manual_seed(seed)` runs before the net is built, but for `cond="anc"` the
+net is then overwritten by `ch_anc_L12`. So across "seeds" the ancestor was
+byte-identical and only its batch order changed, while the control got a fresh
+init as well. The +0.262 / +0.363 pair was two draws from an asymmetric
+comparison, not a replication.
+
+**The language noise floor is not the maze noise floor.** Seed-to-seed sd on a
+single arm is 0.009–0.023 and on the gap ~0.02 — roughly 4× tighter than the
+±0.08 that §4 measured across *builds* in mazes. §4's floor is a statement about
+mazes and about reinstallation, and it should not be applied to the language
+numbers unchanged. Effects of 0.05 nats are interpretable here; they are not
+there.
+
+One null worth recording: replacing the sampled 6×32-batch evaluation with a
+deterministic sweep of the entire validation split changed the gap sd not at all
+(0.0190 vs 0.0196 at 300 steps). Evaluation sampling was never a contributor.
+The full-val protocol is kept because it is deterministic, not because it was
+needed.
+
+## 10. The head expansion — fixed, and it costs more than it returns
+
+§4's limitation list called the missing within-cluster log marginal "a few lines
+would fix it — untested". Tested now.
+
+`expand()` copies the parent row to every child, so the inherited head is uniform
+within each cluster. Adding `log p(child|parent)` to the bias supplies exactly
+the missing term, and — since every parent has the same number of children — it
+leaves the coarse marginal the parent predicted *exactly* unchanged while filling
+in the split below. It does what it was designed to do:
+
+| handoff | zero-shot CE, uniform | + log p(child\|parent) | predicted if exact |
+|---|---|---|---|
+| L1→L4 | 2.218 | **1.209** | 1.217 |
+| L4→L8 | 3.745 | **2.634** | 2.708 |
+| L8→L12 | 5.190 | **4.545** | 4.485 |
+| L12→L13 | 4.978 | **4.890** | 4.751 |
+
+Zero-shot lands on the predicted value to within 0.06 nats at the coarse rungs.
+**And the final model is worse:** +0.039 / +0.042 / +0.051 nats at 300 / 600 /
+1200 steps, every seed, every budget.
+
+Where it helps and where it does not tracks how well the prior is estimated:
+
+| handoff | children/parent | median train count/child | children with <5 | Δ trained CE |
+|---|---|---|---|---|
+| L1→L4 | 8 | 1793 | 0.0% | **−0.025** |
+| L4→L8 | 16 | 112 | 0.0% | **−0.026** |
+| L8→L12 | 16 | 7 | 32.5% | +0.004 |
+| L12→L13 | 2 | 3 | 61.2% | +0.032 |
+
+At the final rung the empirical prior is estimated from a median of 3 tokens per
+child, and 81 leaves absent from training carry 1.7% of validation tokens.
+Holding the parent fixed at `ancu_L12` and varying only the smoothing
+(`language/handoff.py`, n=5) shows no interior optimum — the best amount of prior
+at L13 is none:
+
+| final expansion | val CE | vs uniform |
+|---|---|---|
+| uniform (`chain.py`) | 4.7166 | — |
+| prior, α=1 | 4.7488 | +0.032 |
+| prior, α=20 | 4.7228 | +0.006 |
+| prior, α=200 (≈ uniform) | 4.7168 | +0.000 |
+
+So the correction helps where counts are dense and the expansion is wide, and
+the rung that decides the headline is neither. **A better zero-shot handoff is
+not a better ladder** — the 1.0-nat improvement at the coarse handoffs is gone
+within 300 steps of training, and the thin-count damage at the final rung is not.
+Another instance of §6: the salient hypothesis was that a defect this large must
+be suppressing the effect; the null was that 300 steps of gradient descent
+reaches the same place regardless of where the head bias started, and the null
+won.
+
+
 ---
 
 ## Status of the evidence
@@ -207,18 +299,21 @@ open one. But this project produced no result supporting it, and one against.
 |---|---|
 | gate test; void vs entropy floor | holds |
 | matched-compute accounting | confirmed in both domains |
-| ±0.08 single-seed noise floor | measured across two builds, one seed each |
+| ±0.08 single-seed noise floor | measured across two builds, one seed each — **mazes only** |
+| language seed noise ~±0.02 on the gap | measured, n=5, chain rebuilt per seed |
 | maze d=16 advantage | **withdrawn** — sign flips across builds |
 | maze d=24 advantage | **withdrawn** — inverts under matched compute |
-| language ladder win | withdrawn previously; the crossing point is itself single-seed |
+| language ladder win | withdrawn previously; the crossing is now **confirmed at n=5** |
+| corrected head expansion helps | **refuted** — fixes zero-shot, costs 0.04–0.05 nats trained |
 | retention | **withdrawn** — contradicted where cleanly testable |
 
-Not yet done: multi-seed replication of anything. The ±0.08 floor was
-established by a second *build*, not a second seed, which is the weaker
-instrument. Remaining budget-sweep cells (d=24 at 1200/2400, the whole d=16
+Not yet done: multi-seed replication **in mazes**. Language now has n=5 (§9);
+the maze ±0.08 floor is still a second *build*, not a second seed, which is the
+weaker instrument. Remaining budget-sweep cells (d=24 at 1200/2400, the whole d=16
 block) are still running; they affect curve shape, not the verdicts above.
 
 Reproduce with `mazes/sweep9.py` (budget sweep), `mazes/compare9.py`
-(retention and rollout), `mazes/inspect9.py` (per-maze predictions).
+(retention and rollout), `mazes/inspect9.py` (per-maze predictions),
+`language/multiseed.py` (§9 and §10), `language/handoff.py` (§10 smoothing).
 Raw numbers in `results/lad9_rerun.json`, `results/sweep9.json`,
-`results/retention9.json`.
+`results/retention9.json`, `results/multiseed.json`, `results/handoff.json`.
