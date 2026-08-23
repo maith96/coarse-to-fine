@@ -4,3 +4,4 @@ ckpt/
 shake.txt
 __pycache__/
 *.pyc
+.venv/

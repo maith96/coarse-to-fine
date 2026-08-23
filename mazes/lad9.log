@@ -1,0 +1,10 @@
+[ 419s] base_d2    zs 0.3457 -> final 0.7507  (random 0.326)
+[ 887s] anc_d4     zs 0.6226 -> final 0.7366  (random 0.330)
+[1400s] anc_d8     zs 0.6445 -> final 0.6514  (random 0.334)
+[1919s] anc_d16    zs 0.4189 -> final 0.5244  (random 0.323)
+[2398s] anc_d24    zs 0.4722 -> final 0.5149  (random 0.318)
+[2647s] ctrl_d24   zs 0.3535 -> final 0.4668  (random 0.318)
+[3042s] ctrl_d16   zs 0.3447 -> final 0.5369  (random 0.323)
+[3511s] ctrl_d8    zs 0.3545 -> final 0.6199  (random 0.334)
+[3925s] ctrl_d4    zs 0.3540 -> final 0.7583  (random 0.330)
+ALLDONE
