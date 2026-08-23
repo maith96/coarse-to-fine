@@ -5,3 +5,11 @@ shake.txt
 __pycache__/
 *.pyc
 .venv/
+
+# per-directory run artefacts; canonical copies live in results/
+mazes/*.json
+mazes/*.log
+language/*.json
+language/*.log
+precision/*.json
+precision/*.log

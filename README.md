@@ -6,8 +6,8 @@ problems are hard problems "highly abstracted", the way an amoeba's problem is
 a coarse-grained version of ours.
 
 **Headline: the curriculum does not beat flat training at matched compute.**
-Three ladders across two domains. The one apparent win dissolved under a budget
-sweep.
+Three ladders across two domains. Every apparent win has now dissolved — two
+under a budget sweep, one under a reinstall.
 
 What survives is methodology, not mechanism — see [FINDINGS.md](FINDINGS.md).
 
@@ -88,16 +88,31 @@ Smooth degradation, no cliff. **Connected axis.**
 Ladder on 7×7: every delta within ±0.006 — both conditions saturate, advantage
 absorbed. On 9×9 with horizons to 24, where 600 steps is not enough:
 
-| horizon | ctrl | anc | delta |
-|---|---|---|---|
-| 4 | 0.7402 | 0.7383 | −0.002 |
-| 8 | 0.6165 | 0.6516 | +0.035 |
-| 16 | 0.5076 | 0.5793 | +0.072 |
-| 24 | 0.4548 | 0.5239 | +0.069 |
+| horizon | ctrl | anc | delta | rerun delta (2nd build) |
+|---|---|---|---|---|
+| 4 | 0.7402 | 0.7383 | −0.002 | −0.022 |
+| 8 | 0.6165 | 0.6516 | +0.035 | +0.032 |
+| 16 | 0.5076 | 0.5793 | +0.072 | **−0.013** |
+| 24 | 0.4548 | 0.5239 | +0.069 | +0.048 |
 
 Zero-shot lift was +0.20 to +0.41 — large, unlike multiplication.
-**Caveat that later proved decisive: the ancestor had 5 rungs of compute to the
-control's 1.**
+**The caveat proved decisive twice over, and neither surviving column means
+what it looks like:**
+
+*Compute.* The ancestor had 5 rungs to the control's 1. Charged for its own
+construction (`sweep9.py`), the d=24 advantage inverts — flat control at the
+ancestor's own 3000-step total reaches **0.5588** against the chain's 0.5149,
+and both converge to ~0.557 with the chain paying 1.8× for it.
+
+*Reproducibility.* Rerunning the identical code and seeds on a second torch
+build moves rungs by up to 0.055 and **flips the sign at d=16**. The
+single-seed error bar here is ~±0.08 — wider than any effect in the table.
+
+*What the metric measures.* Cells are sampled at distance exactly `d`, so
+these are one-step classifiers on a fixed-distance slice, not policies. Rolled
+out greedily, every net reaches the goal **0.000** of the time (`compare9.py`).
+
+Verdict: the axis is connected, and nothing built on it survived.
 
 ### 3. Endosymbiotic distillation (`mazes/macro.py`) — failed
 
@@ -164,22 +179,38 @@ python vocab.py && python gatelm.py 1,4,8,12,13 999
 python chain.py 9999 && python sweep.py 9999
 ```
 
+Maze audit (regenerates the 9×9 chain first — `ckpt/` is gitignored):
+
+```bash
+cd mazes && python lad9.py 7000 && python sweep9.py 30000
+python compare9.py && python inspect9.py sw9_ctrl_d24_n3000_s0 24
+```
+
 Run each script from inside its own directory (modules import by bare name).
 Scripts are resumable and time-budgeted — the trailing integer is a seconds
 budget, after which they checkpoint and exit. All figures above come from
 `results/`.
 
-Everything ran on **one CPU core with 3 GB RAM**, which is why models are 1–2M
-parameters and corpora are tiny.
+The original figures ran on **one CPU core with 3 GB RAM**, which is why models
+are 1–2M parameters and corpora are tiny. The rerun columns come from a 4-core
+i5-8265U on the same torch 2.13 — and see §4 of FINDINGS: **do not expect these
+numbers to reproduce to better than ~±0.08 on a different build**, even at
+identical seeds.
 
 ---
 
 ## Limitations
 
-- Decisive comparisons are **single-seed** except where noted.
+- Decisive comparisons are **single-seed** except where noted, and the measured
+  single-seed noise floor (~±0.08 on maze deltas) is wider than most effects
+  claimed here. Multi-seed replication is the first thing this project needs;
+  none of it has been done.
 - Language work is 290k tokens of Shakespeare, a 96-dim 3-layer model, 64-token
   context. The *pattern* has three independent confirmations; the magnitudes
   would not survive a real corpus.
+- The language crossing point (anc/ctrl at 1200 steps, −0.007) is one seed, and
+  −0.007 is far inside the noise floor above. "Both converge to ~4.56" survives
+  that; the exact crossing does not.
 - The vocabulary bisection balances by word **type**, not token mass, so level 1
   is 96/4 and the coarse rungs carry little information. Fixing this should
   steepen the ladder — untested.

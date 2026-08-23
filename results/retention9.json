@@ -1,0 +1,120 @@
+{
+ "retention": {
+  "anc_d24 (chain, 600+2400)": {
+   "2": 0.3079427083333333,
+   "4": 0.3033854166666667,
+   "8": 0.3658854166666667,
+   "16": 0.5250651041666666,
+   "24": 0.5205078125
+  },
+  "ctrl_d24 (flat, 600)": {
+   "2": 0.380859375,
+   "4": 0.3876953125,
+   "8": 0.39453125,
+   "16": 0.4596354166666667,
+   "24": 0.4619140625
+  },
+  "ctrl_d24 (flat, 3000)": {
+   "2": 0.296875,
+   "4": 0.3030598958333333,
+   "8": 0.3460286458333333,
+   "16": 0.4947916666666667,
+   "24": 0.5631510416666666
+  }
+ },
+ "random_baseline": {
+  "2": 0.3265787760416667,
+  "4": 0.3296712239583333,
+  "8": 0.33349609375,
+  "16": 0.322265625,
+  "24": 0.3184407552083333
+ },
+ "rollout_d24": {
+  "anc_d24 (chain, 600+2400)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.755,
+    "loop": 0.245,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.0,
+    "wall": 0.0,
+    "loop": 1.0,
+    "steps": null
+   }
+  },
+  "ctrl_d24 (flat, 600)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.74,
+    "loop": 0.26,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.0,
+    "wall": 0.0,
+    "loop": 1.0,
+    "steps": null
+   }
+  },
+  "ctrl_d24 (flat, 3000)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.73,
+    "loop": 0.27,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.0,
+    "wall": 0.0,
+    "loop": 1.0,
+    "steps": null
+   }
+  }
+ },
+ "rollout_d8": {
+  "anc_d24 (chain, 600+2400)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.77,
+    "loop": 0.23,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.0,
+    "wall": 0.0,
+    "loop": 1.0,
+    "steps": null
+   }
+  },
+  "ctrl_d24 (flat, 600)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.63,
+    "loop": 0.37,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.01,
+    "wall": 0.0,
+    "loop": 0.99,
+    "steps": 9.0
+   }
+  },
+  "ctrl_d24 (flat, 3000)": {
+   "raw": {
+    "reached": 0.0,
+    "wall": 0.69,
+    "loop": 0.31,
+    "steps": null
+   },
+   "legal_masked": {
+    "reached": 0.005,
+    "wall": 0.0,
+    "loop": 0.995,
+    "steps": 8.0
+   }
+  }
+ }
+}
