@@ -291,6 +291,107 @@ reaches the same place regardless of where the head bias started, and the null
 won.
 
 
+## 11. The maze loss was wrong
+
+Found while building the regime calibration, and it affects every maze result in
+this project. `lad9.py` (and `ladder.py`, `sweep9.py`, `macro.py`) computes
+
+```python
+loss = -(F.log_softmax(logits,-1) * y.float()).logsumexp(-1).mean()
+```
+
+where `y` masks the optimal actions. Multiplying by the mask sets the
+non-optimal entries to **0.0**, and `logsumexp` then reads each of those as
+`exp(0)=1`. So it computes `-log(n_nonoptimal + sum p_optimal)` rather than
+`-log(sum p_optimal)`. Two consequences:
+
+* Chance is at **−1.179**, not `ln 4 = 1.386`. Section 2's void discriminator —
+  "train loss pinned at exactly `ln N`" — was never applicable to the maze
+  domain, because the maze loss could not reach `ln N` under any policy.
+* The gradient is attenuated worst exactly where the net is most wrong:
+
+| p(optimal) | repo gradient | correct gradient | ratio |
+|---|---|---|---|
+| 0.90 | −0.023 | −0.100 | 4.3× |
+| 0.50 | −0.071 | −0.500 | 7.0× |
+| 0.25 | −0.058 | −0.750 | 13× |
+| 0.05 | −0.016 | −0.950 | 61× |
+| 0.01 | −0.003 | −0.990 | **301×** |
+
+The correct loss is `-log_softmax(logits).masked_fill(~y, -inf).logsumexp(-1)`.
+Swapping it in, at an identical 400 steps on 13×13:
+
+| | repo loss | corrected |
+|---|---|---|
+| one-step accuracy, d≤4 | 0.377 | **0.747** |
+| rollout success, d≤4 | 0.020 | **0.385** |
+
+**Every maze number in this project was produced by a handicapped optimiser.**
+That does not automatically reverse any conclusion — the ladder and its controls
+were handicapped equally — but §3's matched-compute inversion and §8's retention
+table were both measured on nets that were being trained with a fraction of the
+available gradient, and neither has been re-run. The §7 rollout finding
+("every net reaches the goal 0.000 of the time") is now known to be partly an
+artifact of this: with the corrected loss, a net trained on d≤2 rolls out at
+**0.890**.
+
+## 12. The regime exists — maze calibration
+
+The test §9–§10 could not perform: all three ladders were run where the flat
+baseline already succeeds, so matched compute could only ever kill them. This
+finds a setting where flat training genuinely fails.
+
+Two changes from the published setup: train on cells at distance **≤ d** rather
+than exactly `d` (which is what made §7's rollout off-distribution for every
+condition), and score by **greedy rollout to the goal** rather than one-step
+accuracy on a fixed-distance slice. `mazes/calib.py`, 13×13, corrected loss,
+from-scratch at every horizon, 2000 steps:
+
+| trained on | train loss | 1-step acc | **rollout@k** | masked-random null | wall |
+|---|---|---|---|---|---|
+| d≤2 | 1.349 → 0.105 | 0.859 | **0.890** | 0.155 | 0.11 |
+| d≤4 | 1.304 → 0.342 | 0.778 | **0.565** | 0.070 | 0.43 |
+| d≤8 | 1.289 → 0.643 | 0.678 | 0.105 | 0.000 | 0.90 |
+| d≤16 | 1.330 → 0.757 | 0.585 | **0.000** | 0.000 | 1.00 |
+| d≤24 | 1.302 → 0.727 | 0.438 | **0.000** | 0.000 | 1.00 |
+
+**d\* = 4**, on a grid that supports d ≥ 24. Flat training solves mazes out to
+four steps and collapses past eight — while one-step accuracy stays a
+respectable 0.44–0.68 the whole way, which is precisely why the published metric
+never showed this. Rollout error compounds: at per-step accuracy p, success ≈
+p^L, so d=24 needs p ≈ 0.97 and the best flat net is at 0.44.
+
+Train loss falls below `ln 4` at every rung, so by §2 this is an entropy floor,
+not a void — a ladder is *permitted* to cross it. And more compute does not
+rescue flat: 400 → 2000 steps moves d≤8 from 0.085 to 0.105 and leaves d≤16 and
+d≤24 at exactly 0.000.
+
+So the regime is real and wide: **20 horizon units of headroom between where flat
+training stops and where the task ends.** This is the first setting in the
+project where a curriculum has something to beat that its control cannot reach.
+
+### Pre-registration for the ladder run
+
+Fixed before the ladder is built, per §6:
+
+* **Ladder** d≤2 → 3 → 4 → 6 → 8 → 12 → 16 → 20 → 24, weight inheritance, each
+  rung's training distribution containing the last. Finer than the calibration
+  grid so `d*` has resolution.
+* **Control** flat at d≤24, given the ladder's **total** step count (§3).
+* **Metric** `d*` = largest horizon with rollout ≥ 0.5 from held-out starts.
+  Nulls: random and legal-move-random.
+* **Seeds** n=5, per-seed signs reported (§9).
+* **Win** `d*`(ladder) ≥ `d*`(flat) + 4, in ≥4/5 seeds, at matched total compute.
+* **Null** |Δd\*| ≤ 2.
+* **Kill** flat ≥ ladder — fourth refutation, project stops and writes up.
+
+A win here would say curricula help when the target is unreachable flat. It
+would **not** establish the `R`-fixed-point thesis: nothing in this design
+separates "shared circuitry survived coarse-graining" from "a better
+initialisation". That distinction needs its own experiment and should not be
+smuggled in on the back of a positive `d*`.
+
+
 ---
 
 ## Status of the evidence
@@ -305,6 +406,8 @@ won.
 | maze d=24 advantage | **withdrawn** — inverts under matched compute |
 | language ladder win | withdrawn previously; the crossing is now **confirmed at n=5** |
 | corrected head expansion helps | **refuted** — fixes zero-shot, costs 0.04–0.05 nats trained |
+| maze loss as published | **bug** — chance at −1.18 not ln4; up to 301× gradient attenuation |
+| a regime where flat training fails | **found** — 13×13 rollout, d\* = 4 against d ≥ 24 available |
 | retention | **withdrawn** — contradicted where cleanly testable |
 
 Not yet done: multi-seed replication **in mazes**. Language now has n=5 (§9);
@@ -312,8 +415,9 @@ the maze ±0.08 floor is still a second *build*, not a second seed, which is the
 weaker instrument. Remaining budget-sweep cells (d=24 at 1200/2400, the whole d=16
 block) are still running; they affect curve shape, not the verdicts above.
 
-Reproduce with `mazes/sweep9.py` (budget sweep), `mazes/compare9.py`
+Reproduce with `mazes/calib.py` (§11 loss, §12 regime), `mazes/sweep9.py` (budget sweep), `mazes/compare9.py`
 (retention and rollout), `mazes/inspect9.py` (per-maze predictions),
 `language/multiseed.py` (§9 and §10), `language/handoff.py` (§10 smoothing).
 Raw numbers in `results/lad9_rerun.json`, `results/sweep9.json`,
-`results/retention9.json`, `results/multiseed.json`, `results/handoff.json`.
+`results/retention9.json`, `results/multiseed.json`, `results/handoff.json`,
+`results/calib13.json`.
