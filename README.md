@@ -237,6 +237,10 @@ The single miss is the last question — *what happened last in the passage?* �
 where the model continues into the longer narrative form of the same sentence,
 which is a real ambiguity in the text (that clause appears twice).
 
+`ask.py` is the one-line way to use the saved model — `python ask.py "how old is
+Elena?"` → *elena is 34 years old*. All twelve passage questions tried this way
+come back correct, and a light rephrasing ("who is Elena's assistant?") survives.
+
 `probe.py` marks the boundary of what that means. Questions the passage never
 asks, in words it does use, mostly retrieve a topical but wrong memorised
 sentence:
