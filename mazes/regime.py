@@ -28,12 +28,17 @@ Each rung gets a fresh AdamW and OneCycleLR, as lad9.py does -- so the ladder ta
 5 LR cycles to the control's 1. That is a property of the method being tested, kept
 deliberately rather than fixed here.
 
-  python regime.py <seconds-budget> [nseeds]
+  python regime.py <seconds-budget> <seed>      # one seed per process
 """
 import sys, os, json, time, numpy as np, torch, warnings
 warnings.filterwarnings("ignore"); import torch.nn.functional as F
-sys.argv=[sys.argv[0], sys.argv[1] if len(sys.argv)>1 else '0', '13', '2000']
+_BUD=sys.argv[1] if len(sys.argv)>1 else '0'
+_SEED=int(sys.argv[2]) if len(sys.argv)>2 else 0
+sys.argv=[sys.argv[0], _BUD, '13', '2000']   # calib parses G/steps from argv
 from calib import PolNet, index, batch, rollout, onestep, G, SPLIT, M
+torch.set_num_threads(1)   # this model is small enough that 4 threads is SLOWER
+                           # than 1 (1577 vs 1057 ms/step contended), so seeds
+                           # run as separate single-threaded processes.
 
 RUNGS=[2,4,8,16,24]; R=1200; TOTAL=R*len(RUNGS)
 EVAL=[2,3,4,6,8,12,16,20,24]
@@ -78,12 +83,12 @@ def fit(net, k, steps, seed, tag, BUD, t0, sched_total=None):
     return net,curve,True
 
 if __name__=="__main__":
-    BUD=float(sys.argv[1]); NS=int(sys.argv[2]) if len(sys.argv)>2 else 5
-    t0=time.time(); RES="../results/regime13.json"
+    BUD=float(_BUD); seed=_SEED
+    t0=time.time(); RES=f"../results/regime13_s{seed}.json"
     res=json.load(open(RES)) if os.path.exists(RES) else {}
     def save(): json.dump(res,open(RES,"w"),indent=1)
 
-    for seed in range(NS):
+    for seed in [seed]:            # one seed per process; results merged for analysis
         # ---------- ladder: inherit weights rung to rung ----------
         torch.manual_seed(seed); net=PolNet()
         for i,k in enumerate(RUNGS):
