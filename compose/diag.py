@@ -16,12 +16,24 @@ the prediction is attributed to the FIRST matching bucket:
 import os, sys, json, numpy as np, torch, warnings
 warnings.filterwarnings("ignore")
 torch.set_num_threads(int(os.environ.get('NT','4')))
-from gen import make, held_pairs, encode, TOK, V, CONSTS
+from gen import held_pairs, encode, TOK, V, CONSTS
+GEN=os.environ.get('GEN','1')
+if GEN=='2': from gen2 import make
+else:        from gen import make
+
 sys.argv=[sys.argv[0],'1']          # train.py reads depth from argv at import
 import train as T
 
+def ckpt_path(depth, ndef, lr):
+    """gen-1 checkpoints predate the g{GEN} naming, so accept either spelling."""
+    for p in (f"ckpt/compose_g{GEN}_d{depth}_n{ndef}_lr{lr}.pt",
+              f"ckpt/compose_d{depth}_n{ndef}_lr{lr}.pt"):
+        if os.path.exists(p): return p
+    raise FileNotFoundError(f"no checkpoint for depth {depth} n{ndef} lr{lr} gen{GEN}")
+
+
 def load(depth, ndef, lr):
-    net=T.LM(); ck=torch.load(f"ckpt/compose_d{depth}_n{ndef}_lr{lr}.pt",map_location="cpu")
+    net=T.LM(); ck=torch.load(ckpt_path(depth,ndef,lr),map_location="cpu")
     net.load_state_dict(ck['n']); net.eval(); return net
 
 @torch.no_grad()
@@ -55,7 +67,7 @@ def diag(net, depth, ndef, split, n=2000, seed=7):
 
 if __name__=="__main__":
     ndef=int(os.environ.get('NDEF','12')); lr=os.environ.get('LR','0.0005')
-    for depth in (1,2,3):
+    for depth in (1,2,3,4):
         net=load(depth,ndef,lr)
         for split in ("train","test"):
             c,tot=diag(net,depth,ndef,split)

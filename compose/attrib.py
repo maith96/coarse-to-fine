@@ -19,9 +19,21 @@ Each wrong prediction is attributed to the first bucket that matches:
 """
 import os, sys, numpy as np, torch, warnings
 warnings.filterwarnings("ignore"); torch.set_num_threads(int(os.environ.get('NT','1')))
-from gen import make, held_pairs, encode, TOK, CONSTS
+from gen import held_pairs, encode, TOK, CONSTS
+GEN=os.environ.get('GEN','1')
+if GEN=='2': from gen2 import make
+else:        from gen import make
+
 sys.argv=[sys.argv[0],'1']
 import train as T
+
+def ckpt_path(depth, ndef, lr):
+    """gen-1 checkpoints predate the g{GEN} naming, so accept either spelling."""
+    for p in (f"ckpt/compose_g{GEN}_d{depth}_n{ndef}_lr{lr}.pt",
+              f"ckpt/compose_d{depth}_n{ndef}_lr{lr}.pt"):
+        if os.path.exists(p): return p
+    raise FileNotFoundError(f"no checkpoint for depth {depth} n{ndef} lr{lr} gen{GEN}")
+
 
 # a wrong answer copied from a row keyed on chain argument x_k tells us how far
 # the pointer chase actually got: x_{d-1} means every step but the last succeeded.
@@ -61,9 +73,9 @@ def run(net, depth, ndef, split, n=1984, seed=7):
 
 if __name__=="__main__":
     ndef=int(os.environ.get('NDEF','12')); lr=os.environ.get('LR','0.0005')
-    for depth in (2,3):
+    for depth in (2,3,4):
         net=T.LM(); net.load_state_dict(torch.load(
-            f"ckpt/compose_d{depth}_n{ndef}_lr{lr}.pt",map_location="cpu")['n']); net.eval()
+            ckpt_path(depth,ndef,lr),map_location="cpu")['n']); net.eval()
         c,tot=run(net,depth,ndef,"test")
         print(f"--- depth {depth}, n_defs {ndef}, held-out queries (n={tot}) ---")
         for k in KEYS:

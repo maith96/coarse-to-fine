@@ -10,7 +10,11 @@
 (2) Single-cue heuristic floors at whatever n_defs is being run.
 """
 import os, numpy as np
-from gen import make, held_pairs, CONSTS, FUNCS, NC
+from gen import held_pairs, CONSTS, FUNCS, NC
+GEN=os.environ.get('GEN','1')
+if GEN=='2': from gen2 import make
+else:        from gen import make
+
 
 ndef=int(os.environ.get('NDEF','12')); N=4000
 rng=np.random.default_rng(11); H=held_pairs()
