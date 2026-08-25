@@ -13,8 +13,9 @@ warnings.filterwarnings("ignore"); import torch.nn.functional as F
 from gatelm import LM
 import corpus as CO
 
-import glob
-M=torch.load(sorted(glob.glob(f"models/{CO.NAME}_L*.pt"))[-1])
+import glob, os
+# MODEL pins a specific checkpoint; without it, the corpus's seed-0 model
+M=torch.load(os.environ.get("MODEL") or sorted(glob.glob(f"models/{CO.NAME}_L*.pt"))[-1])
 DEPTH=M['DEPTH']; CTX=M['CTX']; NC=M['ncls']; code=M['code'].numpy(); words=M['words']
 net=LM(NC); net.load_state_dict(M['n']); net.eval()
 leaf2w={int(c):i for i,c in enumerate(code)}      # exact at the finest level

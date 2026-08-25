@@ -4,6 +4,8 @@ ckpt/
 shake.txt
 # the marine model is the deliverable of that run, so it ships
 !language/models/*.pt
+# ...but replication checkpoints are reproducible, not deliverables
+language/models/*_s[0-9]*_L*.pt
 __pycache__/
 *.pyc
 .venv/

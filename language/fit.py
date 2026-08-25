@@ -17,7 +17,9 @@ z=np.load(CO.TREE); ALL=z['ids'].astype(np.int64); words=z['words']
 L=DEPTH; NC=2**L; BS=CO.bs(L)
 STEPS=int(sys.argv[2]) if len(sys.argv)>2 else 3000
 INIT=sys.argv[3] if len(sys.argv)>3 else "chain"
-MODEL=f"models/{CO.NAME}_L{L}.pt"
+SEED=int(os.environ.get("SEED","0"))        # replication: same data, different init
+SFX ="" if SEED==0 else f"_s{SEED}"
+MODEL=f"models/{CO.NAME}{SFX}_L{L}.pt"
 
 def batch_all(bs,rng):
     i=rng.integers(0,len(ALL)-CTX-1,bs)
@@ -35,8 +37,8 @@ def fit_acc(net,nb=24,bs=32,seed=11):
     net.train(); return c/t, ce/nb
 
 if __name__=="__main__":
-    BUD=float(sys.argv[1]); t0=time.time(); ck=CO.ck(f"fit_L{L}")
-    torch.manual_seed(0); net=LM(NC)
+    BUD=float(sys.argv[1]); t0=time.time(); ck=CO.ck(f"fit_L{L}{SFX}")
+    torch.manual_seed(SEED); net=LM(NC)
     par=sum(p.numel() for p in net.parameters())
     if INIT=="chain" and not os.path.exists(ck):
         src=CO.ck(f"ch_anc_L{L}")
@@ -69,4 +71,4 @@ if __name__=="__main__":
     print(f"fit next-token acc {acc:.4f}  CE {ce:.4f}  -> saved {MODEL} "
           f"({os.path.getsize(MODEL)/1e6:.1f} MB)",flush=True)
     json.dump({'corpus':CO.NAME,'level':L,'steps':STEPS,'init':INIT,'params':par,
-               'fit_acc':acc,'fit_ce':ce,'hist':hist}, open(CO.out("fit"),"w"))
+               'fit_acc':acc,'fit_ce':ce,'hist':hist}, open(CO.out(f"fit{SFX}"),"w"))

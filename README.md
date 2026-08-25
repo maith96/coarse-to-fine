@@ -395,11 +395,11 @@ context (13/59 vs 3/59) but 71% of the time the answer does not state the value
 at all. The model learned to bind entities it was trained to ask about. It did
 not learn to answer a question it has never been asked.
 
-Caveats: single seed per arm, and the 54-value samples put roughly ±0.13 on each
-rate — the 0.611/0.333 gap is far outside that, the held-out differences are not.
-The two arms also differ in one confounded way beyond diversity: per-chunk casts
-place the answer's source ~50–150 tokens back rather than up to ~450, which
-shortens the copy distance as well as multiplying the casts.
+**Copy distance is not a confound here**, though it would be an obvious one. Both
+arms re-anchor the narrative every 4 questions regardless of when the cast
+changes, and the generated corpora bear that out: 552 narrative anchors each,
+question-to-anchor distance median 106 words against 107, 90th percentile 312
+against 315. The arms differ in cast diversity and in nothing else measurable.
 
 ---
 

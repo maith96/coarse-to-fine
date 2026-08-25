@@ -18,7 +18,7 @@ memorised the casts, the two conditions look alike.
 import json, re, numpy as np, warnings; warnings.filterwarnings("ignore")
 from qa import gen, words, detok, CTX
 from evalqa import enc, answer
-import corpus as CO, randomize as R
+import os, corpus as CO, randomize as R
 
 SP=json.load(open(CO.SPLIT))
 POOLVALS={k:[str(v) for v in vs] for k,vs in R.POOL.items()}
@@ -64,4 +64,4 @@ if __name__=="__main__":
     for r in dh[:5]:
         print(f"  Q     {r['q']}\n  gold  {r['gold']}\n  ctx   {r['ctx']}\n  cold  {r['cold']}\n")
     json.dump({"seen":{c:th[c] for c in th},"held":{c:tl[c] for c in tl},
-               "detail_seen":dh,"detail_held":dl}, open(CO.out("readtest"),"w"), indent=1)
+               "detail_seen":dh,"detail_held":dl}, open(CO.out("readtest"+(f"_s{os.environ['SEED']}" if os.environ.get("SEED","0")!="0" else "")),"w"), indent=1)
