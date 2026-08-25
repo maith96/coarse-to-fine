@@ -1,0 +1,70 @@
+[
+ {
+  "novel": "who is the 34-year-old dolphin?",
+  "ctrl": "who is the 34-year-old marine biologist?",
+  "a_novel": "margaret holt is the director of the ocean preservation foundation.",
+  "a_ctrl": "dr. elena vargas is the 34-year-old marine biologist.",
+  "same": false
+ },
+ {
+  "novel": "who owns the blue electric kayak?",
+  "ctrl": "who owns the blue electric pickup truck?",
+  "a_novel": "elena owns the blue electric pickup truck.",
+  "a_ctrl": "elena owns the blue electric pickup truck.",
+  "same": true
+ },
+ {
+  "novel": "who photographed the penguin?",
+  "ctrl": "who photographed the harbor seal?",
+  "a_novel": "marcus photographed the harbor seal.",
+  "a_ctrl": "marcus photographed the harbor seal.",
+  "same": true
+ },
+ {
+  "novel": "what did marcus use to clean the propeller?",
+  "ctrl": "what did marcus use to clean the terminals?",
+  "a_novel": "marcus used vinegar to clean the terminals.",
+  "a_ctrl": "marcus used vinegar to clean the terminals.",
+  "same": true
+ },
+ {
+  "novel": "who is dr. rodriguez?",
+  "ctrl": "who is dr. samir patel?",
+  "a_novel": "elena vargas is the 34-year-old marine biologist.",
+  "a_ctrl": "samir patel called in sick with the flu.",
+  "same": false
+ },
+ {
+  "novel": "where is the lighthouse located?",
+  "ctrl": "where is the research station located?",
+  "a_novel": "the research station is located near crescent bay.",
+  "a_ctrl": "the research station is located near crescent bay.",
+  "same": true
+ },
+ {
+  "novel": "who accompanied priya to the station?",
+  "ctrl": "who accompanied elena to the station?",
+  "a_novel": "marcus chen accompanied elena to the station.",
+  "a_ctrl": "marcus chen accompanied elena to the station.",
+  "same": true
+ },
+ {
+  "novel": "what did the earthquake damage?",
+  "ctrl": "what was damaged by the storm?",
+  "a_novel": "the station resumed data transmission at 10: 47 am.",
+  "a_ctrl": "the main sensor array was damaged by the storm.",
+  "same": false
+ },
+ {
+  "novel": "who fed the dolphin at the aquarium?",
+  "ctrl": null,
+  "a_novel": "marcus cleaned the corroded battery terminals.",
+  "same": null
+ },
+ {
+  "novel": "what did the astronaut repair?",
+  "ctrl": null,
+  "a_novel": "a third coffee cup intended for samir was left on the kitchen counter at elena's cottage.",
+  "same": null
+ }
+]

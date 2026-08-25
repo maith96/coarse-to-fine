@@ -248,9 +248,34 @@ Q  who drank black coffee?               A  marcus harbor seal when he should ha
 Q  how many hours of monitoring data were lost?  A  the storm severed the primary data transmission line.
 ```
 
-Near-perfect recall of 75 memorised QA pairs, and no reliable recombination one
-step outside them. That is the honest description of a 0.42M-parameter
-transformer fitted to 1.8k tokens, and it is what the saved model is good for.
+`oov.py` goes one step further out, to nouns the corpus never contains. The
+vocabulary is closed and the UNK rate is 0.000, so `<unk>` is a token the model
+holds an embedding for and has never seen in training; a new noun lands there.
+Each probe is paired with the in-vocabulary question it was derived from:
+
+| asked | seen as | answered |
+|---|---|---|
+| who owns the blue electric **kayak**? | `who owns the blue electric <unk>?` | elena owns the blue electric **pickup truck**. |
+| who photographed the **penguin**? | `who photographed the <unk>?` | marcus photographed the **harbor seal**. |
+| what did marcus use to clean the **propeller**? | `... clean the <unk>?` | marcus used vinegar to clean the **terminals**. |
+| who accompanied **priya** to the station? | `who accompanied <unk> to the station?` | marcus chen accompanied **elena** to the station. |
+
+Five of eight returned *exactly* the twin question's answer: the unknown noun is
+ignored and the surrounding frame indexes the memorised sentence. Where the
+answer hinges on the noun itself there is no graceful degradation — `who is the
+34-year-old <unk>?` returns Margaret Holt rather than Elena. With the frame
+unfamiliar too, retrieval goes unrelated (`what did the <unk> <unk>?` → *the
+station resumed data transmission at 10:47 am*).
+
+**Confidence does not fall.** Those answers decode at mean token probability
+0.90–0.98 against 1.000 for real questions — a gap far too narrow to threshold
+on. The model has no representation for *out of distribution*; it is nearly as
+certain when it fabricates as when it recalls.
+
+Near-perfect recall of 75 memorised QA pairs, no reliable recombination one step
+outside them, and no signal at all that it has left the corpus. That is the
+honest description of a 0.42M-parameter transformer fitted to 1.8k tokens, and
+it is what the saved model is good for.
 
 ---
 
@@ -274,6 +299,7 @@ export CORPUS=marine
 python vocab.py && python gatelm.py all 999 && python chain.py 9999
 python fit.py 999 3000 chain          # full-corpus fit -> models/marine_L9.pt
 python qa.py 8 && python probe.py     # 75 passage questions, then paraphrases
+python oov.py                         # nouns the corpus does not contain
 ```
 
 The whole marine run is about six minutes on four CPU cores. `fit.py`'s model
