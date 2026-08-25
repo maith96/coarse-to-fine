@@ -1,10 +1,10 @@
 import sys, os, json, time, numpy as np, torch, warnings
 warnings.filterwarnings("ignore"); import torch.nn.functional as F
-from gatelm import LM, batch, tgt, tr_ids, va_ids, baseline, DEPTH
+from gatelm import LM, batch, tgt, tr_ids, va_ids, baseline, DEPTH, CTX, LEVELS
+import corpus as CO
 
-LV=[1,4,8,12,13]
-BS={1:64,4:64,8:64,12:24,13:16}
-STEPS=300                       # starved: gate showed loss still falling at 400-800
+LV=LEVELS
+STEPS=CO.C["chain_steps"]       # starved: gate showed loss still falling at 400-800
 
 def expand(state, Lold, Lnew, ncls_new):
     """head rows inherited from parent cluster: coarse prediction, uniform within."""
@@ -24,7 +24,7 @@ def ev(net,L,nb=6,bs=32,seed=7):
     net.train(); return ce/nb, c/t
 
 def train(L, state, key, BUD, t0):
-    ncls=2**L; bs=BS[L]; ck=f"ckpt/ch_{key}.pt"
+    ncls=2**L; bs=CO.bs(L); ck=CO.ck(f"ch_{key}")
     torch.manual_seed(0); net=LM(ncls)
     if state is not None and not os.path.exists(ck): net.load_state_dict(state)
     o=torch.optim.AdamW(net.parameters(),lr=3e-3,weight_decay=0.01)
@@ -35,7 +35,7 @@ def train(L, state, key, BUD, t0):
     else:
         zs=ev(net,L)[0]
     rng=np.random.default_rng(5)
-    for _ in range(s0): rng.integers(0,len(tr_ids)-65,bs)
+    for _ in range(s0): rng.integers(0,len(tr_ids)-CTX-1,bs)
     for s in range(s0+1,STEPS+1):
         x,y=batch(tr_ids,bs,rng)
         loss=F.cross_entropy(net(x).reshape(-1,ncls), tgt(y,L).reshape(-1))
@@ -48,7 +48,8 @@ def train(L, state, key, BUD, t0):
 
 if __name__=="__main__":
     BUD=float(sys.argv[1]); t0=time.time()
-    res=json.load(open("chain.json")) if os.path.exists("chain.json") else {}
+    CJ=CO.out("chain")
+    res=json.load(open(CJ)) if os.path.exists(CJ) else {}
     jobs=[("anc_L1",1,None)]
     for i,L in enumerate(LV[1:],1): jobs.append((f"anc_L{L}",L,LV[i-1]))
     for L in LV[1:]: jobs.append((f"ctrl_L{L}",L,None))
@@ -57,12 +58,12 @@ if __name__=="__main__":
         if time.time()-t0>BUD: print("PAUSE",flush=True); sys.exit(0)
         st=None
         if prev is not None:
-            st=expand(torch.load(f"ckpt/ch_anc_L{prev}.pt")['n'], prev, L, 2**L)
+            st=expand(torch.load(CO.ck(f"ch_anc_L{prev}"))['n'], prev, L, 2**L)
         r=train(L,st,key,BUD,t0)
         if r is None: sys.exit(0)
         r.pop('state')
         res[key]={k:float(v) for k,v in r.items()}
-        json.dump(res,open("chain.json","w"))
+        json.dump(res,open(CJ,"w"))
         b,bce=baseline(L)
         print(f"[{time.time()-t0:4.0f}s] {key:9s} zeroshot CE {r['zs']:.3f} -> final {r['ce']:.4f} "
               f"(marginal {bce:.3f}, gain {bce-r['ce']:+.3f})",flush=True)

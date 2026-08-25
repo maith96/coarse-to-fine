@@ -167,6 +167,91 @@ seed at 300 steps (+0.363).
 (L1 2s, L4 52s, L8 57s, L12 53s, L13 54s) to reach 4.6245. The flat control
 reaches **4.5548 in ~216s** by training 1200 steps.
 
+### 5. A second corpus: the marine QA passage (`language/`, `CORPUS=marine`) — memorisation, not a test
+
+The language pipeline is now corpus-parameterised (`language/corpus.py`;
+`CORPUS=shake` is the default and reproduces §4 unchanged). The second entry is
+`marine.txt` — a 1.8k-token narrative about a storm-damaged research station,
+interleaved with 75 of its own comprehension questions and their answers.
+
+Same machinery, rescaled to the corpus: every type is kept (347 types, no UNK
+cutoff), so the tree is 9 levels deep and its leaves are **one word each** —
+level 9 is the vocabulary itself. Rungs are 1, 3, 5, 7, 9. Clusters come out
+coherent (`would of array data if lose happened time more than first severing`).
+
+Gate test — and the first thing worth reporting:
+
+| level | clusters | train loss | val CE | marginal | gain |
+|---|---|---|---|---|---|
+| 1 | 2 | 0.749 → 0.013 | 2.584 | 0.735 | **−1.849** |
+| 3 | 8 | 2.257 → 0.034 | 5.845 | 2.059 | **−3.786** |
+| 5 | 32 | 3.597 → 0.039 | 7.271 | 3.617 | **−3.653** |
+| 7 | 128 | 5.001 → 0.043 | 8.600 | 5.188 | **−3.412** |
+| 9 | 512 | 6.379 → 0.045 | 9.203 | 5.934 | **−3.270** |
+
+The sign is inverted against every row of §4. Train loss falls to ~0.04 at every
+rung — a 0.42M-parameter net on 1.8k tokens memorises the stream outright — while
+held-out CE lands 3+ nats *worse* than predicting the marginal. The 181-token
+held-out tail is the passage's last paragraph, content the model never saw and
+cannot infer from 1.6k tokens.
+
+The ladder inherits that, at 300 steps a rung:
+
+| level | ctrl CE | anc CE | delta | anc zero-shot |
+|---|---|---|---|---|
+| 3 | 5.207 | 5.461 | +0.254 | 3.61 |
+| 5 | 6.566 | 8.228 | +1.661 | 6.85 |
+| 7 | 7.914 | 9.863 | +1.949 | 9.61 |
+| 9 | 8.539 | 11.752 | +3.213 | 11.25 |
+
+The ancestor loses at every rung, and loses *more* the finer the rung — the
+opposite of §4's headline before its budget sweep. Nothing here is evidence
+against `R`: with a corpus this size the ancestor's extra rungs buy extra passes
+over 1.6k tokens, so the chain is simply the more thoroughly overfitted of the
+two, and held-out CE is measuring that and nothing else. **A corpus this small
+cannot test the hypothesis.** It can only test capacity — which is what the rest
+of the run does deliberately.
+
+`fit.py` drops the held-out split and fits level 9 on the whole passage
+(3000 steps, warm-started from the chain's finest ancestor), then saves a
+self-contained model — weights plus the vocabulary tree — to
+`language/models/marine_L9.pt` (1.7 MB, the one `.pt` the repo ships):
+
+| | |
+|---|---|
+| next-token accuracy over the corpus | **0.983** |
+| CE | 0.039 |
+| parameters | 0.42M |
+
+`qa.py` then asks it all 75 questions the passage asks, two ways — `ctx`, the
+question with its preceding narrative, where the answer could be copied from
+context; and `cold`, the question alone at position 0, where it cannot:
+
+| probe | exact answers | token accuracy |
+|---|---|---|
+| ctx | **74 / 75** | 0.999 |
+| cold | **74 / 75** | 0.999 |
+
+Cold matches ctx exactly, so the facts are in the weights, not being copied.
+The single miss is the last question — *what happened last in the passage?* —
+where the model continues into the longer narrative form of the same sentence,
+which is a real ambiguity in the text (that clause appears twice).
+
+`probe.py` marks the boundary of what that means. Questions the passage never
+asks, in words it does use, mostly retrieve a topical but wrong memorised
+sentence:
+
+```
+Q  what did marcus clean with vinegar?   A  marcus got the vinegar from the station's kitchen.
+Q  where is the coastal research station? A  the research station located near crescent bay.
+Q  who drank black coffee?               A  marcus harbor seal when he should have been helping.
+Q  how many hours of monitoring data were lost?  A  the storm severed the primary data transmission line.
+```
+
+Near-perfect recall of 75 memorised QA pairs, and no reliable recombination one
+step outside them. That is the honest description of a 0.42M-parameter
+transformer fitted to 1.8k tokens, and it is what the saved model is good for.
+
 ---
 
 ## Reproducing
@@ -178,6 +263,21 @@ cd language && curl -sL -o shake.txt \
 python vocab.py && python gatelm.py 1,4,8,12,13 999
 python chain.py 9999 && python sweep.py 9999
 ```
+
+Marine corpus (§5) — `marine.txt` is in the repo, so there is nothing to fetch.
+`CORPUS` selects everything; checkpoints and json are tagged by it, so the two
+corpora coexist:
+
+```bash
+cd language
+export CORPUS=marine
+python vocab.py && python gatelm.py all 999 && python chain.py 9999
+python fit.py 999 3000 chain          # full-corpus fit -> models/marine_L9.pt
+python qa.py 8 && python probe.py     # 75 passage questions, then paraphrases
+```
+
+The whole marine run is about six minutes on four CPU cores. `fit.py`'s model
+ships with the repo, so `qa.py` and `probe.py` run without retraining.
 
 Maze audit (regenerates the 9×9 chain first — `ckpt/` is gitignored):
 
@@ -214,6 +314,10 @@ identical seeds.
 - The vocabulary bisection balances by word **type**, not token mass, so level 1
   is 96/4 and the coarse rungs carry little information. Fixing this should
   steepen the ladder — untested.
+- The marine corpus (§5) is 1.8k tokens against a 0.42M-parameter model. Its
+  ladder table is reported for completeness only — at that ratio held-out CE
+  measures overfitting, not transfer, so §5 says nothing either way about `R`.
+  Its saved model recalls the passage; it does not generalise past it.
 - The head expansion inherits the parent row without the within-cluster log
   marginal, making zero-shot CE *worse* than predicting corpus frequencies
   (5.137 vs 5.072 at L12). A few lines would fix it — untested.

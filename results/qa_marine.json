@@ -1,0 +1,463 @@
+{
+ "n": 75,
+ "exact": {
+  "ctx": 0.9866666666666667,
+  "cold": 0.9866666666666667
+ },
+ "token_acc": {
+  "ctx": 0.9986945169712794,
+  "cold": 0.9986945169712794
+ },
+ "rows": [
+  {
+   "q": "last tuesday morning, dr. elena vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near crescent bay with her research assistant, marcus chen, a 22-year-old graduate student. who is the 34-year-old marine biologist?",
+   "gold": "dr. elena vargas is the 34-year-old marine biologist.",
+   "ctx": "dr. elena vargas is the 34-year-old marine biologist.",
+   "cold": "dr. elena vargas is the 34-year-old marine biologist."
+  },
+  {
+   "q": "dr. elena vargas is the 34-year-old marine biologist. who accompanied elena to the station?",
+   "gold": "marcus chen accompanied elena to the station.",
+   "ctx": "marcus chen accompanied elena to the station.",
+   "cold": "marcus chen accompanied elena to the station."
+  },
+  {
+   "q": "marcus chen accompanied elena to the station. who is marcus chen?",
+   "gold": "marcus chen is elena's research assistant.",
+   "ctx": "marcus chen is elena's research assistant.",
+   "cold": "marcus chen is elena's research assistant."
+  },
+  {
+   "q": "marcus chen is elena's research assistant. how old is marcus?",
+   "gold": "marcus is 22 years old.",
+   "ctx": "marcus is 22 years old.",
+   "cold": "marcus is 22 years old."
+  },
+  {
+   "q": "marcus is 22 years old. how old is elena?",
+   "gold": "elena is 34 years old.",
+   "ctx": "elena is 34 years old.",
+   "cold": "elena is 34 years old."
+  },
+  {
+   "q": "elena is 34 years old. who owns the blue electric pickup truck?",
+   "gold": "elena owns the blue electric pickup truck.",
+   "ctx": "elena owns the blue electric pickup truck.",
+   "cold": "elena owns the blue electric pickup truck."
+  },
+  {
+   "q": "elena owns the blue electric pickup truck. what color is the pickup truck?",
+   "gold": "the pickup truck is blue.",
+   "ctx": "the pickup truck is blue.",
+   "cold": "the pickup truck is blue."
+  },
+  {
+   "q": "the pickup truck is blue. what type of vehicle does elena drive?",
+   "gold": "elena drives an electric pickup truck.",
+   "ctx": "elena drives an electric pickup truck.",
+   "cold": "elena drives an electric pickup truck."
+  },
+  {
+   "q": "elena drives an electric pickup truck. where did elena drive from?",
+   "gold": "elena drove from her beach cottage.",
+   "ctx": "elena drove from her beach cottage.",
+   "cold": "elena drove from her beach cottage."
+  },
+  {
+   "q": "elena drove from her beach cottage. where is the research station located?",
+   "gold": "the research station is located near crescent bay.",
+   "ctx": "the research station is located near crescent bay.",
+   "cold": "the research station is located near crescent bay."
+  },
+  {
+   "q": "the research station is located near crescent bay. how did elena and marcus travel?",
+   "gold": "elena and marcus traveled by blue electric pickup truck.",
+   "ctx": "elena and marcus traveled by blue electric pickup truck.",
+   "cold": "elena and marcus traveled by blue electric pickup truck."
+  },
+  {
+   "q": "elena and marcus traveled by blue electric pickup truck. they arrived at 7: 45 am because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the ocean preservation foundation. why did elena and marcus go to the station?",
+   "gold": "elena and marcus went to the station because the storm damaged the main sensor array.",
+   "ctx": "elena and marcus went to the station because the storm damaged the main sensor array.",
+   "cold": "elena and marcus went to the station because the storm damaged the main sensor array."
+  },
+  {
+   "q": "elena and marcus went to the station because the storm damaged the main sensor array. what was damaged by the storm?",
+   "gold": "the main sensor array was damaged by the storm.",
+   "ctx": "the main sensor array was damaged by the storm.",
+   "cold": "the main sensor array was damaged by the storm."
+  },
+  {
+   "q": "the main sensor array was damaged by the storm. what does the sensor array monitor?",
+   "gold": "the sensor array monitors water temperature and salinity levels.",
+   "ctx": "the sensor array monitors water temperature and salinity levels.",
+   "cold": "the sensor array monitors water temperature and salinity levels."
+  },
+  {
+   "q": "the sensor array monitors water temperature and salinity levels. why is the sensor array important?",
+   "gold": "the sensor array is important because it monitors water temperature and salinity for the coral restoration project.",
+   "ctx": "the sensor array is important because it monitors water temperature and salinity for the coral restoration project.",
+   "cold": "the sensor array is important because it monitors water temperature and salinity for the coral restoration project."
+  },
+  {
+   "q": "the sensor array is important because it monitors water temperature and salinity for the coral restoration project. when did elena and marcus arrive?",
+   "gold": "elena and marcus arrived at 7: 45 am last tuesday morning.",
+   "ctx": "elena and marcus arrived at 7: 45 am last tuesday morning.",
+   "cold": "elena and marcus arrived at 7: 45 am last tuesday morning."
+  },
+  {
+   "q": "large coffee cups from harbor caf\u00e9\u2014one black for elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at elena's cottage, intended for their absent colleague, dr. samir patel, who had called in sick with the flu at 6: 30 am. what did elena carry to the station?",
+   "gold": "elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables to the station.",
+   "ctx": "elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables to the station.",
+   "cold": "elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables to the station."
+  },
+  {
+   "q": "elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables to the station. how many replacement circuit boards did elena bring?",
+   "gold": "elena brought two replacement circuit boards.",
+   "ctx": "elena brought two replacement circuit boards.",
+   "cold": "elena brought two replacement circuit boards."
+  },
+  {
+   "q": "elena brought two replacement circuit boards. how many fiber-optic cables did elena bring?",
+   "gold": "elena brought three fiber-optic cables.",
+   "ctx": "elena brought three fiber-optic cables.",
+   "cold": "elena brought three fiber-optic cables."
+  },
+  {
+   "q": "elena brought three fiber-optic cables. what did marcus bring?",
+   "gold": "marcus brought two large coffee cups from harbor caf\u00e9.",
+   "ctx": "marcus brought two large coffee cups from harbor caf\u00e9.",
+   "cold": "marcus brought two large coffee cups from harbor caf\u00e9."
+  },
+  {
+   "q": "marcus brought two large coffee cups from harbor caf\u00e9. how many coffee cups did marcus bring?",
+   "gold": "marcus brought two coffee cups.",
+   "ctx": "marcus brought two coffee cups.",
+   "cold": "marcus brought two coffee cups."
+  },
+  {
+   "q": "marcus brought two coffee cups. where did marcus get the coffee?",
+   "gold": "marcus got the coffee from harbor caf\u00e9.",
+   "ctx": "marcus got the coffee from harbor caf\u00e9.",
+   "cold": "marcus got the coffee from harbor caf\u00e9."
+  },
+  {
+   "q": "marcus got the coffee from harbor caf\u00e9. what kind of coffee did elena drink?",
+   "gold": "elena drank black coffee.",
+   "ctx": "elena drank black coffee.",
+   "cold": "elena drank black coffee."
+  },
+  {
+   "q": "elena drank black coffee. what kind of coffee did marcus drink?",
+   "gold": "marcus drank coffee with oat milk.",
+   "ctx": "marcus drank coffee with oat milk.",
+   "cold": "marcus drank coffee with oat milk."
+  },
+  {
+   "q": "marcus drank coffee with oat milk. whose coffee was black?",
+   "gold": "elena's coffee was black.",
+   "ctx": "elena's coffee was black.",
+   "cold": "elena's coffee was black."
+  },
+  {
+   "q": "elena's coffee was black. whose coffee had oat milk?",
+   "gold": "marcus's coffee had oat milk.",
+   "ctx": "marcus's coffee had oat milk.",
+   "cold": "marcus's coffee had oat milk."
+  },
+  {
+   "q": "marcus's coffee had oat milk. who was the third cup intended for?",
+   "gold": "the third cup was intended for dr. samir patel.",
+   "ctx": "the third cup was intended for dr. samir patel.",
+   "cold": "the third cup was intended for dr. samir patel."
+  },
+  {
+   "q": "the third cup was intended for dr. samir patel. what was left on the kitchen counter at elena's cottage?",
+   "gold": "a third coffee cup intended for samir was left on the kitchen counter at elena's cottage.",
+   "ctx": "a third coffee cup intended for samir was left on the kitchen counter at elena's cottage.",
+   "cold": "a third coffee cup intended for samir was left on the kitchen counter at elena's cottage."
+  },
+  {
+   "q": "a third coffee cup intended for samir was left on the kitchen counter at elena's cottage. who called in sick with the flu?",
+   "gold": "dr. samir patel called in sick with the flu.",
+   "ctx": "dr. samir patel called in sick with the flu.",
+   "cold": "dr. samir patel called in sick with the flu."
+  },
+  {
+   "q": "dr. samir patel called in sick with the flu. what illness did samir have?",
+   "gold": "samir had the flu.",
+   "ctx": "samir had the flu.",
+   "cold": "samir had the flu."
+  },
+  {
+   "q": "samir had the flu. when did samir call in sick?",
+   "gold": "samir called in sick at 6: 30 am.",
+   "ctx": "samir called in sick at 6: 30 am.",
+   "cold": "samir called in sick at 6: 30 am."
+  },
+  {
+   "q": "samir called in sick at 6: 30 am. why did samir not come?",
+   "gold": "samir did not come because he called in sick with the flu.",
+   "ctx": "samir did not come because he called in sick with the flu.",
+   "cold": "samir did not come because he called in sick with the flu."
+  },
+  {
+   "q": "samir did not come because he called in sick with the flu. if samir had not called in sick, how many coffee cups would marcus have brought?",
+   "gold": "marcus would have brought three coffee cups.",
+   "ctx": "marcus would have brought three coffee cups.",
+   "cold": "marcus would have brought three coffee cups."
+  },
+  {
+   "q": "marcus would have brought three coffee cups. how many people were originally supposed to go to the station?",
+   "gold": "three people were originally supposed to go to the station.",
+   "ctx": "three people were originally supposed to go to the station.",
+   "cold": "three people were originally supposed to go to the station."
+  },
+  {
+   "q": "three people were originally supposed to go to the station. the storm, which generated 40-knot winds from the northeast beginning monday evening, had severed the primary data transmission line at 10: 47 pm, causing the station to lose 12 hours of continuous monitoring data. how fast were the storm winds?",
+   "gold": "the storm winds were 40 knots.",
+   "ctx": "the storm winds were 40 knots.",
+   "cold": "the storm winds were 40 knots."
+  },
+  {
+   "q": "the storm winds were 40 knots. which direction did the winds come from?",
+   "gold": "the winds came from the northeast.",
+   "ctx": "the winds came from the northeast.",
+   "cold": "the winds came from the northeast."
+  },
+  {
+   "q": "the winds came from the northeast. what was severed by the storm?",
+   "gold": "the primary data transmission line was severed by the storm.",
+   "ctx": "the primary data transmission line was severed by the storm.",
+   "cold": "the primary data transmission line was severed by the storm."
+  },
+  {
+   "q": "the primary data transmission line was severed by the storm. when did the transmission line sever?",
+   "gold": "the transmission line severed at 10: 47 pm monday evening.",
+   "ctx": "the transmission line severed at 10: 47 pm monday evening.",
+   "cold": "the transmission line severed at 10: 47 pm monday evening."
+  },
+  {
+   "q": "the transmission line severed at 10: 47 pm monday evening. why did the station lose data?",
+   "gold": "the station lost data because the storm severed the primary data transmission line.",
+   "ctx": "the station lost data because the storm severed the primary data transmission line.",
+   "cold": "the station lost data because the storm severed the primary data transmission line."
+  },
+  {
+   "q": "the station lost data because the storm severed the primary data transmission line. if the line had severed at 8: 47 pm instead of 10: 47 pm, how many hours of data would have been lost by restoration time?",
+   "gold": "fourteen hours of data would have been lost by restoration time.",
+   "ctx": "fourteen hours of data would have been lost by restoration time.",
+   "cold": "fourteen hours of data would have been lost by restoration time."
+  },
+  {
+   "q": "fourteen hours of data would have been lost by restoration time. what happened first, samir calling in sick or the line severing?",
+   "gold": "the line severing happened first.",
+   "ctx": "the line severing happened first.",
+   "cold": "the line severing happened first."
+  },
+  {
+   "q": "the line severing happened first. if the array remained offline for more than 48 hours, the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant. how long would the array need to be offline to lose certification?",
+   "gold": "the array would need to be offline for more than 48 hours to lose certification.",
+   "ctx": "the array would need to be offline for more than 48 hours to lose certification.",
+   "cold": "the array would need to be offline for more than 48 hours to lose certification."
+  },
+  {
+   "q": "the array would need to be offline for more than 48 hours to lose certification. how much is the quarterly certification worth?",
+   "gold": "the quarterly certification is worth $50, 000.",
+   "ctx": "the quarterly certification is worth $50, 000.",
+   "cold": "the quarterly certification is worth $50, 000."
+  },
+  {
+   "q": "the quarterly certification is worth $50, 000. how much is the federal grant?",
+   "gold": "the federal grant is $2 million.",
+   "ctx": "the federal grant is $2 million.",
+   "cold": "the federal grant is $2 million."
+  },
+  {
+   "q": "the federal grant is $2 million. what would happen if the array stayed offline more than 48 hours?",
+   "gold": "the foundation would lose its $50, 000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "ctx": "the foundation would lose its $50, 000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification and potentially jeopardize the $2 million federal grant."
+  },
+  {
+   "q": "the $2 million federal grant. by 9: 30 am, elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that marcus had to clean with vinegar from the station's kitchen before they could restore full power. who replaced the damaged transmitter?",
+   "gold": "elena replaced the damaged transmitter.",
+   "ctx": "elena replaced the damaged transmitter.",
+   "cold": "elena replaced the damaged transmitter."
+  },
+  {
+   "q": "elena replaced the damaged transmitter. what did elena do before marcus cleaned the terminals?",
+   "gold": "elena replaced the damaged transmitter before marcus cleaned the terminals.",
+   "ctx": "elena replaced the damaged transmitter before marcus cleaned the terminals.",
+   "cold": "elena replaced the damaged transmitter before marcus cleaned the terminals."
+  },
+  {
+   "q": "elena replaced the damaged transmitter before marcus cleaned the terminals. when was the backup battery system installed?",
+   "gold": "the backup battery system was installed three years ago.",
+   "ctx": "the backup battery system was installed three years ago.",
+   "cold": "the backup battery system was installed three years ago."
+  },
+  {
+   "q": "the backup battery system was installed three years ago. what was wrong with the backup battery system?",
+   "gold": "the backup battery system had corroded terminals.",
+   "ctx": "the backup battery system had corroded terminals.",
+   "cold": "the backup battery system had corroded terminals."
+  },
+  {
+   "q": "the backup battery system had corroded terminals. who cleaned the corroded battery terminals?",
+   "gold": "marcus cleaned the corroded battery terminals.",
+   "ctx": "marcus cleaned the corroded battery terminals.",
+   "cold": "marcus cleaned the corroded battery terminals."
+  },
+  {
+   "q": "marcus cleaned the corroded battery terminals. what did marcus use to clean the terminals?",
+   "gold": "marcus used vinegar to clean the terminals.",
+   "ctx": "marcus used vinegar to clean the terminals.",
+   "cold": "marcus used vinegar to clean the terminals."
+  },
+  {
+   "q": "marcus used vinegar to clean the terminals. how did marcus clean the terminals?",
+   "gold": "marcus cleaned the terminals with vinegar.",
+   "ctx": "marcus cleaned the terminals with vinegar.",
+   "cold": "marcus cleaned the terminals with vinegar."
+  },
+  {
+   "q": "marcus cleaned the terminals with vinegar. where were the corroded terminals cleaned?",
+   "gold": "the corroded terminals were cleaned at the station.",
+   "ctx": "the corroded terminals were cleaned at the station.",
+   "cold": "the corroded terminals were cleaned at the station."
+  },
+  {
+   "q": "the corroded terminals were cleaned at the station. where did marcus get the vinegar?",
+   "gold": "marcus got the vinegar from the station's kitchen.",
+   "ctx": "marcus got the vinegar from the station's kitchen.",
+   "cold": "marcus got the vinegar from the station's kitchen."
+  },
+  {
+   "q": "marcus got the vinegar from the station's kitchen. if marcus had not cleaned the terminals, what would not have happened?",
+   "gold": "they would not have restored full power.",
+   "ctx": "they would not have restored full power.",
+   "cold": "they would not have restored full power."
+  },
+  {
+   "q": "they would not have restored full power. what does the passage imply about the backup battery system?",
+   "gold": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals.",
+   "ctx": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals.",
+   "cold": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals."
+  },
+  {
+   "q": "the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals. during the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which marcus photographed with his smartphone instead of helping for approximately five minutes. who was watching them work from the nearby rocks?",
+   "gold": "a harbor seal was watching them work from the nearby rocks.",
+   "ctx": "a harbor seal was watching them work from the nearby rocks.",
+   "cold": "a harbor seal was watching them work from the nearby rocks."
+  },
+  {
+   "q": "a harbor seal was watching them work from the nearby rocks. where did the seal appear?",
+   "gold": "the seal appeared on the nearby rocks.",
+   "ctx": "the seal appeared on the nearby rocks.",
+   "cold": "the seal appeared on the nearby rocks."
+  },
+  {
+   "q": "the seal appeared on the nearby rocks. who photographed the harbor seal?",
+   "gold": "marcus photographed the harbor seal.",
+   "ctx": "marcus photographed the harbor seal.",
+   "cold": "marcus photographed the harbor seal."
+  },
+  {
+   "q": "marcus photographed the harbor seal. what did marcus use to photograph the seal?",
+   "gold": "marcus used his smartphone to photograph the seal.",
+   "ctx": "marcus used his smartphone to photograph the seal.",
+   "cold": "marcus used his smartphone to photograph the seal."
+  },
+  {
+   "q": "marcus used his smartphone to photograph the seal. whose smartphone did marcus use?",
+   "gold": "marcus used his own smartphone.",
+   "ctx": "marcus used his own smartphone.",
+   "cold": "marcus used his own smartphone."
+  },
+  {
+   "q": "marcus used his own smartphone. how long was marcus distracted by the seal?",
+   "gold": "marcus was distracted by the seal for approximately five minutes.",
+   "ctx": "marcus was distracted by the seal for approximately five minutes.",
+   "cold": "marcus was distracted by the seal for approximately five minutes."
+  },
+  {
+   "q": "marcus was distracted by the seal for approximately five minutes. what was marcus doing when he should have been helping?",
+   "gold": "marcus was photographing the harbor seal when he should have been helping.",
+   "ctx": "marcus was photographing the harbor seal when he should have been helping.",
+   "cold": "marcus was photographing the harbor seal when he should have been helping."
+  },
+  {
+   "q": "marcus was photographing the harbor seal when he should have been helping. the station resumed data transmission at 10: 47 am, exactly 22 minutes before the foundation's director, margaret holt, arrived for an unscheduled inspection, unaware that the crisis had occurred. when did the station resume data transmission?",
+   "gold": "the station resumed data transmission at 10: 47 am.",
+   "ctx": "the station resumed data transmission at 10: 47 am.",
+   "cold": "the station resumed data transmission at 10: 47 am."
+  },
+  {
+   "q": "the station resumed data transmission at 10: 47 am. what time did margaret arrive?",
+   "gold": "margaret arrived at 11: 09 am.",
+   "ctx": "margaret arrived at 11: 09 am.",
+   "cold": "margaret arrived at 11: 09 am."
+  },
+  {
+   "q": "margaret arrived at 11: 09 am. who arrived for an unscheduled inspection?",
+   "gold": "margaret holt arrived for an unscheduled inspection.",
+   "ctx": "margaret holt arrived for an unscheduled inspection.",
+   "cold": "margaret holt arrived for an unscheduled inspection."
+  },
+  {
+   "q": "margaret holt arrived for an unscheduled inspection. who is the director of the ocean preservation foundation?",
+   "gold": "margaret holt is the director of the ocean preservation foundation.",
+   "ctx": "margaret holt is the director of the ocean preservation foundation.",
+   "cold": "margaret holt is the director of the ocean preservation foundation."
+  },
+  {
+   "q": "margaret holt is the director of the ocean preservation foundation. who was unaware of the crisis?",
+   "gold": "margaret holt was unaware of the crisis.",
+   "ctx": "margaret holt was unaware of the crisis.",
+   "cold": "margaret holt was unaware of the crisis."
+  },
+  {
+   "q": "margaret holt was unaware of the crisis. what was the near-miss?",
+   "gold": "the near-miss was that the station nearly failed to restore before margaret's unscheduled inspection.",
+   "ctx": "the near-miss was that the station nearly failed to restore before margaret's unscheduled inspection.",
+   "cold": "the near-miss was that the station nearly failed to restore before margaret's unscheduled inspection."
+  },
+  {
+   "q": "the near-miss was that the station nearly failed to restore before margaret's unscheduled inspection. if margaret had arrived 30 minutes earlier, what would she have discovered?",
+   "gold": "she would have discovered the station was still offline.",
+   "ctx": "she would have discovered the station was still offline.",
+   "cold": "she would have discovered the station was still offline."
+  },
+  {
+   "q": "have discovered the station was still offline. elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for march. why did elena decide not to mention the near-miss?",
+   "gold": "elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion.",
+   "ctx": "elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion.",
+   "cold": "elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion."
+  },
+  {
+   "q": "elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion. what might revealing the vulnerability trigger?",
+   "gold": "revealing the vulnerability might trigger an expensive audit.",
+   "ctx": "revealing the vulnerability might trigger an expensive audit.",
+   "cold": "revealing the vulnerability might trigger an expensive audit."
+  },
+  {
+   "q": "revealing the vulnerability might trigger an expensive audit. when is the coral nursery expansion planned?",
+   "gold": "the coral nursery expansion is planned for march.",
+   "ctx": "the coral nursery expansion is planned for march.",
+   "cold": "the coral nursery expansion is planned for march."
+  },
+  {
+   "q": "the coral nursery expansion is planned for march. what can be inferred about elena's priorities?",
+   "gold": "elena prioritized securing future funding over transparent reporting of system vulnerabilities.",
+   "ctx": "elena prioritized securing future funding over transparent reporting of system vulnerabilities.",
+   "cold": "elena prioritized securing future funding over transparent reporting of system vulnerabilities."
+  },
+  {
+   "q": "elena prioritized securing future funding over transparent reporting of system vulnerabilities. what happened last in the passage?",
+   "gold": "elena decided not to mention the near-miss in her official report.",
+   "ctx": "elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for march.",
+   "cold": "elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for march."
+  }
+ ]
+}

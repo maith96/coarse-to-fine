@@ -1,10 +1,11 @@
 import numpy as np, torch, warnings; warnings.filterwarnings("ignore")
 import torch.nn.functional as F
-from gatelm import LM, tr_ids, va_ids, CTX, DEPTH
-z=np.load("vocabtree.npz"); code=z['code'].astype(np.int64); words=z['words']
+from gatelm import LM, tr_ids, va_ids, CTX, DEPTH, LEVELS
+import corpus as CO
+z=np.load(CO.TREE); code=z['code'].astype(np.int64); words=z['words']
 nets={}
-for L in [1,4,8,12,13]:
-    n=LM(2**L); n.load_state_dict(torch.load(f"ckpt/ch_anc_L{L}.pt")['n']); n.eval(); nets[L]=n
+for L in LEVELS:
+    n=LM(2**L); n.load_state_dict(torch.load(CO.ck(f"ch_anc_L{L}"))['n']); n.eval(); nets[L]=n
 
 def cluster_words(L, cid, k=8):
     m=np.where((code>>(DEPTH-L))==cid)[0]
@@ -18,14 +19,14 @@ for trial in range(3):
     print("CONTEXT: ..."+" ".join(str(words[t]) for t in ctx[-14:]).replace("\n","\\n"))
     print(f"TRUE NEXT WORD: '{words[nxt]}'")
     x=torch.from_numpy(ctx[None].astype(np.int64))
-    for L in [1,4,8,12,13]:
+    for L in LEVELS:
         with torch.no_grad(): lg=nets[L](x)[0,-1]
         p=F.softmax(lg,-1); top=p.argmax().item()
         true_c=code[nxt]>>(DEPTH-L)
         hit="HIT " if top==true_c else "miss"
         print(f"  L{L:2d} ({2**L:5d} buckets) {hit} p(true)={p[true_c].item():.3f}  "
               f"predicted bucket -> {', '.join(cluster_words(L,top,6))}")
-    with torch.no_grad(): lg=nets[13](x)[0,-1]
+    with torch.no_grad(): lg=nets[LEVELS[-1]](x)[0,-1]
     tp=torch.softmax(lg,-1).topk(6)
     leaf2w={}
     for w in range(len(code)): leaf2w.setdefault(code[w],w)

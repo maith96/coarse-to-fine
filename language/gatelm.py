@@ -1,7 +1,9 @@
 import sys, os, json, time, numpy as np, torch, torch.nn as nn, warnings
 warnings.filterwarnings("ignore"); import torch.nn.functional as F
-z=np.load("vocabtree.npz"); ids=z['ids'].astype(np.int64); code=z['code'].astype(np.int64)
-DEPTH=13; V=8000; CTX=64
+import corpus as CO
+z=np.load(CO.TREE); ids=z['ids'].astype(np.int64); code=z['code'].astype(np.int64)
+DEPTH=int(z['DEPTH']); V=int(z['V']); CTX=int(z['CTX'])
+LEVELS=CO.levels(DEPTH)
 n=len(ids); SP=int(0.9*n)
 tr_ids, va_ids = ids[:SP], ids[SP:]
 
@@ -40,10 +42,9 @@ def baseline(L):
     return float(np.bincount(cl).argmax()==vc).mean() if False else (
         (vc==np.bincount(cl).argmax()).mean(), float(-np.log(pr[vc]).mean()))
 
-CFG={1:(800,64),4:(800,64),8:(800,64),12:(400,24),13:(400,16)}
 def run(L, steps=None, bs=None, lr=3e-3, BUD=180, t0=0):
-    steps,bs=CFG[L]
-    ncls=2**L; ck=f"ckpt/lm_L{L}.pt"
+    steps,bs=CO.gate(L)
+    ncls=2**L; ck=CO.ck(f"lm_L{L}")
     torch.manual_seed(0); net=LM(ncls)
     o=torch.optim.AdamW(net.parameters(),lr=lr,weight_decay=0.01)
     sch=torch.optim.lr_scheduler.OneCycleLR(o,lr,total_steps=steps,pct_start=0.15)
@@ -68,10 +69,12 @@ def run(L, steps=None, bs=None, lr=3e-3, BUD=180, t0=0):
 
 if __name__=="__main__":
     t0=time.time(); BUD=float(sys.argv[2])
-    res=json.load(open("gatelm.json")) if os.path.exists("gatelm.json") else {}
-    for L in [int(v) for v in sys.argv[1].split(",")]:
+    GJ=CO.out("gatelm")
+    res=json.load(open(GJ)) if os.path.exists(GJ) else {}
+    want=sys.argv[1]
+    for L in (LEVELS if want=="all" else [int(v) for v in want.split(",")]):
         if str(L) in res: continue
         r=run(L,BUD=BUD,t0=t0)
         if r is None: sys.exit(0)
-        res[str(L)]=r; json.dump(res,open("gatelm.json","w"))
+        res[str(L)]=r; json.dump(res,open(GJ,"w"))
     print("DONE",flush=True)

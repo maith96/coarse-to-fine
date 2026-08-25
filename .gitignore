@@ -2,6 +2,8 @@ ckpt/
 *.pt
 *.npz
 shake.txt
+# the marine model is the deliverable of that run, so it ships
+!language/models/*.pt
 __pycache__/
 *.pyc
 .venv/
