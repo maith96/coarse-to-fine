@@ -1,0 +1,603 @@
+{
+ "n_heldout": 15,
+ "n_variants": 24,
+ "seed": 0,
+ "chunk": 4,
+ "held": [
+  {
+   "par": 6,
+   "narr": "Elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for March.",
+   "q": "What might revealing the vulnerability trigger?",
+   "a": "Revealing the vulnerability might trigger an expensive audit.",
+   "cover": 1.0,
+   "forms": [
+    "What might revealing the vulnerability trigger?",
+    "Question: What might revealing the vulnerability trigger?",
+    "Do you know what might revealing the vulnerability trigger?",
+    "Can you say what might revealing the vulnerability trigger?",
+    "Tell me what might revealing the vulnerability trigger.",
+    "I want to know what might revealing the vulnerability trigger."
+   ]
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "Where did the seal appear?",
+   "a": "The seal appeared on the nearby rocks.",
+   "cover": 1.0,
+   "forms": [
+    "Where did the seal appear?",
+    "Question: Where did the seal appear?",
+    "Do you know where did the seal appear?",
+    "Can you say where did the seal appear?",
+    "Tell me where did the seal appear.",
+    "I want to know where did the seal appear.",
+    "In which place did the seal appear?"
+   ]
+  },
+  {
+   "par": 6,
+   "narr": "Elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for March.",
+   "q": "What happened last in the passage?",
+   "a": "Elena decided not to mention the near-miss in her official report.",
+   "cover": 1.0,
+   "forms": [
+    "What happened last in the passage?",
+    "Question: What happened last in the passage?",
+    "Do you know what happened last in the passage?",
+    "Can you say what happened last in the passage?",
+    "Tell me what happened last in the passage.",
+    "I want to know what happened last in the passage."
+   ]
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "What type of vehicle does Elena drive?",
+   "a": "Elena drives an electric pickup truck.",
+   "cover": 0.75,
+   "forms": [
+    "What type of vehicle does Elena drive?",
+    "Question: What type of vehicle does Elena drive?",
+    "Do you know what type of vehicle does Elena drive?",
+    "Can you say what type of vehicle does Elena drive?",
+    "Tell me what type of vehicle does Elena drive.",
+    "I want to know what type of vehicle does Elena drive."
+   ]
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "Who photographed the harbor seal?",
+   "a": "Marcus photographed the harbor seal.",
+   "cover": 1.0,
+   "forms": [
+    "Who photographed the harbor seal?",
+    "Question: Who photographed the harbor seal?",
+    "Do you know who photographed the harbor seal?",
+    "Can you say who photographed the harbor seal?",
+    "Tell me who photographed the harbor seal.",
+    "I want to know who photographed the harbor seal.",
+    "Which person photographed the harbor seal?"
+   ]
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "Who was unaware of the crisis?",
+   "a": "Margaret Holt was unaware of the crisis.",
+   "cover": 1.0,
+   "forms": [
+    "Who was unaware of the crisis?",
+    "Question: Who was unaware of the crisis?",
+    "Do you know who was unaware of the crisis?",
+    "Can you say who was unaware of the crisis?",
+    "Tell me who was unaware of the crisis.",
+    "I want to know who was unaware of the crisis.",
+    "Which person was unaware of the crisis?"
+   ]
+  },
+  {
+   "par": 3,
+   "narr": "If the array remained offline for more than 48 hours, the foundation would lose its $50,000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "q": "What would happen if the array stayed offline more than 48 hours?",
+   "a": "The foundation would lose its $50,000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "cover": 0.923,
+   "forms": [
+    "What would happen if the array stayed offline more than 48 hours?",
+    "Question: What would happen if the array stayed offline more than 48 hours?",
+    "Do you know what would happen if the array stayed offline more than 48 hours?",
+    "Can you say what would happen if the array stayed offline more than 48 hours?",
+    "Tell me what would happen if the array stayed offline more than 48 hours.",
+    "I want to know what would happen if the array stayed offline more than 48 hours."
+   ]
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Where is the research station located?",
+   "a": "The research station is located near Crescent Bay.",
+   "cover": 1.0,
+   "forms": [
+    "Where is the research station located?",
+    "Question: Where is the research station located?",
+    "Do you know where is the research station located?",
+    "Can you say where is the research station located?",
+    "Tell me where is the research station located.",
+    "I want to know where is the research station located.",
+    "In which place is the research station located?"
+   ]
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Who called in sick with the flu?",
+   "a": "Dr. Samir Patel called in sick with the flu.",
+   "cover": 1.0,
+   "forms": [
+    "Who called in sick with the flu?",
+    "Question: Who called in sick with the flu?",
+    "Do you know who called in sick with the flu?",
+    "Can you say who called in sick with the flu?",
+    "Tell me who called in sick with the flu.",
+    "I want to know who called in sick with the flu.",
+    "Which person called in sick with the flu?"
+   ]
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Whose coffee was black?",
+   "a": "Elena's coffee was black.",
+   "cover": 1.0,
+   "forms": [
+    "Whose coffee was black?",
+    "Question: Whose coffee was black?",
+    "Do you know whose coffee was black?",
+    "Can you say whose coffee was black?",
+    "Tell me whose coffee was black.",
+    "I want to know whose coffee was black.",
+    "Which person's coffee was black?"
+   ]
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "Who replaced the damaged transmitter?",
+   "a": "Elena replaced the damaged transmitter.",
+   "cover": 1.0,
+   "forms": [
+    "Who replaced the damaged transmitter?",
+    "Question: Who replaced the damaged transmitter?",
+    "Do you know who replaced the damaged transmitter?",
+    "Can you say who replaced the damaged transmitter?",
+    "Tell me who replaced the damaged transmitter.",
+    "I want to know who replaced the damaged transmitter.",
+    "Which person replaced the damaged transmitter?"
+   ]
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "What was wrong with the backup battery system?",
+   "a": "The backup battery system had corroded terminals.",
+   "cover": 1.0,
+   "forms": [
+    "What was wrong with the backup battery system?",
+    "Question: What was wrong with the backup battery system?",
+    "Do you know what was wrong with the backup battery system?",
+    "Can you say what was wrong with the backup battery system?",
+    "Tell me what was wrong with the backup battery system.",
+    "I want to know what was wrong with the backup battery system."
+   ]
+  },
+  {
+   "par": 1,
+   "narr": "They arrived at 7:45 AM because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the Ocean Preservation Foundation.",
+   "q": "Why is the sensor array important?",
+   "a": "The sensor array is important because it monitors water temperature and salinity for the coral restoration project.",
+   "cover": 1.0,
+   "forms": [
+    "Why is the sensor array important?",
+    "Question: Why is the sensor array important?",
+    "Do you know why is the sensor array important?",
+    "Can you say why is the sensor array important?",
+    "Tell me why is the sensor array important.",
+    "I want to know why is the sensor array important.",
+    "For what reason is the sensor array important?"
+   ]
+  },
+  {
+   "par": 3,
+   "narr": "If the array remained offline for more than 48 hours, the foundation would lose its $50,000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "q": "How much is the quarterly certification worth?",
+   "a": "The quarterly certification is worth $50,000.",
+   "cover": 1.0,
+   "forms": [
+    "How much is the quarterly certification worth?",
+    "Question: How much is the quarterly certification worth?",
+    "Do you know how much is the quarterly certification worth?",
+    "Can you say how much is the quarterly certification worth?",
+    "Tell me how much is the quarterly certification worth.",
+    "I want to know how much is the quarterly certification worth."
+   ]
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "What was severed by the storm?",
+   "a": "The primary data transmission line was severed by the storm.",
+   "cover": 1.0,
+   "forms": [
+    "What was severed by the storm?",
+    "Question: What was severed by the storm?",
+    "Do you know what was severed by the storm?",
+    "Can you say what was severed by the storm?",
+    "Tell me what was severed by the storm.",
+    "I want to know what was severed by the storm."
+   ]
+  }
+ ],
+ "train_qa": [
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Who is the 34-year-old marine biologist?",
+   "a": "Dr. Elena Vargas is the 34-year-old marine biologist."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Who accompanied Elena to the station?",
+   "a": "Marcus Chen accompanied Elena to the station."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Who is Marcus Chen?",
+   "a": "Marcus Chen is Elena's research assistant."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "How old is Marcus?",
+   "a": "Marcus is 22 years old."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "How old is Elena?",
+   "a": "Elena is 34 years old."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Who owns the blue electric pickup truck?",
+   "a": "Elena owns the blue electric pickup truck."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "What color is the pickup truck?",
+   "a": "The pickup truck is blue."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "Where did Elena drive from?",
+   "a": "Elena drove from her beach cottage."
+  },
+  {
+   "par": 0,
+   "narr": "Last Tuesday morning, Dr. Elena Vargas, a 34-year-old marine biologist, drove her blue electric pickup truck from her beach cottage to the coastal research station near Crescent Bay with her research assistant, Marcus Chen, a 22-year-old graduate student.",
+   "q": "How did Elena and Marcus travel?",
+   "a": "Elena and Marcus traveled by blue electric pickup truck."
+  },
+  {
+   "par": 1,
+   "narr": "They arrived at 7:45 AM because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the Ocean Preservation Foundation.",
+   "q": "Why did Elena and Marcus go to the station?",
+   "a": "Elena and Marcus went to the station because the storm damaged the main sensor array."
+  },
+  {
+   "par": 1,
+   "narr": "They arrived at 7:45 AM because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the Ocean Preservation Foundation.",
+   "q": "What was damaged by the storm?",
+   "a": "The main sensor array was damaged by the storm."
+  },
+  {
+   "par": 1,
+   "narr": "They arrived at 7:45 AM because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the Ocean Preservation Foundation.",
+   "q": "What does the sensor array monitor?",
+   "a": "The sensor array monitors water temperature and salinity levels."
+  },
+  {
+   "par": 1,
+   "narr": "They arrived at 7:45 AM because an overnight storm had damaged the main sensor array, which monitors water temperature and salinity levels for the local coral restoration project funded by the Ocean Preservation Foundation.",
+   "q": "When did Elena and Marcus arrive?",
+   "a": "Elena and Marcus arrived at 7:45 AM last Tuesday morning."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What did Elena carry to the station?",
+   "a": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables to the station."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "How many replacement circuit boards did Elena bring?",
+   "a": "Elena brought two replacement circuit boards."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "How many fiber-optic cables did Elena bring?",
+   "a": "Elena brought three fiber-optic cables."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What did Marcus bring?",
+   "a": "Marcus brought two large coffee cups from Harbor Caf\u00e9."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "How many coffee cups did Marcus bring?",
+   "a": "Marcus brought two coffee cups."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Where did Marcus get the coffee?",
+   "a": "Marcus got the coffee from Harbor Caf\u00e9."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What kind of coffee did Elena drink?",
+   "a": "Elena drank black coffee."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What kind of coffee did Marcus drink?",
+   "a": "Marcus drank coffee with oat milk."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Whose coffee had oat milk?",
+   "a": "Marcus's coffee had oat milk."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Who was the third cup intended for?",
+   "a": "The third cup was intended for Dr. Samir Patel."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What was left on the kitchen counter at Elena's cottage?",
+   "a": "A third coffee cup intended for Samir was left on the kitchen counter at Elena's cottage."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "What illness did Samir have?",
+   "a": "Samir had the flu."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "When did Samir call in sick?",
+   "a": "Samir called in sick at 6:30 AM."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "Why did Samir not come?",
+   "a": "Samir did not come because he called in sick with the flu."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "If Samir had not called in sick, how many coffee cups would Marcus have brought?",
+   "a": "Marcus would have brought three coffee cups."
+  },
+  {
+   "par": 1,
+   "narr": "Elena carried a waterproof toolbox containing two replacement circuit boards and three fiber-optic cables, while Marcus brought two large coffee cups from Harbor Caf\u00e9\u2014one black for Elena and one with oat milk for himself\u2014a third cup remaining on the kitchen counter at Elena's cottage, intended for their absent colleague, Dr. Samir Patel, who had called in sick with the flu at 6:30 AM.",
+   "q": "How many people were originally supposed to go to the station?",
+   "a": "Three people were originally supposed to go to the station."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "How fast were the storm winds?",
+   "a": "The storm winds were 40 knots."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "Which direction did the winds come from?",
+   "a": "The winds came from the northeast."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "When did the transmission line sever?",
+   "a": "The transmission line severed at 10:47 PM Monday evening."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "Why did the station lose data?",
+   "a": "The station lost data because the storm severed the primary data transmission line."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "If the line had severed at 8:47 PM instead of 10:47 PM, how many hours of data would have been lost by restoration time?",
+   "a": "Fourteen hours of data would have been lost by restoration time."
+  },
+  {
+   "par": 2,
+   "narr": "The storm, which generated 40-knot winds from the northeast beginning Monday evening, had severed the primary data transmission line at 10:47 PM, causing the station to lose 12 hours of continuous monitoring data.",
+   "q": "What happened first, Samir calling in sick or the line severing?",
+   "a": "The line severing happened first."
+  },
+  {
+   "par": 3,
+   "narr": "If the array remained offline for more than 48 hours, the foundation would lose its $50,000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "q": "How long would the array need to be offline to lose certification?",
+   "a": "The array would need to be offline for more than 48 hours to lose certification."
+  },
+  {
+   "par": 3,
+   "narr": "If the array remained offline for more than 48 hours, the foundation would lose its $50,000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "q": "How much is the federal grant?",
+   "a": "The federal grant is $2 million."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "What did Elena do before Marcus cleaned the terminals?",
+   "a": "Elena replaced the damaged transmitter before Marcus cleaned the terminals."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "When was the backup battery system installed?",
+   "a": "The backup battery system was installed three years ago."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "Who cleaned the corroded battery terminals?",
+   "a": "Marcus cleaned the corroded battery terminals."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "What did Marcus use to clean the terminals?",
+   "a": "Marcus used vinegar to clean the terminals."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "How did Marcus clean the terminals?",
+   "a": "Marcus cleaned the terminals with vinegar."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "Where were the corroded terminals cleaned?",
+   "a": "The corroded terminals were cleaned at the station."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "Where did Marcus get the vinegar?",
+   "a": "Marcus got the vinegar from the station's kitchen."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "If Marcus had not cleaned the terminals, what would not have happened?",
+   "a": "They would not have restored full power."
+  },
+  {
+   "par": 4,
+   "narr": "By 9:30 AM, Elena had replaced the damaged transmitter, but discovered that the backup battery system, installed three years ago by a different contractor, had corroded terminals that Marcus had to clean with vinegar from the station's kitchen before they could restore full power.",
+   "q": "What does the passage imply about the backup battery system?",
+   "a": "The passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals."
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "Who was watching them work from the nearby rocks?",
+   "a": "A harbor seal was watching them work from the nearby rocks."
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "What did Marcus use to photograph the seal?",
+   "a": "Marcus used his smartphone to photograph the seal."
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "Whose smartphone did Marcus use?",
+   "a": "Marcus used his own smartphone."
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "How long was Marcus distracted by the seal?",
+   "a": "Marcus was distracted by the seal for approximately five minutes."
+  },
+  {
+   "par": 5,
+   "narr": "During the repair, a curious harbor seal appeared on the nearby rocks, watching them work, which Marcus photographed with his smartphone instead of helping for approximately five minutes.",
+   "q": "What was Marcus doing when he should have been helping?",
+   "a": "Marcus was photographing the harbor seal when he should have been helping."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "When did the station resume data transmission?",
+   "a": "The station resumed data transmission at 10:47 AM."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "What time did Margaret arrive?",
+   "a": "Margaret arrived at 11:09 AM."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "Who arrived for an unscheduled inspection?",
+   "a": "Margaret Holt arrived for an unscheduled inspection."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "Who is the director of the Ocean Preservation Foundation?",
+   "a": "Margaret Holt is the director of the Ocean Preservation Foundation."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "What was the near-miss?",
+   "a": "The near-miss was that the station nearly failed to restore before Margaret's unscheduled inspection."
+  },
+  {
+   "par": 5,
+   "narr": "The station resumed data transmission at 10:47 AM, exactly 22 minutes before the foundation's director, Margaret Holt, arrived for an unscheduled inspection, unaware that the crisis had occurred.",
+   "q": "If Margaret had arrived 30 minutes earlier, what would she have discovered?",
+   "a": "She would have discovered the station was still offline."
+  },
+  {
+   "par": 6,
+   "narr": "Elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for March.",
+   "q": "Why did Elena decide not to mention the near-miss?",
+   "a": "Elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion."
+  },
+  {
+   "par": 6,
+   "narr": "Elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for March.",
+   "q": "When is the coral nursery expansion planned?",
+   "a": "The coral nursery expansion is planned for March."
+  },
+  {
+   "par": 6,
+   "narr": "Elena decided not to mention the near-miss in her official report, reasoning that the system was now operational and that revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion planned for March.",
+   "q": "What can be inferred about Elena's priorities?",
+   "a": "Elena prioritized securing future funding over transparent reporting of system vulnerabilities."
+  }
+ ]
+}

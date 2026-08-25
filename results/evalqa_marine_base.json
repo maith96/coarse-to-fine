@@ -1,0 +1,138 @@
+{
+ "corpus": "marine_base",
+ "held": {
+  "ctx": {
+   "exact": 0.0,
+   "f1": 0.3317850928144777
+  },
+  "para": {
+   "exact": 0.0,
+   "f1": 0.32806722954701595
+  },
+  "cold": {
+   "exact": 0.0,
+   "f1": 0.35720185043714453
+  }
+ },
+ "seen": {
+  "ctx": {
+   "exact": 0.6666666666666666,
+   "f1": 0.7979894179894179
+  },
+  "para": {
+   "exact": 0.6666666666666666,
+   "f1": 0.7979894179894179
+  },
+  "cold": {
+   "exact": 1.0,
+   "f1": 1.0
+  }
+ },
+ "rows": [
+  {
+   "q": "What might revealing the vulnerability trigger?",
+   "gold": "Revealing the vulnerability might trigger an expensive audit.",
+   "ctx": "the coral nursery expansion is planned for march.",
+   "para": "the coral nursery expansion is the coral nursery expansion is planned for march.",
+   "cold": "marcus used his smartphone instead of helping for approximately five minutes."
+  },
+  {
+   "q": "Where did the seal appear?",
+   "gold": "The seal appeared on the nearby rocks.",
+   "ctx": "marcus cleaned the nearby rocks.",
+   "para": "marcus cleaned the nearby rocks.",
+   "cold": "marcus used his smartphone to photograph the seal."
+  },
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Elena decided not to mention the near-miss in her official report.",
+   "ctx": "elena do before marcus cleaned the backup battery system was installed three years ago.",
+   "para": "the backup battery system was installed three years ago.",
+   "cold": "the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals."
+  },
+  {
+   "q": "What type of vehicle does Elena drive?",
+   "gold": "Elena drives an electric pickup truck.",
+   "ctx": "elena drove from her beach cottage.",
+   "para": "elena drove from her beach cottage.",
+   "cold": "elena drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the harbor seal?",
+   "gold": "Marcus photographed the harbor seal.",
+   "ctx": "marcus use to photograph the seal was watching them work from the seal was watching them work from the nearby rocks.",
+   "para": "marcus cleaned the nearby rocks.",
+   "cold": "marcus used his smartphone to photograph the seal."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Margaret Holt was unaware of the crisis.",
+   "ctx": "the station nearly failed to the station nearly failed to restore before the station.",
+   "para": "the station nearly failed to the station nearly failed to lose 12 hours of continuous monitoring data.",
+   "cold": "marcus was watching them work from the nearby rocks."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 48 hours?",
+   "gold": "The foundation would lose its $50,000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "ctx": "the foundation would the array would need to be offline for more than 48 hours to lose certification.",
+   "para": "the foundation would the foundation would the foundation would the foundation would the array need to be offline for more than 48 hours to lose certification.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Crescent Bay.",
+   "ctx": "dr. elena vargas is the 34-year-old marine biologist.",
+   "para": "the 34-year-old marine biologist.",
+   "cold": "marcus chen is elena's research assistant."
+  },
+  {
+   "q": "Who called in sick with the flu?",
+   "gold": "Dr. Samir Patel called in sick with the flu.",
+   "ctx": "elena carry to the station.",
+   "para": "elena brought two replacement circuit boards and marcus cleaned the coffee cups from harbor caf\u00e9.",
+   "cold": "the flu."
+  },
+  {
+   "q": "Whose coffee was black?",
+   "gold": "Elena's coffee was black.",
+   "ctx": "samir not come because he called in sick with the flu.",
+   "para": "elena had called in sick with the flu at 6: 30 am.",
+   "cold": "the third cup intended for dr. samir patel."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Elena replaced the damaged transmitter.",
+   "ctx": "elena replaced the terminals.",
+   "para": "elena replaced the terminals.",
+   "cold": "the backup battery system was installed three years ago."
+  },
+  {
+   "q": "What was wrong with the backup battery system?",
+   "gold": "The backup battery system had corroded terminals.",
+   "ctx": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals.",
+   "para": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals.",
+   "cold": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals."
+  },
+  {
+   "q": "Why is the sensor array important?",
+   "gold": "The sensor array is important because it monitors water temperature and salinity for the coral restoration project.",
+   "ctx": "the pickup truck is the pickup truck is blue.",
+   "para": "the local coral restoration project funded by the ocean preservation foundation.",
+   "cold": "the local coral restoration project funded by the ocean preservation foundation."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $50,000.",
+   "ctx": "the federal grant is $2 million.",
+   "para": "the federal grant.",
+   "cold": "the federal grant is $2 million."
+  },
+  {
+   "q": "What was severed by the storm?",
+   "gold": "The primary data transmission line was severed by the storm.",
+   "ctx": "the storm winds were 40 knots.",
+   "para": "the line at 8: 47 pm instead of continuous monitoring data.",
+   "cold": "the backup battery system was installed three years ago."
+  }
+ ]
+}

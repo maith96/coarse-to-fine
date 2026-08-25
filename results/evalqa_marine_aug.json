@@ -1,0 +1,138 @@
+{
+ "corpus": "marine_aug",
+ "held": {
+  "ctx": {
+   "exact": 0.0,
+   "f1": 0.36547441460069313
+  },
+  "para": {
+   "exact": 0.0,
+   "f1": 0.3582961067489267
+  },
+  "cold": {
+   "exact": 0.0,
+   "f1": 0.3995742752035658
+  }
+ },
+ "seen": {
+  "ctx": {
+   "exact": 0.9333333333333333,
+   "f1": 0.9925925925925926
+  },
+  "para": {
+   "exact": 0.9333333333333333,
+   "f1": 0.9925925925925926
+  },
+  "cold": {
+   "exact": 0.9333333333333333,
+   "f1": 0.9851851851851853
+  }
+ },
+ "rows": [
+  {
+   "q": "What might revealing the vulnerability trigger?",
+   "gold": "Revealing the vulnerability might trigger an expensive audit.",
+   "ctx": "the storm, which generated 40-knot winds from the northeast beginning monday evening, had severed the primary data transmission line at 10: 47 pm, causing the station to lose 12 hours of continuous monitoring data.",
+   "para": "the coral nursery expansion is planned? the coral nursery expansion is planned for march.",
+   "cold": "the coral nursery expansion is planned for march."
+  },
+  {
+   "q": "Where did the seal appear?",
+   "gold": "The seal appeared on the nearby rocks.",
+   "ctx": "the answer is: marcus get the main sensor array was damaged by the storm.",
+   "para": "the answer is: marcus use to photograph the seal.",
+   "cold": "the answer is: marcus used his smartphone to photograph the seal."
+  },
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Elena decided not to mention the near-miss in her official report.",
+   "ctx": "the answer is: elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion.",
+   "para": "the answer is: elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion.",
+   "cold": "the answer is: elena decided not to mention the near-miss because revealing the vulnerability might trigger an expensive audit that would divert funds from the coral nursery expansion."
+  },
+  {
+   "q": "What type of vehicle does Elena drive?",
+   "gold": "Elena drives an electric pickup truck.",
+   "ctx": "elena drove from her beach cottage.",
+   "para": "elena drove from her beach cottage.",
+   "cold": "elena drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the harbor seal?",
+   "gold": "Marcus photographed the harbor seal.",
+   "ctx": "the answer is: margaret holt is the director of the ocean preservation foundation.",
+   "para": "the answer is: margaret holt is the director of the ocean preservation foundation.",
+   "cold": "the answer is: marcus used his smartphone to photograph the seal."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Margaret Holt was unaware of the crisis.",
+   "ctx": "margaret holt is the director of the ocean preservation foundation.",
+   "para": "the storm.",
+   "cold": "the answer is: margaret holt arrived for an unscheduled inspection."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 48 hours?",
+   "gold": "The foundation would lose its $50,000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "ctx": "the answer is: the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "para": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $2 million federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Crescent Bay.",
+   "ctx": "marcus chen accompanied elena to the station.",
+   "para": "the answer is: marcus chen accompanied elena to the station.",
+   "cold": "the answer is: marcus chen accompanied elena to the station."
+  },
+  {
+   "q": "Who called in sick with the flu?",
+   "gold": "Dr. Samir Patel called in sick with the flu.",
+   "ctx": "the answer is: margaret holt is the director of the ocean preservation foundation.",
+   "para": "the answer is: margaret holt is the director of the ocean preservation foundation.",
+   "cold": "samir called in sick at 6: 30 am."
+  },
+  {
+   "q": "Whose coffee was black?",
+   "gold": "Elena's coffee was black.",
+   "ctx": "marcus's coffee had oat milk.",
+   "para": "marcus's coffee had oat milk.",
+   "cold": "the answer is: marcus's coffee had oat milk."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Elena replaced the damaged transmitter.",
+   "ctx": "the answer is: marcus cleaned the corroded battery terminals.",
+   "para": "the answer is: marcus cleaned the corroded battery terminals.",
+   "cold": "the backup battery system was installed three years ago."
+  },
+  {
+   "q": "What was wrong with the backup battery system?",
+   "gold": "The backup battery system had corroded terminals.",
+   "ctx": "the answer is: the backup battery system was installed three years ago.",
+   "para": "the answer is: the backup battery system was installed three years ago.",
+   "cold": "the passage implies the backup battery system was poorly maintained or inferior because it was installed by a different contractor and had corroded terminals."
+  },
+  {
+   "q": "Why is the sensor array important?",
+   "gold": "The sensor array is important because it monitors water temperature and salinity for the coral restoration project.",
+   "ctx": "the coral restoration project funded by the ocean preservation foundation.",
+   "para": "the answer is: the station resumed data transmission at 10: 47 am.",
+   "cold": "the coral nursery expansion planned for march."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $50,000.",
+   "ctx": "the federal grant is $2 million.",
+   "para": "the answer is: the federal grant is $2 million.",
+   "cold": "the answer is: the array would need to be offline for more than 48 hours to lose certification."
+  },
+  {
+   "q": "What was severed by the storm?",
+   "gold": "The primary data transmission line was severed by the storm.",
+   "ctx": "the answer is: the main sensor array was damaged by the storm.",
+   "para": "the answer is: the main sensor array was damaged by the storm.",
+   "cold": "the main sensor array was damaged by the storm."
+  }
+ ]
+}

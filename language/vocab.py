@@ -3,22 +3,25 @@ from scipy.sparse import coo_matrix
 from scipy.sparse.linalg import svds
 import corpus as CO
 
-txt=open(CO.C["txt"]).read().lower()
-toks=re.findall(CO.C["tok"], txt)
-cnt=collections.Counter(toks)
+# the tree is built over VOCAB_TXT and the id stream over txt; they differ when
+# two corpora must share one vocabulary so an A/B between them is not confounded
+vtoks=re.findall(CO.C["tok"], open(CO.VOCAB_TXT).read().lower())
+toks =re.findall(CO.C["tok"], open(CO.C["txt"]).read().lower()) if CO.VOCAB_TXT!=CO.C["txt"] else vtoks
+cnt=collections.Counter(vtoks)
 V=min(CO.C["vmax"], len(cnt)+1)                  # +1 for UNK; small corpora keep every type
 words=[w for w,_ in cnt.most_common(V-1)]
 w2i={w:i+1 for i,w in enumerate(words)}          # 0 = UNK
 ids=np.array([w2i.get(t,0) for t in toks],dtype=np.int32)
 DEPTH=CO.C["depth"] or max(1,math.ceil(math.log2(V)))
-print(f"corpus {CO.NAME}  tokens {len(ids)}  vocab {V}  depth {DEPTH}  UNK rate {(ids==0).mean():.3f}")
+print(f"corpus {CO.NAME}  tokens {len(ids)}  vocab-source tokens {len(vtoks)}  vocab {V}  depth {DEPTH}  UNK rate {(ids==0).mean():.3f}")
 
 # PPMI co-occurrence, window 4
 W=4
+vids=np.array([w2i.get(t,0) for t in vtoks],dtype=np.int32)   # co-occurrence over the vocabulary text
 rows=[];cols=[]
 for off in range(1,W+1):
-    rows.append(ids[:-off]); cols.append(ids[off:])
-    rows.append(ids[off:]);  cols.append(ids[:-off])
+    rows.append(vids[:-off]); cols.append(vids[off:])
+    rows.append(vids[off:]);  cols.append(vids[:-off])
 r=np.concatenate(rows); c=np.concatenate(cols)
 Cm=coo_matrix((np.ones(len(r),dtype=np.float32),(r,c)),shape=(V,V)).tocsr()
 tot=Cm.sum(); rs=np.asarray(Cm.sum(1)).ravel(); cs=np.asarray(Cm.sum(0)).ravel()
@@ -26,7 +29,9 @@ Cc=Cm.tocoo()
 pmi=np.log(np.maximum(Cc.data*tot/(rs[Cc.row]*cs[Cc.col]+1e-9),1e-12))
 pmi=np.maximum(pmi,0)
 P=coo_matrix((pmi.astype(np.float32),(Cc.row,Cc.col)),shape=(V,V)).tocsr()
-U,S,_=svds(P,k=min(64,V-1))
+# fixed start vector: ARPACK seeds itself randomly otherwise, which makes the
+# embedding -- and so the whole tree -- differ between runs of this script
+U,S,_=svds(P,k=min(64,V-1),v0=np.full(V,1/np.sqrt(V)))
 E=U*S
 E=E/(np.linalg.norm(E,axis=1,keepdims=True)+1e-9)
 print("embeddings", E.shape)

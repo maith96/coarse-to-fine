@@ -277,6 +277,67 @@ outside them, and no signal at all that it has left the corpus. That is the
 honest description of a 0.42M-parameter transformer fitted to 1.8k tokens, and
 it is what the saved model is good for.
 
+### 6. Fixing the metric: a held-out QA split, and paraphrase augmentation
+
+§5's split was the last 10% of *tokens* — a paragraph the model had never seen
+in any form — which is why its val CE sits 3 nats worse than the marginal and
+its ladder table means nothing. This replaces it with a split that can
+distinguish memorising from reading.
+
+**The split.** `augment.py` holds out 15 of the 75 QA pairs, chosen from the 56
+whose answers are recoverable from the narrative (answer content words present
+in the block that precedes them; `parse_marine.py` scores this), spread across
+all 7 paragraphs. The narrative stays in training — only the question and its
+answer are deleted. A model that has learned to read the passage can answer
+them; a model that has memorised strings cannot.
+
+**The augmentation.** 24 document variants, blocks shuffled, questions within a
+block shuffled, each question rendered in one of 6–7 paraphrase forms
+(`do you know …?`, `tell me …`, `which person …`, `for what reason …`) and each
+answer in one of two. 1.8k tokens becomes 55k. One further change matters: a
+question is only answerable by reading if the narrative is still in the context
+window, and block 3 runs 18 QA pairs past its narrative, so the narrative is
+**re-anchored every 4 questions** and the context is widened to 192. Both arms
+share one vocabulary tree built over the union of all text, so the A/B is not
+confounded by vocabulary.
+
+Two models, 4000 steps each, both from scratch, identical context and batch:
+`marine_base` (original text, held-out pairs deleted) and `marine_aug`.
+
+| prompt | base exact | **aug exact** | base F1 | **aug F1** |
+|---|---|---|---|---|
+| **held-out**, narrative + question | 0.000 | **0.000** | 0.332 | **0.365** |
+| **held-out**, narrative + paraphrase | 0.000 | **0.000** | 0.328 | **0.358** |
+| **held-out**, question alone | 0.000 | **0.000** | 0.357 | **0.400** |
+| seen pairs, narrative + question | 0.667 | **0.933** | 0.798 | **0.993** |
+| seen pairs, narrative + paraphrase | 0.667 | **0.933** | 0.798 | **0.993** |
+| seen pairs, question alone | 1.000 | **0.933** | 1.000 | **0.985** |
+
+**The metric now works, and both arms score zero on it.** Not one held-out
+question is answered correctly by either model. Token F1 of 0.33–0.40 is the
+signature of retrieving a topically adjacent memorised sentence, which is
+exactly what the outputs show — *Where did the seal appear?* returns "marcus
+used his smartphone to photograph the seal", *Who photographed the harbor seal?*
+returns "margaret holt is the director of the ocean preservation foundation".
+
+**The augmentation bought the thing it can buy, and not the other.** Look at the
+seen-pair rows: the control is perfect (1.000) when a question is presented
+exactly as trained and drops to 0.667 when the same question is preceded by its
+narrative — it has memorised a token sequence, and moving the question breaks it.
+The augmented model is 0.93 in all three formats. So augmentation delivered
+invariance to question form and position. It delivered no ability to answer a
+question it had not been trained on.
+
+**Why, and it is not the model size.** Every training answer in this design is
+*also* memorisable — the facts are constant across all 24 variants, so
+memorisation stays a sufficient strategy for every single training example, and
+it is the strategy gradient descent finds first. Nothing in the data ever
+punishes a model for failing to read. To force extraction the facts themselves
+have to vary: randomise the entities per document (Elena/Priya, 34/41,
+blue/green) so no fixed answer survives, and reading the context becomes the
+only strategy that fits the training set. That is the experiment this one
+implies, and it is untested.
+
 ---
 
 ## Reproducing
@@ -304,6 +365,21 @@ python oov.py                         # nouns the corpus does not contain
 
 The whole marine run is about six minutes on four CPU cores. `fit.py`'s model
 ships with the repo, so `qa.py` and `probe.py` run without retraining.
+
+The held-out QA experiment (§6) builds its own corpora and trains both arms —
+about twelve minutes:
+
+```bash
+cd language && python augment.py            # split + 24 augmented variants
+for c in marine_aug marine_base; do
+  CORPUS=$c python vocab.py && CORPUS=$c python fit.py 900 4000 scratch
+  CORPUS=$c python evalqa.py
+done
+```
+
+`vocab.py` now pins the ARPACK start vector. Without it `svds` seeds itself
+randomly and the vocabulary tree differs between runs of the same script —
+worth knowing before comparing any two trees.
 
 Maze audit (regenerates the 9×9 chain first — `ckpt/` is gitignored):
 
