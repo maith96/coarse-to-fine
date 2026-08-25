@@ -1,0 +1,681 @@
+<title>The Shape of Shakespeare</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F4F6F8;
+  --panel:#FFFFFF;
+  --panel-2:#EAEEF2;
+  --ink:#141A21;
+  --ink-2:#41505E;
+  --ink-3:#6B7A88;
+  --rule:#D3DBE3;
+  --rule-2:#BCC7D2;
+  --accent:#0F6E63;
+  --accent-soft:#D8ECE8;
+  --flag:#A5382C;
+  --flag-soft:#F6E2DF;
+  --shadow:0 1px 2px rgba(20,26,33,.06),0 8px 24px rgba(20,26,33,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1218;
+    --panel:#141C24;
+    --panel-2:#1B252F;
+    --ink:#E6ECF2;
+    --ink-2:#A9B8C6;
+    --ink-3:#7D8D9C;
+    --rule:#26323D;
+    --rule-2:#35434F;
+    --accent:#4FC7B6;
+    --accent-soft:#12302E;
+    --flag:#E88679;
+    --flag-soft:#2E1A18;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1218;
+  --panel:#141C24;
+  --panel-2:#1B252F;
+  --ink:#E6ECF2;
+  --ink-2:#A9B8C6;
+  --ink-3:#7D8D9C;
+  --rule:#26323D;
+  --rule-2:#35434F;
+  --accent:#4FC7B6;
+  --accent-soft:#12302E;
+  --flag:#E88679;
+  --flag-soft:#2E1A18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  font-size:16.5px;
+  line-height:1.62;
+  margin:0;
+  padding:0 20px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto}
+p{margin:0;max-width:68ch}
+.stack{display:flex;flex-direction:column;gap:18px}
+
+/* ---------- masthead ---------- */
+header.mast{padding:64px 0 30px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 18px
+}
+h1{
+  font-family:Newsreader,Georgia,serif;font-weight:500;
+  font-size:clamp(40px,7.5vw,66px);line-height:1.02;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;
+}
+.standfirst{
+  font-family:Newsreader,Georgia,serif;font-size:clamp(18px,2.5vw,21px);
+  line-height:1.5;color:var(--ink-2);margin:20px 0 0;max-width:60ch;
+}
+.byline{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);
+  margin:26px 0 0;letter-spacing:.03em;
+}
+
+/* ---------- spec strip ---------- */
+.spec{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));
+  gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);
+}
+.spec div{background:var(--ground);padding:16px 14px 15px}
+.spec dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 5px
+}
+.spec dd{
+  margin:0;font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500;
+  color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.25
+}
+.spec dd small{display:block;font-size:10.5px;color:var(--ink-3);font-weight:400;letter-spacing:.02em;margin-top:3px}
+
+/* ---------- sections ---------- */
+section{padding:52px 0 0;border-top:1px solid var(--rule);margin-top:44px}
+section:first-of-type{border-top:none;margin-top:0}
+.snum{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  color:var(--accent);text-transform:uppercase;margin:0 0 10px
+}
+h2{
+  font-family:Newsreader,Georgia,serif;font-weight:500;font-size:clamp(27px,4vw,35px);
+  line-height:1.14;letter-spacing:-.015em;margin:0 0 20px;text-wrap:balance
+}
+h3{
+  font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-2);margin:34px 0 12px
+}
+
+/* ---------- data tables ---------- */
+.twrap{overflow-x:auto;margin:26px 0 0;border:1px solid var(--rule);border-radius:3px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:480px}
+caption{
+  caption-side:top;text-align:left;padding:14px 16px 12px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--rule)
+}
+th,td{padding:9px 16px;text-align:right;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;
+  border-bottom:1px solid var(--rule-2);white-space:nowrap
+}
+tbody td{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+tbody td:first-child{font-family:"IBM Plex Sans",sans-serif;color:var(--ink)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr.hi td{background:var(--accent-soft)}
+tbody tr.hi td:first-child{font-weight:600;color:var(--ink)}
+td b{color:var(--ink);font-weight:500}
+td .neg{color:var(--flag)}
+
+/* ---------- specimen blocks ---------- */
+.spec-block{
+  background:var(--panel);border:1px solid var(--rule);border-radius:3px;
+  margin:22px 0 0;overflow:hidden;box-shadow:var(--shadow)
+}
+.spec-head{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;
+  padding:11px 16px;background:var(--panel-2);border-bottom:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)
+}
+.spec-head b{color:var(--ink);font-weight:500;letter-spacing:.06em}
+.spec-body{
+  padding:16px;font-family:"IBM Plex Mono",monospace;font-size:12.8px;line-height:1.72;
+  white-space:pre-wrap;color:var(--ink-2);overflow-x:auto
+}
+.spec-body.prompt{color:var(--ink);background:var(--panel)}
+
+/* ---------- distribution bars ---------- */
+.dist{margin:24px 0 0;border:1px solid var(--rule);border-radius:3px;background:var(--panel);padding:16px}
+.row{display:grid;grid-template-columns:78px 1fr 62px;gap:12px;align-items:center;padding:3px 0}
+.row .tok{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);text-align:right}
+.row .bar{height:13px;background:var(--panel-2);border-radius:2px;overflow:hidden}
+.row .bar i{display:block;height:100%;background:var(--accent);border-radius:2px}
+.row.word .bar i{background:var(--rule-2)}
+.row .val{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.dist-note{
+  margin-top:14px;padding-top:13px;border-top:1px solid var(--rule);
+  font-size:13px;color:var(--ink-3)
+}
+
+/* ---------- callouts ---------- */
+.finding{
+  border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:17px 20px;margin:26px 0 0;border-radius:0 3px 3px 0
+}
+.finding p{max-width:62ch}
+.finding .lab{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 7px
+}
+.correction{
+  border-left:3px solid var(--flag);background:var(--flag-soft);
+  padding:17px 20px;margin:20px 0 0;border-radius:0 3px 3px 0
+}
+.correction .lab{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--flag);margin:0 0 7px
+}
+.correction p{max-width:62ch;font-size:15px}
+.correction p+p{margin-top:9px}
+
+.pull{
+  font-family:Newsreader,Georgia,serif;font-size:clamp(20px,3vw,25px);line-height:1.36;
+  color:var(--ink);margin:32px 0 0;padding-left:20px;border-left:2px solid var(--accent);
+  max-width:58ch;font-style:italic
+}
+.note{font-size:14px;color:var(--ink-3);max-width:66ch}
+ul{margin:16px 0 0;padding-left:20px;max-width:66ch}
+li{margin:0 0 9px}
+li::marker{color:var(--accent)}
+strong{font-weight:600;color:var(--ink)}
+code{font-family:"IBM Plex Mono",monospace;font-size:.9em;background:var(--panel-2);padding:1px 5px;border-radius:2px;color:var(--ink)}
+a{color:var(--accent)}
+footer{
+  margin-top:56px;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);line-height:1.8
+}
+@media (max-width:620px){
+  .row{grid-template-columns:64px 1fr 52px;gap:9px}
+  .spec-body{font-size:11.6px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Model autopsy · Shakespeare, Python, chess</p>
+  <h1>The Shape of Shakespeare</h1>
+  <p class="standfirst">A 1.9-million-parameter transformer, trained for two minutes on one CPU, writes convincing Elizabethan stage dialogue and understands none of it. Here is exactly what it learned, measured band by band &mdash; then the same net pointed at Python and at chess, where looking right and being right can be told apart exactly.</p>
+  <p class="byline">Checkpoint <b>sw_ctrl_n1200_s0</b> · the lowest-loss model in the language sweep · all figures from held-out data</p>
+</header>
+
+<dl class="spec">
+  <div><dt>Parameters</dt><dd>1.90<small>million</small></dd></div>
+  <div><dt>Corpus</dt><dd>290k<small>tokens, Shakespeare</small></dd></div>
+  <div><dt>Vocabulary</dt><dd>8,000<small>1.6% unknown</small></dd></div>
+  <div><dt>Training</dt><dd>1,200<small>steps · ~130s CPU</small></dd></div>
+  <div><dt>Val loss</dt><dd>4.63<small>nats · perplexity 103</small></dd></div>
+</dl>
+
+<section>
+  <p class="snum">§1 — The instrument</p>
+  <h2>A word-level model hiding inside a cluster model</h2>
+  <div class="stack">
+    <p>The model was never built to predict words. It predicts which of 8,192 clusters the next token falls into, where the clusters come from recursively bisecting the vocabulary by distributional similarity. But the tree is <strong>injective at its deepest level</strong> — 8,000 words land in 8,000 distinct leaves — so the cluster head is a word head, and the thing can be sampled as an ordinary language model.</p>
+    <p>Three transformer layers, 96 dimensions, four heads, a 64-token context. It saw roughly 1.23 million tokens of training, about 4.7 passes over the corpus. On the complete validation split it scores <strong>4.63 nats</strong>, a perplexity of 103 against a vocabulary of 8,000.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§2 — One prediction, in full</p>
+  <h2>Seventy percent of its certainty is punctuation</h2>
+  <div class="stack">
+    <p>A held-out passage from <em>The Tempest</em>. Ariel is pressing Prospero for the freedom he was promised. The model sees 64 tokens and must predict the 65th.</p>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Input · 64 tokens · held-out</span><b>true next token: \n</b></div>
+    <div class="spec-body prompt">canst demand?
+
+ariel:
+my liberty.
+
+prospero:
+before the time be out? no more!
+
+ariel:
+i prithee,
+remember i have done thee worthy service;
+told thee no lies, made thee no &lt;unk&gt;, served
+without or grudge or &lt;unk&gt;: thou didst promise</div>
+  </div>
+
+  <div class="dist">
+    <div class="row"><span class="tok">\n</span><span class="bar"><i style="width:100%"></i></span><span class="val">0.2332</span></div>
+    <div class="row"><span class="tok">,</span><span class="bar"><i style="width:74.2%"></i></span><span class="val">0.1731</span></div>
+    <div class="row"><span class="tok">.</span><span class="bar"><i style="width:53.0%"></i></span><span class="val">0.1235</span></div>
+    <div class="row"><span class="tok">:</span><span class="bar"><i style="width:25.3%"></i></span><span class="val">0.0590</span></div>
+    <div class="row"><span class="tok">?</span><span class="bar"><i style="width:23.3%"></i></span><span class="val">0.0543</span></div>
+    <div class="row"><span class="tok">;</span><span class="bar"><i style="width:19.8%"></i></span><span class="val">0.0462</span></div>
+    <div class="row"><span class="tok">!</span><span class="bar"><i style="width:6.8%"></i></span><span class="val">0.0159</span></div>
+    <div class="row word"><span class="tok">of</span><span class="bar"><i style="width:6.1%"></i></span><span class="val">0.0143</span></div>
+    <div class="row word"><span class="tok">the</span><span class="bar"><i style="width:5.0%"></i></span><span class="val">0.0116</span></div>
+    <div class="row word"><span class="tok">him</span><span class="bar"><i style="width:4.1%"></i></span><span class="val">0.0096</span></div>
+    <p class="dist-note">The true token ranks <strong>first</strong>. But ranks 1–7 are the seven punctuation marks and together they hold <strong>70.5%</strong> of all probability mass; the first real word appears at rank 8 with p&nbsp;=&nbsp;0.014. Distribution entropy is 3.56 nats against the corpus unigram's 5.76 — an effective vocabulary of 35 words.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§3 — Where the confidence lives</p>
+  <h2>Certain at the top of the tree, guessing at the bottom</h2>
+  <div class="stack">
+    <p>Because every word sits at a known leaf, the 8,192-way distribution can be aggregated up the cluster tree to ask a question no ordinary language model can answer: <em>at what level of abstraction does this model actually commit?</em></p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>Same prediction, aggregated at each level of the vocabulary tree</caption>
+      <thead><tr><th>Level</th><th>Clusters</th><th>Entropy</th><th>p(true cluster)</th><th>Top cluster contents</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>1</td><td>2</td><td>0.095</td><td><b>0.981</b></td><td>&lt;unk&gt; \n , : .</td></tr>
+        <tr class="hi"><td>3</td><td>8</td><td>0.375</td><td><b>0.927</b></td><td>&lt;unk&gt; \n , : .</td></tr>
+        <tr><td>4</td><td>16</td><td>1.016</td><td>0.311</td><td>&lt;unk&gt; , . the and</td></tr>
+        <tr><td>8</td><td>256</td><td>1.959</td><td>0.293</td><td>&lt;unk&gt; , . the and</td></tr>
+        <tr><td>12</td><td>4,096</td><td>3.213</td><td>0.292</td><td>\n :</td></tr>
+        <tr><td>13</td><td>8,192</td><td>3.556</td><td>0.233</td><td>\n</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="finding">
+    <p class="lab">Finding</p>
+    <p>The model is <strong>92.7% confident</strong> that the next token is punctuation-like. One level deeper that confidence collapses to 0.31, and then flatlines for eight more levels. Essentially all of its certainty lives in the top three levels of abstraction; the fine-grained decision underneath is barely informed.</p>
+  </div>
+
+  <p class="note" style="margin-top:22px">Worth noting: level 1 of this tree separates <code>&lt;unk&gt; \n , : .</code> from everything else. The bisection was built by PPMI and SVD with no supervision — the principal axis of distributional similarity in English turns out to be roughly the function/content divide, and the clustering found it unprompted.</p>
+</section>
+
+<section>
+  <p class="snum">§4 — The central measurement</p>
+  <h2>The boundary is frequency, not form</h2>
+  <div class="stack">
+    <p>The natural story after §2 and §3 is that the model learned form and skipped meaning. That story is wrong, and the way it is wrong is the most useful thing in this report. Splitting the entire validation set by how common the target word is:</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>28,992 held-out tokens, banded by corpus frequency of the target</caption>
+      <thead><tr><th>Band</th><th>% tokens</th><th>Model CE</th><th>Unigram</th><th>Gain</th><th>Perplexity</th><th>% of loss</th></tr></thead>
+      <tbody>
+        <tr><td>Punctuation</td><td>32.5%</td><td>1.375</td><td>2.752</td><td><b>+1.376</b></td><td><b>4</b></td><td>9.6%</td></tr>
+        <tr><td>Top-50 function words</td><td>28.3%</td><td>3.793</td><td>4.770</td><td>+0.977</td><td>44</td><td>23.2%</td></tr>
+        <tr><td>Rank 50–500</td><td>20.0%</td><td>5.959</td><td>7.169</td><td><b>+1.210</b></td><td>387</td><td>25.7%</td></tr>
+        <tr class="hi"><td>Rank 500+ (rare)</td><td>19.2%</td><td>10.003</td><td>10.423</td><td>+0.420</td><td><b>22,092</b></td><td>41.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack" style="margin-top:24px">
+    <p>The model gains over the marginal in <em>every</em> band, and its second-largest gain is on mid-frequency words — <code>lord</code>, <code>love</code>, <code>sir</code>, <code>come</code> — which are content, not form. What collapses is the rare tail: perplexity <strong>22,092 on a vocabulary of 8,000</strong>. On rare words this model is worse than guessing uniformly, because it has piled its mass onto frequent tokens and is anti-calibrated for anything unusual.</p>
+    <p>So the divide is not form against meaning. It is <strong>what repeats against what doesn't</strong> — and repetition happens at every level of abstraction, from <code>:</code> to <code>thou shalt</code> to <code>my lord</code>. Of the 8,000 words in the vocabulary, <strong>4,892 appear fewer than five times</strong> in training. The tail isn't difficult; it's nearly unseen.</p>
+  </div>
+
+  <p class="pull">“The shape of Shakespeare” is the part of Shakespeare that recurs. Ariel, Prospero, and this particular scene are not in it.</p>
+</section>
+
+<section>
+  <p class="snum">§5 — Context</p>
+  <h2>A 64-token window, eight tokens of which matter</h2>
+  <div class="stack">
+    <p>Truncating the context to its last <em>k</em> tokens and comparing against the full window on the same held-out positions. Paired, at n&nbsp;=&nbsp;600 — the unpaired version of this test is actively misleading, as §9 records.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>Paired against the model's full 64-token context, n = 600</caption>
+      <thead><tr><th>Context</th><th>CE</th><th>Top-1 acc</th><th>Paired diff vs 64</th><th>SE</th><th>t</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>4 tokens</td><td>4.898</td><td>0.242</td><td><b>+0.0758</b></td><td>0.0260</td><td><b>2.91</b></td></tr>
+        <tr><td>8 tokens</td><td>4.835</td><td>0.250</td><td>+0.0133</td><td>0.0213</td><td>0.62</td></tr>
+        <tr><td>16 tokens</td><td>4.815</td><td>0.260</td><td class="neg">−0.0066</td><td>0.0183</td><td>−0.36</td></tr>
+        <tr><td>32 tokens</td><td>4.833</td><td>0.252</td><td>+0.0115</td><td>0.0175</td><td>0.66</td></tr>
+        <tr><td>64 tokens</td><td>4.822</td><td>0.257</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="finding">
+    <p class="lab">Finding</p>
+    <p>Only the 4-token window is measurably worse than the full context. Everything from 8 tokens upward is statistically indistinguishable from 64. <strong>Roughly a tenth of the training context is load-bearing</strong> — which is why, in the samples below, the model forgets who is speaking within a line or two.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§6 — The grammar that isn't</p>
+  <h2>Perfect agreement, one token wide</h2>
+  <div class="stack">
+    <p>Early Modern English inflects the verb for its subject: <code>thou</code> takes <em>-st</em> forms, <code>you</code> takes the bare form, third person takes <em>-th</em>. The samples are full of <code>thou shalt</code>, <code>think'st</code>, <code>camest</code>, <code>wilt</code>. The model has the paradigm cleanly — every pair, correct direction:</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>p(-st form) ÷ [p(-st) + p(base)], averaged over six carrier phrases</caption>
+      <thead><tr><th>Verb pair</th><th>after <em>thou</em></th><th>after <em>you</em></th><th>after <em>he</em></th><th>Corpus n</th></tr></thead>
+      <tbody>
+        <tr><td>shalt / shall</td><td><b>0.98</b></td><td>0.00</td><td>0.01</td><td>173</td></tr>
+        <tr><td>hast / have</td><td><b>0.99</b></td><td>0.00</td><td>0.10</td><td>257</td></tr>
+        <tr><td>art / are</td><td><b>1.00</b></td><td>0.00</td><td>0.23</td><td>248</td></tr>
+        <tr><td>dost / do</td><td><b>0.91</b></td><td>0.00</td><td>0.06</td><td>90</td></tr>
+        <tr><td>wilt / will</td><td><b>0.98</b></td><td>0.00</td><td>0.01</td><td>130</td></tr>
+        <tr><td>didst / did</td><td><b>0.98</b></td><td>0.00</td><td>0.00</td><td>67</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack" style="margin-top:26px">
+    <p>This looks like syntax. It isn't. In the corpus the mapping is essentially deterministic — <code>shalt</code> follows <code>thou</code> 45 times out of 45 and <code>you</code> zero times out of 75 — so no real decision is required. The test that separates a bigram from agreement is whether the effect survives distance from the pronoun.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>Separation (thou − you) as material is inserted after the pronoun</caption>
+      <thead><tr><th>Gap after pronoun</th><th>Tokens</th><th>after <em>thou</em></th><th>after <em>you</em></th><th>Separation</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>adjacent</td><td>0</td><td>0.99</td><td>0.00</td><td><b>0.98</b></td></tr>
+        <tr><td><code>never</code></td><td>1</td><td>0.36</td><td>0.12</td><td>0.25</td></tr>
+        <tr><td><code>not now</code></td><td>2</td><td>0.54</td><td>0.05</td><td>0.49</td></tr>
+        <tr><td><code>, my good lord ,</code></td><td>5</td><td>0.24</td><td>0.05</td><td>0.20</td></tr>
+        <tr><td><code>that i have ever known ,</code></td><td>6</td><td>0.28</td><td>0.10</td><td>0.17</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack" style="margin-top:24px">
+    <p>Near-perfect when the pronoun is the immediately preceding token; collapsing to a faint residue the moment anything intervenes. The model has not learned that a subject governs its verb. It has learned that <em>the token after</em> <code>thou</code> <em>looks like this</em>.</p>
+    <p>One thing does survive, and it is worth keeping: the residue never inverts. <code>thou</code> beats <code>you</code> at every gap length, 0.17 to 0.49 — on constructions with <strong>zero occurrences in training</strong> (all four gapped patterns are unattested; I counted). That is real generalisation from the pronoun beyond adjacency. It is simply an order of magnitude weaker than the adjacent effect, and invisible if you only read the samples.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§7 — Specimens</p>
+  <h2>What it writes</h2>
+  <div class="stack">
+    <p>All continuations below run from the same <em>Tempest</em> prompt in §2, except the last three. Read them for form and they are impressive; read them for content and there is nothing there.</p>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Greedy decoding · temperature 0</span><b>degenerate</b></div>
+    <div class="spec-body">that i have been a &lt;unk&gt; of the &lt;unk&gt;,
+and &lt;unk&gt; &lt;unk&gt;, and &lt;unk&gt;,
+and &lt;unk&gt; &lt;unk&gt;, and &lt;unk&gt; &lt;unk&gt;,
+and &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;,
+and &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;,
+and &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt; &lt;unk&gt;,</div>
+  </div>
+
+  <p class="note" style="margin-top:16px">Taking the most likely token at every step collapses immediately into the unknown-word token. This is §4's anti-calibration made visible: once past punctuation, the single highest-probability "word" the model knows is the placeholder for every word it doesn't. The literary surface in everything below exists <em>only</em> because sampling avoids the model's own argmax.</p>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Temperature 0.7 · seed 0</span><b>fluent, unmoored</b></div>
+    <div class="spec-body">him,
+and, and not me no more.
+
+friar laurence:
+the people of this kind,
+i was wont, then, and when the rest.
+
+clown:
+i'll lean me, to have me a dish. he hath set upon
+a usurer for it: but one lost or
+the &lt;unk&gt;.
+
+lady capulet:
+o, my lord, my</div>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Temperature 0.7 · seed 1</span><b>archaic morphology holds</b></div>
+    <div class="spec-body">, and
+that thou shalt be my lord, and, i'll tell thee
+for that thou shalt be so &lt;unk&gt;,
+and, good diet.
+o, i was not so.
+
+first overdone:
+in any thing, to his wife
+in thy revengeful and &lt;unk&gt;:
+stay, no, so thou hast, for learning:
+o, thou hast done, and their loves</div>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Temperature 1.0 · seed 0</span><b>syntax survives, sense doesn't</b></div>
+    <div class="spec-body">him give me,
+and gaze me no more transport a world or hunt;
+the wretch of rude with child, servile,
+is, to do no incensed, musicians language: those that pond pride
+we firmly to have touch'd all substance. he would set upon
+a usurer fashions it: your grace lost or
+yesterday himself. i did barbarians, to do our entertainment.
+
+menenius</div>
+  </div>
+
+  <h3>Prompt sensitivity</h3>
+  <p class="note">Three unrelated prompts, same sampler settings. The openings are nearly identical.</p>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>“now is the winter of our discontent”</span><b>t 0.8</b></div>
+    <div class="spec-body">be,
+and, and not me no more.
+
+friar laurence:
+the people of your kind,
+we do beseech you, to do no matter,
+that our fears that do make his name,
+have made a dish. he hath set upon you:</div>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>“O romeo, romeo, wherefore art thou”</span><b>t 0.8</b></div>
+    <div class="spec-body">be,
+and, and not me no more.
+
+friar laurence:
+the people of your kind,
+i was wont, then, sir, and bid me; besides,
+for though his name, to have me rankle,
+he hath set upon himself: the &lt;unk&gt; field:</div>
+  </div>
+
+  <p class="note" style="margin-top:18px"><strong>Caveat on this pair:</strong> both runs share a random seed, so identical draws from near-identical distributions produce identical text. This demonstrates that the two prompts leave the model in almost the same state — not that the sampler is broken. It is §5's eight-token window in narrative form: after a few tokens, Richard III and Juliet are indistinguishable.</p>
+
+  <div class="stack" style="margin-top:30px">
+    <p>What the specimens get right is real: the speaker-tag format (blank line, name, colon, dialogue), characters who genuinely exist in Shakespeare — <code>friar laurence</code>, <code>lady capulet</code>, <code>clifford</code>, <code>menenius</code> — and morphological consistency that holds even at temperature 1.0. What they never get is the scene. The prompt is Ariel bargaining with Prospero; not one continuation stays in <em>The Tempest</em>.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§8 — What it means</p>
+  <h2>Structure is cheap; identity is not</h2>
+  <div class="stack">
+    <p>The headline fact is sample efficiency. Two minutes of one CPU core, 1.9M parameters and 290k tokens buy punctuation at perplexity 4 and verb morphology that survives temperature 1.0. Structure is remarkably cheap to acquire — easy to underrate when large models make everything look expensive.</p>
+    <p>This also resolves, and partly rescues, the hypothesis this repository was built to test. The claim was that coarse-graining a problem yields a tractable version of the same problem, so one could train on the coarse version and refine. <strong>That premise is confirmed here.</strong> The shape of Shakespeare is a real, coherent, learnable object — which is exactly why the coarse rungs of the ladder train in seconds.</p>
+    <p>The error was the inference drawn from it. The coarse structure is precisely what a flat model learns <em>first, and for free</em>. A curriculum that hands it over is delivering something the student already had by step 300. Right about representation; wrong about learning dynamics.</p>
+  </div>
+
+  <h3>What a form-only model is actually good for</h3>
+  <p class="note">The useful move is to treat a model like this as a measuring instrument rather than a generator.</p>
+  <ul>
+    <li><strong>Residual-entropy decomposition.</strong> <code>CE(large model) − CE(tiny form model)</code>, per token, isolates the content-bearing signal in a corpus — a principled measure of how formulaic a document is, for the cost of a 2M-parameter forward pass. Useful for finding boilerplate, template-generated text, and low-information prose at scale.</li>
+    <li><strong>Structure priors.</strong> Something that knows document layout at perplexity 4 can enforce or validate structure — schema-constrained decoding, format checking, corpus filtering — with no large model in the loop. Learned grammar-constrained decoding, rather than hand-written grammars.</li>
+    <li><strong>Loss reweighting.</strong> §4 says 9.6% of remaining loss is structure and 41.5% is the rare tail. The cluster tree hands you that axis for free: weight training by the level at which the model first becomes uncertain, and spend the budget where the loss actually is. This is the inversion of the curriculum idea — not coarse-to-fine scheduling but fine-weighted training — and it is the one genuinely new experiment these numbers suggest.</li>
+  </ul>
+
+  <p class="note" style="margin-top:24px"><strong>The caveat to keep.</strong> Part of what impresses in the specimens is the corpus's own regularity: <code>NAME:</code> followed by a newline is an almost deterministic format, and reproducing it is less remarkable than it reads. And per §6, the morphology is a one-token effect. Very little here requires the model to hold anything in mind.</p>
+</section>
+
+<section>
+  <p class="snum">§9 — The same instrument, pointed elsewhere</p>
+  <h2>Three shapes, one net, two minutes each</h2>
+  <div class="stack">
+    <p>If the shape of Shakespeare is learnable this cheaply, what else is? The criterion from §4 and §5 predicts the answer: whatever <em>recurs</em> and is <em>determined by a short window</em>. So the interesting test cases are domains whose structure a short window provably <strong>cannot</strong> fake.</p>
+    <p>Identical architecture, identical 1,200 steps, corpora matched to within 4%.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>Same 1.9M-parameter net, three domains, ~300k tokens each</caption>
+      <thead><tr><th>Domain</th><th>Tokens</th><th>Train</th><th>Perplexity</th><th>Non-local structure</th><th>How far it holds</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Python source</td><td>319k</td><td>91s</td><td><b>10.2</b></td><td>bracket identity</td><td>~7 tokens</td></tr>
+        <tr><td>Shakespeare</td><td>290k</td><td>130s</td><td>103</td><td>verb agreement</td><td><b>1 token</b></td></tr>
+        <tr><td>Chess (TCEC)</td><td>300k</td><td>58s</td><td>211</td><td>move legality</td><td>~6 plies</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Python — the bracket that has to be remembered</h3>
+  <p class="note">Which bracket closes is fixed by an opener arbitrarily far back. A bigram cannot represent it.</p>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Generated · temperature 0.7</span><b>perplexity 10.2</b></div>
+    <div class="spec-body">def __init__(self, input, prefix):
+        return None
+
+    def post_order(self, reader):
+        return self.__class__()
+
+    def __getitem__(self, prefix, *args):</div>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>p(&rsquo;)&rsquo;) ÷ [p(&rsquo;)&rsquo;) + p(&rsquo;]&rsquo;)] as material is inserted after the opener</caption>
+      <thead><tr><th>Tokens since opener</th><th>opened <code>(</code></th><th>opened <code>[</code></th><th>Separation</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>1</td><td>0.997</td><td>0.005</td><td><b>0.992</b></td></tr>
+        <tr><td>3</td><td>0.951</td><td>0.107</td><td>0.844</td></tr>
+        <tr><td>5</td><td>0.988</td><td>0.231</td><td>0.757</td></tr>
+        <tr><td>7</td><td>0.973</td><td>0.262</td><td>0.711</td></tr>
+        <tr><td>11</td><td>0.936</td><td>0.458</td><td>0.477</td></tr>
+        <tr><td>15</td><td>0.887</td><td>0.348</td><td>0.539</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note" style="margin-top:20px">Compare §6, where verb agreement fell from 0.98 to 0.25 the instant <em>one</em> token intervened. Bracket identity holds strongly to seven tokens. But it is still not a stack: over 200-token samples, only <strong>2 of 20</strong> end balanced, with six events closing a bracket that was never opened. It tracks the most recent opener, not the whole nesting.</p>
+
+  <h3>Chess — where looking right and being right come apart completely</h3>
+  <p class="note">Legality depends on the entire move history, because the history is the board. No fixed window suffices, and <code>python-chess</code> adjudicates exactly.</p>
+
+  <div class="twrap">
+    <table>
+      <caption>Real game prefix of length k; is the model's top-1 move legal?</caption>
+      <thead><tr><th>Ply</th><th>Model legal</th><th>Always play O-O</th><th>Random SAN</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>1</td><td><b>0.987</b></td><td>0.000</td><td>0.080</td></tr>
+        <tr><td>2</td><td>0.907</td><td>0.000</td><td>0.073</td></tr>
+        <tr><td>4</td><td>0.700</td><td>0.000</td><td>0.080</td></tr>
+        <tr><td>8</td><td>0.640</td><td>0.153</td><td>0.087</td></tr>
+        <tr><td>16</td><td>0.553</td><td>0.220</td><td>0.107</td></tr>
+        <tr><td>32</td><td>0.380</td><td>0.073</td><td>0.127</td></tr>
+        <tr><td>64</td><td>0.327</td><td>0.000</td><td>0.093</td></tr>
+        <tr class="hi"><td>100</td><td><b>0.300</b></td><td>0.000</td><td>0.087</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-head"><span>Free play from the opening position</span><b>longest legal game: 12 plies</b></div>
+    <div class="spec-body">1. e4  c5   2. Nf3 Nc6   3. d4  cxd4
+4. Nxd4 Nf6  5. Nc3 b6   6. Be2 g6
+
+       then played:  e4     ← its own pawn is already on e4</div>
+  </div>
+
+  <p class="note" style="margin-top:16px">A real Sicilian Defence, played correctly for twelve plies, followed by a move that is impossible. Another game ran <code>1.d4 d5 2.Nf3 Bg4 3.h3 e6 4.Nc3 Nbd7 5.a4</code> and then tried <strong>Nbd7</strong> — the knight was already on d7. <strong>It replays moves it has already made.</strong> There is no board anywhere in this model; there is a distribution over moves that appear in openings.</p>
+
+  <div class="finding">
+    <p class="lab">The pattern across all three</p>
+    <p>Perplexity measures how much <em>shape</em> a domain has. The distance tests measure how much <em>substance</em> that shape can fake. They are unrelated axes — Python has ten times Shakespeare's shape and genuinely better memory; chess has the least shape and the most spectacular collapse.</p>
+    <p style="margin-top:10px">And the mechanism is a property of the data, not the model: <strong>distance-robust structure gets learned when the corpus makes it obligatory.</strong> In Shakespeare <code>thou</code> is always adjacent to its verb, so a bigram sufficed and a bigram is what was learned. In Python, brackets are routinely separated by variable material, so a bigram fails — and something better appeared. Same parameters, same two minutes.</p>
+  </div>
+</section>
+
+<section>
+  <p class="snum">§10 — Rating the chess model</p>
+  <h2>Unrated, or about 400 with a crutch</h2>
+  <div class="stack">
+    <p>Two regimes, because they answer different questions. Every match below has the model playing both colours alternately, with unfinished games adjudicated by Stockfish 16 at depth 8.</p>
+  </div>
+
+  <div class="correction" style="border-left-color:var(--flag)">
+    <p class="lab">Unassisted</p>
+    <p>Playing its own tokens, an illegal move is a forfeit. Against a <em>uniformly random legal mover</em>, over 30 games, the model scored <strong>0.000</strong>. It has no Elo, because it cannot complete a game against an opponent that plays no chess at all.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <caption>Masked: distribution restricted to legal moves, isolating judgment from board-tracking</caption>
+      <thead><tr><th>Opponent</th><th>Games</th><th>Score</th><th>Elo difference</th></tr></thead>
+      <tbody>
+        <tr><td>Random legal mover</td><td>100</td><td>0.620 ± 0.050</td><td><b>+85</b></td></tr>
+        <tr class="hi"><td>1-ply material greedy</td><td>100</td><td>0.500 ± 0.050</td><td><b>0</b></td></tr>
+        <tr><td>Stockfish 16 @ Elo 1320</td><td>20</td><td>0.000</td><td>&lt; −1200</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack" style="margin-top:24px">
+    <p><strong>The two rows disagree, and the disagreement is the interesting part.</strong> Measured directly, the 1-ply greedy bot beats the random mover 0.850 — it is <strong>+301 Elo</strong> above random. Yet the model only manages +85 against random while drawing level with greedy. That is a non-transitive triangle, and the reason is exactly §9's finding: <em>the model cannot see the board</em>, so it never punishes a random opponent for hanging a queen. Greedy does, every time. Against greedy the model holds even, because grabbing material with no lookahead is its own kind of bad.</p>
+    <p>So a single Elo number is the wrong shape for the answer, but if one is wanted: random play is conventionally placed somewhere around 250–500, and the model sits <strong>+85 ± 100</strong> above it — call it <strong>350–600 Elo</strong>, with the crutch of a legality oracle, and a wide band. Stockfish's own calibrated floor of 1320 beats it in every game played.</p>
+  </div>
+
+  <p class="pull">It opens with a textbook Sicilian and then moves a pawn that isn't there. It is not a weak chess player; it is not a chess player.</p>
+</section>
+
+<section>
+  <p class="snum">§11 — Corrections</p>
+  <h2>Three claims measurement overturned</h2>
+  <div class="stack">
+    <p>Each of these was something I asserted from reading output, then had to withdraw after computing the null. They are recorded because the pattern — reasoning from the salient hypothesis instead of the base rate — is the failure this project keeps documenting.</p>
+  </div>
+
+  <div class="correction">
+    <p class="lab">Withdrawn — “it learned form and none of the content”</p>
+    <p>Measured, the model gains over the unigram marginal in every frequency band, including <strong>+1.210 nats</strong> on mid-frequency content words. The real cliff is the rare tail, and it is a cliff of frequency, not of meaning. §4 is what replaced this claim, and it is a more interesting result than the one it corrected.</p>
+  </div>
+
+  <div class="correction">
+    <p class="lab">Withdrawn — “more context makes it worse”</p>
+    <p>An unpaired comparison over 200 positions appeared to show 16 tokens beating the full 64-token window by 0.10 nats. Paired at n&nbsp;=&nbsp;600, that difference is <strong>−0.007 ± 0.018</strong> — noise. What survives is the weaker, true claim: context beyond about eight tokens contributes nothing measurable.</p>
+  </div>
+
+  <div class="correction">
+    <p class="lab">Withdrawn — “the morphology is more impressive than the speaker tags”</p>
+    <p>Both are local template effects. Speaker tags span two or three tokens; the verb paradigm spans <strong>one</strong>. I called one deeper than the other because it <em>looked</em> like grammar — without checking whether it survives any distance from its trigger. It mostly doesn't.</p>
+  </div>
+</section>
+
+<footer>
+  Source: <b>maith96/coarse-to-fine</b> · language/ · checkpoint sw_ctrl_n1200_s0<br>
+  Reproduce: <code>python vocab.py &amp;&amp; python chain.py 9999 &amp;&amp; python sweep.py 9999</code>, then <code>predict.py</code>, <code>analyse.py</code>, <code>ctxlen.py</code><br>§9–10 use <code>pyshape.py</code>, <code>chesshape.py</code>, <code>chesselo.py</code>; chess corpus is 2,090 TCEC engine games; legality and adjudication by python-chess / Stockfish 16<br>
+  All figures from the held-out validation split. Single checkpoint; §5's context test is n = 600 paired, the rest are full-validation-set measurements.
+</footer>
+
+</div>

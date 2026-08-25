@@ -13,3 +13,9 @@ language/*.json
 language/*.log
 precision/*.json
 precision/*.log
+
+# shapes/ artefacts: corpora and downloads are regenerated, not committed
+shapes/*.txt
+shapes/*.pgn
+shapes/pg_*
+shapes/*.pt
