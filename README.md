@@ -368,20 +368,26 @@ Two arms, same corpus size (~55k tokens), same 4000 steps, differing only in how
 often the cast changes — once per document (12 distinct casts, since the
 balanced selector cycles) or once per re-anchored block of 4 questions (468):
 
-| | slot hit **with** narrative | slot hit **without** | exact answer with | without |
-|---|---|---|---|---|
-| 12 casts | 13/54 = 0.241 | 11/54 = 0.204 | 0.086 | 0.086 |
-| **468 casts** | **33/54 = 0.611** | 18/54 = 0.333 | **0.400** | 0.200 |
+| | slot hit **with** narrative | slot hit **without** | context gain |
+|---|---|---|---|
+| 12 casts, seed 0 / 1 / 2 | 0.241 / 0.315 / 0.315 | 0.204 / 0.259 / 0.241 | +0.037 / +0.056 / +0.074 |
+| | mean **0.290** (sd 0.043) | mean 0.235 | mean **+0.056** (sd 0.019) |
+| **468 casts**, seed 0 / 1 / 2 | 0.611 / 0.519 / 0.648 | 0.333 / 0.352 / 0.407 | +0.278 / +0.167 / +0.241 |
+| | mean **0.593** (sd 0.067) | mean 0.364 | mean **+0.228** (sd 0.057) |
 
-*(trained question types, casts never seen, n=35 items)*
+*(trained question types, casts never seen; n=35 items, 54 scored values per seed.
+Three initialisations per arm, data and batch order held fixed.)*
 
-**Cast diversity is the binding constraint, not model size.** At 12 casts the
-narrative might as well not be there — 0.241 against 0.204, and whole answers
-correct 8.6% of the time either way. At 468 casts the same architecture on the
-same token budget doubles its hit rate when the narrative is present, halves
-wrong-cast fills (0.556 → 0.315), and gets 40% of whole answers exactly right
-against 20% without context. Reading emerged only once memorisation stopped
-paying:
+**Cast diversity is the binding constraint, not model size, and it replicates.**
+At 12 casts the narrative barely registers — a context gain of +0.056 averaged
+over three seeds, never above +0.074 — and whole answers are correct 8.6% of the
+time with or without it. At 468 casts the same architecture on the same token
+budget gains **+0.228** (sd 0.057), never below +0.167, halves its wrong-cast
+fills (0.556 → 0.315 at seed 0), and gets 40% of whole answers exactly right
+against 20% without context. Every seed of the high-diversity arm beats every
+seed of the low-diversity arm on both the hit rate (min 0.519 vs max 0.315) and
+the gain (min +0.167 vs max +0.074) — the two distributions do not overlap.
+Reading emerged only once memorisation stopped paying:
 
 ```
 Q     Who accompanied Rosa to the station?      gold  Dmitri Adeyemi accompanied Rosa ...
@@ -390,10 +396,15 @@ Q     Who accompanied Rosa to the station?      gold  Dmitri Adeyemi accompanied
 ```
 
 What has *not* moved is generalisation to unseen questions. Held-out questions
-under fresh casts stay at **0.000 exact** in both arms; their slot hits rise with
-context (13/59 vs 3/59) but 71% of the time the answer does not state the value
-at all. The model learned to bind entities it was trained to ask about. It did
+under fresh casts stay at **0.000 exact** in both arms at every seed; their slot
+hits do rise with context (0.220 against 0.051 at 468 casts, and 0.254 against
+0.017 at 12 — the one place the low-diversity arm uses its context) but 70-80%
+of the time the answer does not state the value at all. The model learned to bind entities it was trained to ask about. It did
 not learn to answer a question it has never been asked.
+
+Replication is three initialisations per arm (`runseeds.sh`), with the data,
+batch order, split and evaluation casts all held fixed — so this is an error bar
+on training noise, not on the data draw, which is the larger untested axis.
 
 **Copy distance is not a confound here**, though it would be an obvious one. Both
 arms re-anchor the narrative every 4 questions regardless of when the cast

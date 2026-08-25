@@ -1,0 +1,743 @@
+{
+ "seen": {
+  "ctx": [
+   17,
+   30,
+   7
+  ],
+  "cold": [
+   14,
+   33,
+   7
+  ]
+ },
+ "held": {
+  "ctx": [
+   13,
+   7,
+   39
+  ],
+  "cold": [
+   5,
+   14,
+   40
+  ]
+ },
+ "detail_seen": [
+  {
+   "q": "Who is the 52-year-old marine biologist?",
+   "gold": "Dr. Ingrid Vargas is the 52-year-old marine biologist.",
+   "slots": [
+    "first1",
+    "last1"
+   ],
+   "ctx": "the answer is: dr. rosa duarte is the 34-year-old marine biologist.",
+   "cold": "dr. ingrid lindqvist is the 52-year-old marine biologist."
+  },
+  {
+   "q": "Who accompanied Rosa to the station?",
+   "gold": "Dmitri Adeyemi accompanied Rosa to the station.",
+   "slots": [
+    "first2",
+    "last2"
+   ],
+   "ctx": "dmitri silva accompanied elena to the station.",
+   "cold": "the answer is: marcus chen accompanied rosa to the station."
+  },
+  {
+   "q": "Who is Marcus Silva?",
+   "gold": "Marcus Silva is Priya's research assistant.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "marcus chen is rosa's research assistant.",
+   "cold": "marcus chen is rosa's research assistant."
+  },
+  {
+   "q": "How old is Tomas?",
+   "gold": "Tomas is 22 years old.",
+   "slots": [
+    "age2"
+   ],
+   "ctx": "the answer is: tomas is 31 years old.",
+   "cold": "the answer is: tomas is 31 years old."
+  },
+  {
+   "q": "How old is Priya?",
+   "gold": "Priya is 34 years old.",
+   "slots": [
+    "age1"
+   ],
+   "ctx": "priya is 29 years old.",
+   "cold": "priya is 29 years old."
+  },
+  {
+   "q": "Who owns the blue electric pickup truck?",
+   "gold": "Ingrid owns the blue electric pickup truck.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "priya owns the crimson electric pickup truck.",
+   "cold": "priya owns the crimson electric pickup truck."
+  },
+  {
+   "q": "What color is the pickup truck?",
+   "gold": "The pickup truck is crimson.",
+   "slots": [
+    "color"
+   ],
+   "ctx": "the answer is: the pickup truck is crimson.",
+   "cold": "the answer is: the pickup truck is crimson."
+  },
+  {
+   "q": "How did Rosa and Dmitri travel?",
+   "gold": "Rosa and Dmitri traveled by blue electric pickup truck.",
+   "slots": [
+    "vehicle",
+    "color"
+   ],
+   "ctx": "rosa and marcus traveled by green electric station wagon.",
+   "cold": "rosa and marcus traveled by green electric station wagon."
+  },
+  {
+   "q": "When did Priya and Tomas arrive?",
+   "gold": "Priya and Tomas arrived at 8:20 AM last Sunday morning.",
+   "slots": [
+    "day_visit",
+    "n_minutes",
+    "t_arrive"
+   ],
+   "ctx": "priya and tomas arrived at 7: 45 am last tuesday morning.",
+   "cold": "priya and tomas arrived at 7: 45 am last tuesday morning."
+  },
+  {
+   "q": "What did Marcus bring?",
+   "gold": "Marcus brought four large tea cups from Lantern Bakery.",
+   "slots": [
+    "cafe",
+    "drink"
+   ],
+   "ctx": "marcus brought two large cocoa cups from dockside roasters.",
+   "cold": "marcus brought two large cocoa cups from dockside roasters."
+  },
+  {
+   "q": "Where did Marcus get the cider?",
+   "gold": "Marcus got the cider from Dockside Roasters.",
+   "slots": [
+    "cafe"
+   ],
+   "ctx": "the answer is: marcus got the cocoa from dockside roasters.",
+   "cold": "marcus got the cocoa from dockside roasters."
+  },
+  {
+   "q": "What kind of cider did Rosa drink?",
+   "gold": "Rosa drank black cider.",
+   "slots": [
+    "style"
+   ],
+   "ctx": "rosa drank strong cocoa.",
+   "cold": "rosa drank strong cocoa."
+  },
+  {
+   "q": "What kind of cocoa did Dmitri drink?",
+   "gold": "Dmitri drank cocoa with sugar.",
+   "slots": [
+    "additive"
+   ],
+   "ctx": "dmitri drank cider with honey.",
+   "cold": "dmitri drank cider with honey."
+  },
+  {
+   "q": "Whose cider had sugar?",
+   "gold": "Dmitri's cider had sugar.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "dmitri's cider had honey.",
+   "cold": "dmitri's cider had honey."
+  },
+  {
+   "q": "Who was the fourth cup intended for?",
+   "gold": "The fourth cup was intended for Dr. Elias Kowalski.",
+   "slots": [
+    "first3",
+    "last3"
+   ],
+   "ctx": "the fourth cup was intended for dr. elias mbeki.",
+   "cold": "the fourth cup was intended for dr. elias mbeki."
+  },
+  {
+   "q": "What was left on the kitchen counter at Ingrid's cottage?",
+   "gold": "A fourth cider cup intended for Samir was left on the kitchen counter at Ingrid's cottage.",
+   "slots": [
+    "first3",
+    "drink"
+   ],
+   "ctx": "a fourth tea cup intended for samir was left on the kitchen counter at ingrid's cottage.",
+   "cold": "a fifth tea cup intended for samir was left on the kitchen counter at ingrid's cottage."
+  },
+  {
+   "q": "What illness did Viktor have?",
+   "gold": "Viktor had the cold.",
+   "slots": [
+    "illness"
+   ],
+   "ctx": "viktor had the cold.",
+   "cold": "viktor had the cold."
+  },
+  {
+   "q": "When did Samir call in sick?",
+   "gold": "Samir called in sick at 7:05 AM.",
+   "slots": [
+    "t_call"
+   ],
+   "ctx": "samir called in sick at 5: 10 am.",
+   "cold": "samir called in sick at 6: 30 am."
+  },
+  {
+   "q": "Why did Hassan not come?",
+   "gold": "Hassan did not come because he called in sick with the fever.",
+   "slots": [
+    "illness"
+   ],
+   "ctx": "hassan did not come because he called in sick with the flu.",
+   "cold": "hassan did not come because he called in sick with the flu."
+  },
+  {
+   "q": "How fast were the storm winds?",
+   "gold": "The storm winds were 65 knots.",
+   "slots": [
+    "wind"
+   ],
+   "ctx": "the storm winds were 55 knots.",
+   "cold": "the storm winds were 55 knots."
+  },
+  {
+   "q": "Which direction did the winds come from?",
+   "gold": "The winds came from the southeast.",
+   "slots": [
+    "direction"
+   ],
+   "ctx": "the winds came from the northeast.",
+   "cold": "the winds came from the northeast."
+  },
+  {
+   "q": "When did the transmission line sever?",
+   "gold": "The transmission line severed at 8:25 PM Thursday evening.",
+   "slots": [
+    "day_storm",
+    "t_sever_h",
+    "t_sever_m"
+   ],
+   "ctx": "the transmission line severed at 11: 52 pm wednesday evening.",
+   "cold": "the transmission line severed at 9: 38 pm monday evening."
+  },
+  {
+   "q": "How long would the array need to be offline to lose certification?",
+   "gold": "The array would need to be offline for more than 48 hours to lose certification.",
+   "slots": [
+    "thresh"
+   ],
+   "ctx": "the array would need to be offline for more than 72 hours to lose certification.",
+   "cold": "the array would need to be offline for more than 24 hours to lose certification."
+  },
+  {
+   "q": "How much is the federal grant?",
+   "gold": "The federal grant is $5 million.",
+   "slots": [
+    "money2",
+    "n_boards",
+    "delta"
+   ],
+   "ctx": "the federal grant is $5 million.",
+   "cold": "the federal grant is $3 million."
+  },
+  {
+   "q": "Who cleaned the corroded battery terminals?",
+   "gold": "Tomas cleaned the corroded battery terminals.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "dmitri cleaned the corroded battery terminals.",
+   "cold": "kwame cleaned the corroded battery terminals."
+  },
+  {
+   "q": "What did Dmitri use to clean the terminals?",
+   "gold": "Dmitri used vinegar to clean the terminals.",
+   "slots": [
+    "cleaner"
+   ],
+   "ctx": "dmitri used alcohol to clean the terminals.",
+   "cold": "dmitri used alcohol to clean the terminals."
+  },
+  {
+   "q": "How did Marcus clean the terminals?",
+   "gold": "Marcus cleaned the terminals with vinegar.",
+   "slots": [
+    "cleaner"
+   ],
+   "ctx": "marcus cleaned the terminals with vinegar.",
+   "cold": "marcus cleaned the terminals with vinegar."
+  },
+  {
+   "q": "Who was watching them work from the nearby rocks?",
+   "gold": "A brown heron was watching them work from the nearby rocks.",
+   "slots": [
+    "animal_adj",
+    "animal"
+   ],
+   "ctx": "a brown otter was watching them work from the nearby rocks.",
+   "cold": "a brown otter was watching them work from the nearby rocks."
+  },
+  {
+   "q": "What was Kwame doing when he should have been helping?",
+   "gold": "Kwame was photographing the river pelican when he should have been helping.",
+   "slots": [
+    "animal_adj",
+    "animal"
+   ],
+   "ctx": "kwame was photographing the river pelican when he should have been helping.",
+   "cold": "the answer is: kwame was photographing the river pelican when he should have been helping."
+  },
+  {
+   "q": "When did the station resume data transmission?",
+   "gold": "The station resumed data transmission at 11:25 AM.",
+   "slots": [
+    "age2",
+    "wind",
+    "t_resume_h",
+    "t_resume_m"
+   ],
+   "ctx": "the station resumed data transmission at 11: 52 am.",
+   "cold": "the answer is: the station resumed data transmission at 11: 52 am."
+  },
+  {
+   "q": "What time did Margaret arrive?",
+   "gold": "Margaret arrived at 10:22 AM.",
+   "slots": [
+    "age2"
+   ],
+   "ctx": "margaret arrived at 9: 28 am.",
+   "cold": "margaret arrived at 9: 28 am."
+  },
+  {
+   "q": "Who arrived for an unscheduled inspection?",
+   "gold": "Helen Nakamura arrived for an unscheduled inspection.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "the answer is: helen osei arrived for an unscheduled inspection.",
+   "cold": "the answer is: helen osei arrived for an unscheduled inspection."
+  },
+  {
+   "q": "Who is the director of the Blue Horizon Foundation?",
+   "gold": "Helen Holt is the director of the Blue Horizon Foundation.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "the answer is: helen osei is the director of the blue horizon foundation.",
+   "cold": "the answer is: helen osei is the director of the blue horizon foundation."
+  },
+  {
+   "q": "What was the near-miss?",
+   "gold": "The near-miss was that the station nearly failed to restore before Helen's unscheduled inspection.",
+   "slots": [
+    "first4"
+   ],
+   "ctx": "the answer is: the near-miss was that the station nearly failed to restore before yolanda's unscheduled inspection.",
+   "cold": "the answer is: the near-miss was that the station nearly failed to restore before yolanda's unscheduled inspection."
+  },
+  {
+   "q": "When is the coral nursery expansion planned?",
+   "gold": "The coral nursery expansion is planned for June.",
+   "slots": [
+    "month"
+   ],
+   "ctx": "the coral nursery expansion is planned for june.",
+   "cold": "the answer is: the coral nursery expansion is planned for october."
+  }
+ ],
+ "detail_held": [
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Rosa decided not to mention the near-miss in her official report.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: ingrid carried a waterproof toolbox containing three replacement circuit boards and three fiber-optic cables, while kwame brought three large tea cups from harbor caf\u00e9\u2014one unsweetened for ingrid and one with sugar for himself\u2014a fourth cup remaining on",
+   "cold": "the answer is: the line severing happened first."
+  },
+  {
+   "q": "What type of vehicle does Elena drive?",
+   "gold": "Elena drives an electric cargo van.",
+   "slots": [
+    "vehicle"
+   ],
+   "ctx": "the answer is: dmitri silva accompanied elena to the station.",
+   "cold": "the answer is: elena drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the brown seal?",
+   "gold": "Dmitri photographed the brown seal.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "the answer is: dmitri was watching them work from the nearby rocks.",
+   "cold": "marcus was watching them work from the nearby rocks."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Yolanda Osei was unaware of the crisis.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "the answer is: yolanda nakamura arrived for an unscheduled inspection.",
+   "cold": "the answer is: yolanda nakamura is the director of the reef legacy institute."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 72 hours?",
+   "gold": "The foundation would lose its $50,000 quarterly compliance certification and potentially jeopardize the $3 million federal grant.",
+   "slots": [
+    "money1",
+    "money2",
+    "n_cables",
+    "n_cups"
+   ],
+   "ctx": "the array remained offline for more than 72 hours, the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Bishop Reach.",
+   "slots": [
+    "place"
+   ],
+   "ctx": "the answer is: dmitri silva is elena's research assistant.",
+   "cold": "the answer is: dmitri silva is elena's research assistant."
+  },
+  {
+   "q": "Who called in sick with the cold?",
+   "gold": "Dr. Samir Patel called in sick with the cold.",
+   "slots": [
+    "first3",
+    "last3"
+   ],
+   "ctx": "the answer is: viktor called in sick at 4: 55 am.",
+   "cold": "the answer is: viktor called in sick at 4: 55 am."
+  },
+  {
+   "q": "Whose cocoa was black?",
+   "gold": "Ingrid's cocoa was black.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: hassan called in sick at 5: how many people were originally supposed to go to the station? three people were originally supposed to go to the station.",
+   "cold": "marcus got the cocoa from dockside roasters."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Rosa replaced the damaged transmitter.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: dmitri cleaned the corroded battery terminals.",
+   "cold": "the damaged transmitter before kwame cleaned the terminals."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $25,000.",
+   "slots": [
+    "money1"
+   ],
+   "ctx": "the federal grant is $5 million.",
+   "cold": "the answer is: the federal grant is $2 million."
+  },
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Priya decided not to mention the near-miss in her official report.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: the coral nursery expansion is planned for october.",
+   "cold": "the answer is: the line severing happened first."
+  },
+  {
+   "q": "What type of vehicle does Rosa drive?",
+   "gold": "Rosa drives an electric pickup truck.",
+   "slots": [
+    "vehicle"
+   ],
+   "ctx": "the answer is: rosa drove from her beach cottage.",
+   "cold": "the answer is: rosa drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the harbor pelican?",
+   "gold": "Dmitri photographed the harbor pelican.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "the answer is: dmitri was watching them work from the nearby rocks.",
+   "cold": "the answer is: kwame was watching them work from the nearby rocks."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Beatrice Ferraro was unaware of the crisis.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "the answer is: beatrice ferraro arrived for an unscheduled inspection.",
+   "cold": "the answer is: yolanda nakamura is the director of the reef legacy institute."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 72 hours?",
+   "gold": "The foundation would lose its $25,000 quarterly compliance certification and potentially jeopardize the $2 million federal grant.",
+   "slots": [
+    "age2",
+    "money1",
+    "money2"
+   ],
+   "ctx": "the array remained offline for more than 72 hours, the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Crescent Bay.",
+   "slots": [
+    "place"
+   ],
+   "ctx": "the answer is: marcus chen is rosa's research assistant.",
+   "cold": "the answer is: dmitri silva is elena's research assistant."
+  },
+  {
+   "q": "Who called in sick with the cold?",
+   "gold": "Dr. Elias Mbeki called in sick with the cold.",
+   "slots": [
+    "first3",
+    "last3"
+   ],
+   "ctx": "the answer is: a third cup intended for elias was intended for elias was left on the kitchen counter at priya's cottage.",
+   "cold": "the answer is: viktor called in sick at 4: 55 am."
+  },
+  {
+   "q": "Whose tea was strong?",
+   "gold": "Priya's tea was strong.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: kwame's tea had sugar.",
+   "cold": "the answer is: samir was left on the kitchen counter at ingrid's cottage."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Rosa replaced the damaged transmitter.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: marcus cleaned the corroded battery terminals.",
+   "cold": "the damaged transmitter before kwame cleaned the terminals."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $25,000.",
+   "slots": [
+    "money1",
+    "t_sever_m"
+   ],
+   "ctx": "the federal grant is $800, 000.",
+   "cold": "the answer is: the federal grant is $2 million."
+  },
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Priya decided not to mention the near-miss in her official report.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: ingrid carried a waterproof toolbox containing three replacement circuit boards and three fiber-optic cables to the station.",
+   "cold": "the answer is: the line severing happened first."
+  },
+  {
+   "q": "What type of vehicle does Priya drive?",
+   "gold": "Priya drives an electric utility jeep.",
+   "slots": [
+    "vehicle"
+   ],
+   "ctx": "priya drove from her beach cottage.",
+   "cold": "the answer is: priya drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the brown seal?",
+   "gold": "Tomas photographed the brown seal.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "the answer is: tomas was watching them work from the nearby rocks.",
+   "cold": "marcus was watching them work from the nearby rocks."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Margaret Osei was unaware of the crisis.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "margaret holt arrived for an unscheduled inspection.",
+   "cold": "the answer is: yolanda nakamura is the director of the reef legacy institute."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 36 hours?",
+   "gold": "The foundation would lose its $25,000 quarterly compliance certification and potentially jeopardize the $3 million federal grant.",
+   "slots": [
+    "money1",
+    "money2",
+    "years",
+    "t_sever_m"
+   ],
+   "ctx": "the foundation would lose its $80, 000 quarterly compliance certification, potentially jeopardizing next year's $800, 000 federal grant.",
+   "cold": "the foundation would lose its $80, 000 quarterly compliance certification, potentially jeopardizing next year's $800, 000 federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Halloway Cove.",
+   "slots": [
+    "place"
+   ],
+   "ctx": "the answer is: dmitri silva is elena's research assistant.",
+   "cold": "the answer is: dmitri silva is elena's research assistant."
+  },
+  {
+   "q": "Who called in sick with the cold?",
+   "gold": "Dr. Samir Mbeki called in sick with the cold.",
+   "slots": [
+    "first3",
+    "last3"
+   ],
+   "ctx": "the answer is: viktor called in sick at 4: 55 am.",
+   "cold": "the answer is: viktor called in sick at 4: 55 am."
+  },
+  {
+   "q": "Whose cocoa was black?",
+   "gold": "Elena's cocoa was black.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: hassan called in sick at 5: how many people were originally supposed to go to the station? four people were originally supposed to go to the station.",
+   "cold": "marcus got the cocoa from dockside roasters."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Elena replaced the damaged transmitter.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: kwame cleaned the corroded battery terminals.",
+   "cold": "the damaged transmitter before kwame cleaned the terminals."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $80,000.",
+   "slots": [
+    "money1"
+   ],
+   "ctx": "the federal grant is $800, 000.",
+   "cold": "the answer is: the federal grant is $2 million."
+  },
+  {
+   "q": "What happened last in the passage?",
+   "gold": "Ingrid decided not to mention the near-miss in her official report.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: the coral nursery expansion is planned for january.",
+   "cold": "the answer is: the line severing happened first."
+  },
+  {
+   "q": "What type of vehicle does Ingrid drive?",
+   "gold": "Ingrid drives an electric pickup truck.",
+   "slots": [
+    "vehicle"
+   ],
+   "ctx": "the answer is: ingrid drove from her beach cottage.",
+   "cold": "the answer is: ingrid drove from her beach cottage."
+  },
+  {
+   "q": "Who photographed the brown otter?",
+   "gold": "Dmitri photographed the brown otter.",
+   "slots": [
+    "first2"
+   ],
+   "ctx": "the answer is: dmitri silva is elena's research assistant.",
+   "cold": "dmitri silva accompanied elena to the station."
+  },
+  {
+   "q": "Who was unaware of the crisis?",
+   "gold": "Yolanda Nakamura was unaware of the crisis.",
+   "slots": [
+    "first4",
+    "last4"
+   ],
+   "ctx": "the answer is: yolanda nakamura arrived for an unscheduled inspection.",
+   "cold": "the answer is: yolanda nakamura is the director of the reef legacy institute."
+  },
+  {
+   "q": "What would happen if the array stayed offline more than 72 hours?",
+   "gold": "The foundation would lose its $120,000 quarterly compliance certification and potentially jeopardize the $5 million federal grant.",
+   "slots": [
+    "money1",
+    "money2",
+    "years"
+   ],
+   "ctx": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant.",
+   "cold": "the foundation would lose its $50, 000 quarterly compliance certification, potentially jeopardizing next year's $5 million federal grant."
+  },
+  {
+   "q": "Where is the research station located?",
+   "gold": "The research station is located near Crescent Bay.",
+   "slots": [
+    "place"
+   ],
+   "ctx": "elena owns the silver electric utility jeep.",
+   "cold": "the answer is: dmitri silva is elena's research assistant."
+  },
+  {
+   "q": "Who called in sick with the measles?",
+   "gold": "Dr. Viktor Kowalski called in sick with the measles.",
+   "slots": [
+    "first3",
+    "last3"
+   ],
+   "ctx": "the answer is: viktor called in sick at 4: 55 am.",
+   "cold": "the answer is: samir called in sick at 6: 30 am."
+  },
+  {
+   "q": "Whose cocoa was unsweetened?",
+   "gold": "Elena's cocoa was unsweetened.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: hassan did not come because he called in sick with the flu.",
+   "cold": "marcus got the cocoa from dockside roasters."
+  },
+  {
+   "q": "Who replaced the damaged transmitter?",
+   "gold": "Rosa replaced the damaged transmitter.",
+   "slots": [
+    "first1"
+   ],
+   "ctx": "the answer is: kwame cleaned the corroded battery terminals.",
+   "cold": "the damaged transmitter before kwame cleaned the terminals."
+  },
+  {
+   "q": "How much is the quarterly certification worth?",
+   "gold": "The quarterly certification is worth $120,000.",
+   "slots": [
+    "money1"
+   ],
+   "ctx": "the federal grant is $2 million.",
+   "cold": "the answer is: the federal grant is $2 million."
+  }
+ ]
+}
