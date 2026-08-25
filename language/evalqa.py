@@ -17,7 +17,7 @@ from qa import gen, words, detok, CTX, ABBR
 import corpus as CO
 
 z=np.load(CO.TREE); w2i={str(w):i for i,w in enumerate(z['words'])}
-TOK=CO.C["tok"]; SP=json.load(open("marine_split.json"))
+TOK=CO.C["tok"]; SP=json.load(open(CO.SPLIT))
 
 def enc(s): return np.array([w2i.get(t,0) for t in re.findall(TOK,s.lower())])
 def toks(s): return re.findall(TOK,s.lower())
@@ -52,11 +52,18 @@ def score(items, para_form=2):
 
 if __name__=="__main__":
     held=SP["held"]; seen=SP["train_qa"][:len(held)]
+    var=[it for it in held if it.get("varies")]
     hs,hr=score(held); ss,_=score(seen)
     print(f"corpus {CO.NAME}   {len(held)} held-out pairs, {len(seen)} seen pairs for reference\n")
     print(f"{'prompt':6s} {'HELD-OUT exact':>15s} {'f1':>7s}   {'SEEN exact':>11s} {'f1':>7s}")
     for k in ("ctx","para","cold"):
         print(f"{k:6s} {hs[k]['exact']:15.3f} {hs[k]['f1']:7.3f}   {ss[k]['exact']:11.3f} {ss[k]['f1']:7.3f}")
+    if var and len(var)<len(held):
+        vs,_=score(var)
+        print(f"\nheld-out items whose answer moves with the cast ({len(var)}/{len(held)}) "
+              f"-- these cannot be answered without reading:")
+        for k in ("ctx","para","cold"):
+            print(f"  {k:5s} exact {vs[k]['exact']:.3f}  f1 {vs[k]['f1']:.3f}")
     print()
     for r in hr[:6]:
         print("Q    ",r["q"]); print("gold ",r["gold"])

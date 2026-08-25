@@ -342,6 +342,65 @@ blue/green) so no fixed answer survives, and reading the context becomes the
 only strategy that fits the training set. That is the experiment this one
 implies, and it is untested.
 
+### 7. Randomising the facts: reading finally appears, and diversity is the knob
+
+§6 ended with a diagnosis rather than a result: facts were constant across every
+document, so memorisation stayed sufficient for the whole training set and
+nothing ever pushed the model to read. `randomize.py` removes that option. Each
+document gets its own cast — Elena/Priya/Ingrid/Rosa, blue/green/silver/crimson,
+34/41/29/52, every clock time, quantity and place name — applied consistently to
+narrative, questions and answers. Four facts are *derived* and are recomputed
+rather than substituted, or the passage would contradict itself: Margaret's
+arrival (resume time + offset, meridiem included), the counterfactual hours lost
+(stated loss + how much earlier the line severed), "the third cup" and "Three
+people" (cups + 1). 60 assignments were checked for arithmetic consistency and
+for surviving originals.
+
+The split is §6's, unchanged. Evaluation uses casts never trained on, and the
+metric is **slot accuracy**: of the randomised values a gold answer states and
+its question does *not* contain, does the model produce the value this document's
+cast assigns (`hit`), a value from another document (`wrong-cast`), or nothing
+(`absent`)? Values copyable from the question are excluded — they prove nothing.
+`cold` (question, no narrative) is the control: if the model reads, hits must
+collapse when the narrative is removed.
+
+Two arms, same corpus size (~55k tokens), same 4000 steps, differing only in how
+often the cast changes — once per document (12 distinct casts, since the
+balanced selector cycles) or once per re-anchored block of 4 questions (468):
+
+| | slot hit **with** narrative | slot hit **without** | exact answer with | without |
+|---|---|---|---|---|
+| 12 casts | 13/54 = 0.241 | 11/54 = 0.204 | 0.086 | 0.086 |
+| **468 casts** | **33/54 = 0.611** | 18/54 = 0.333 | **0.400** | 0.200 |
+
+*(trained question types, casts never seen, n=35 items)*
+
+**Cast diversity is the binding constraint, not model size.** At 12 casts the
+narrative might as well not be there — 0.241 against 0.204, and whole answers
+correct 8.6% of the time either way. At 468 casts the same architecture on the
+same token budget doubles its hit rate when the narrative is present, halves
+wrong-cast fills (0.556 → 0.315), and gets 40% of whole answers exactly right
+against 20% without context. Reading emerged only once memorisation stopped
+paying:
+
+```
+Q     Who accompanied Rosa to the station?      gold  Dmitri Adeyemi accompanied Rosa ...
+  with narrative   dmitri adeyemi accompanied rosa to the station.      <- correct cast
+  no narrative     kwame silva accompanied rosa to the station.         <- another document's
+```
+
+What has *not* moved is generalisation to unseen questions. Held-out questions
+under fresh casts stay at **0.000 exact** in both arms; their slot hits rise with
+context (13/59 vs 3/59) but 71% of the time the answer does not state the value
+at all. The model learned to bind entities it was trained to ask about. It did
+not learn to answer a question it has never been asked.
+
+Caveats: single seed per arm, and the 54-value samples put roughly ±0.13 on each
+rate — the 0.611/0.333 gap is far outside that, the held-out differences are not.
+The two arms also differ in one confounded way beyond diversity: per-chunk casts
+place the answer's source ~50–150 tokens back rather than up to ~450, which
+shortens the copy distance as well as multiplying the casts.
+
 ---
 
 ## Reproducing
@@ -379,6 +438,17 @@ for c in marine_aug marine_base; do
   CORPUS=$c python vocab.py && CORPUS=$c python fit.py 900 4000 scratch
   CORPUS=$c python evalqa.py
 done
+```
+
+Entity randomisation (§7):
+
+```bash
+cd language
+python augment_rand.py 24 0 chunk        # 468 casts; 'doc' gives the 12-cast arm
+CORPUS=marine_randc python vocab.py
+CORPUS=marine_randc python fit.py 900 4000 scratch
+CORPUS=marine_randc python readtest.py   # slot accuracy, context present vs removed
+python randomize.py 7                    # inspect one randomised cast
 ```
 
 `vocab.py` now pins the ARPACK start vector. Without it `svds` seeds itself

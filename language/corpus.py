@@ -17,6 +17,18 @@ REG = {
  # 1.8k tokens of marine-station narrative interleaved with its own QA pairs.
  # Two orders of magnitude smaller than shake, so: keep every type (no UNK
  # cutoff), let the depth follow the vocabulary, and run wider batches.
+ "marine_rand": dict(    # entity-randomised: no fact is constant across documents
+    txt="marine_rand.txt", vocab_txt="marine_rand_union.txt", split="marine_rand_split.json",
+    tag="rand_", ctx=192, vmax=8000, depth=None,
+    tok=r"[^\W\d_]+(?:'[^\W\d_]+)?|\d+|[^\s\w]",
+    levels=[1,3,5,7], chain_steps=300, gate={}, gate_default=(800,16),
+    bs={}, bs_default=16),
+ "marine_randc": dict(   # as marine_rand, but the cast changes every 4 questions
+    txt="marine_randc.txt", vocab_txt="marine_randc_union.txt", split="marine_randc_split.json",
+    tag="randc_", ctx=192, vmax=8000, depth=None,
+    tok=r"[^\W\d_]+(?:'[^\W\d_]+)?|\d+|[^\s\w]",
+    levels=[1,3,5,7], chain_steps=300, gate={}, gate_default=(800,16),
+    bs={}, bs_default=16),
  "marine_aug": dict(     # paraphrase-augmented, QA-pair held-out split (augment.py)
     txt="marine_aug.txt", vocab_txt="marine_union.txt", tag="aug_", ctx=192,
     vmax=8000, depth=None, tok=r"[^\W\d_]+(?:'[^\W\d_]+)?|\d+|[^\s\w]",
@@ -42,6 +54,7 @@ C = REG[NAME]
 TAG = C["tag"]
 TREE = f"vocabtree_{NAME}.npz" if TAG else "vocabtree.npz"
 VOCAB_TXT = C.get("vocab_txt", C["txt"])   # one tree can be shared by several corpora
+SPLIT     = C.get("split", "marine_split.json")
 
 def ck(name):   return f"ckpt/{TAG}{name}.pt"
 def out(name):  return f"{name}_{NAME}.json" if TAG else f"{name}.json"

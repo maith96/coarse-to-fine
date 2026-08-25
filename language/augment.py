@@ -18,9 +18,6 @@ Writes three files plus the split:
 import sys, json, random, re
 from parse_marine import parse, sentences
 
-NHELD=int(sys.argv[1]) if len(sys.argv)>1 else 15
-NVAR =int(sys.argv[2]) if len(sys.argv)>2 else 24
-SEED =int(sys.argv[3]) if len(sys.argv)>3 else 0
 CHUNK=4        # QA pairs per repetition of the narrative
 
 # Why CHUNK exists: a question is only answerable by reading if the narrative
@@ -47,6 +44,9 @@ def qforms(q):
 def aforms(a): return [a, a, a, f"The answer is: {a}"]
 
 if __name__=="__main__":
+    NHELD=int(sys.argv[1]) if len(sys.argv)>1 else 15   # parsed here, not at import:
+    NVAR =int(sys.argv[2]) if len(sys.argv)>2 else 24   # augment_rand.py imports this
+    SEED =int(sys.argv[3]) if len(sys.argv)>3 else 0    # module with its own argv
     rng=random.Random(SEED); blocks=parse()
     # ---- split: hold out extractive pairs, spread across blocks ----
     pool=[(bi,qi) for bi,b in enumerate(blocks) for qi,qa in enumerate(b["qa"]) if qa["cover"]>=0.6]
@@ -90,11 +90,11 @@ if __name__=="__main__":
                                        " ".join(base)+"\n\n"+heldtxt+"\n")
     # ---- the split itself ----
     split={"n_heldout":NHELD,"n_variants":NVAR,"seed":SEED,"chunk":CHUNK,
-           "held":[{"par":blocks[bi]["par"],"narr":" ".join(blocks[bi]["narr"]),
+           "held":[{"idx":[bi,qi],"par":blocks[bi]["par"],"narr":" ".join(blocks[bi]["narr"]),
                     "q":blocks[bi]["qa"][qi]["q"],"a":blocks[bi]["qa"][qi]["a"],
                     "cover":blocks[bi]["qa"][qi]["cover"],
                     "forms":qforms(blocks[bi]["qa"][qi]["q"])} for bi,qi in held],
-           "train_qa":[{"par":b["par"],"narr":" ".join(b["narr"]),"q":qa["q"],"a":qa["a"]}
+           "train_qa":[{"idx":[bi,qi],"par":b["par"],"narr":" ".join(b["narr"]),"q":qa["q"],"a":qa["a"]}
                        for bi,b in enumerate(blocks) for qi,qa in enumerate(b["qa"])
                        if (bi,qi) not in heldset]}
     json.dump(split,open("marine_split.json","w"),indent=1)
