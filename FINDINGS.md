@@ -392,6 +392,78 @@ initialisation". That distinction needs its own experiment and should not be
 smuggled in on the back of a positive `d*`.
 
 
+## 13. The regime test — stopped early, and what it does and does not show
+
+Run per section 12's pre-registration, then **halted at 26 of 50 jobs by
+choice**, not by a stopping rule. So the decision rule in section 12 was never
+evaluated: it required n=5 on the matched-compute comparison and there is one.
+What follows is separated accordingly.
+
+### What is multi-seed, and settled
+
+The ladder does not extend its reach. Every seed saturates at `d*` = 4 by its
+second rung and stays there:
+
+| seed | d≤2 | d≤4 | d≤8 | d≤16 | d≤24 |
+|---|---|---|---|---|---|
+| s0 | 3 | 4 | 4 | 4 | 4 |
+| s1 | 3 | 4 | 4 | 4 | 4 |
+| s2 | 3 | 4 | 4 | — | — |
+| s3 | 4 | 4 | 4 | — | — |
+| s4 | 4 | 4 | 4 | — | — |
+
+Five seeds, no exceptions. Rungs three onward train on d≤8, d≤16 and d≤24 —
+2400 to 3600 steps aimed squarely at horizons the policy cannot reach — and
+`d*` does not move. Rollout success at d=8, the horizon just past the wall,
+is flat across every rung of every seed: 0.09–0.15, against a masked-random
+null of 0.000.
+
+### What is single-seed, and therefore not settled
+
+The matched-compute head-to-head. Seed 0 only:
+
+| cum steps | ladder `d*` | control `d*` |
+|---|---|---|
+| 1200 | **3** | 0 |
+| 2400 | **4** | 2 |
+| 3600 | 4 | 4 |
+| 4800 | 4 | 4 |
+| 6000 | 4 | **4** |
+
+Δ`d*` = 0. Seed 1's control reproduces the first two points exactly (0, 2)
+before the run was stopped. By this document's own standard — section 4, section
+9, and the error log at section 6 item 6 — **one seed is not a measurement**, and
+this table is not entitled to close anything. It is listed because it exists,
+not because it decides.
+
+### What the two halves jointly suggest
+
+Calibration (section 12) put from-scratch flat training at `d*` = 4. The ladder,
+at 6000 cumulative steps across five rungs, also reaches `d*` = 4. Two
+independent routes to the same ceiling, one of them five-seed.
+
+That points somewhere more specific than "the curriculum did not help": **the
+wall at d≈8 stops both arms alike**, and it is not made of the thing a
+curriculum addresses. Rollout error compounds as p^L, so d=24 needs per-step
+accuracy ≈0.97 while the best net here sits at 0.44–0.68. Nothing in a training
+schedule closes a gap of that shape — it is a capacity, credit-assignment or
+policy-formulation problem. That is a different claim from the one this project
+set out to test, and it is the most useful thing the regime produced.
+
+### Status, stated plainly
+
+The escape hatch section 12 was built to close — "matched compute killed the
+ladders, but the regime was wrong" — is **narrower, not shut**. In the one
+regime where flat training genuinely fails, the ladder fails identically, and
+the ladder half of that is five-seed. But the formal kill wanted a five-seed
+head-to-head and has one seed.
+
+To finish it: rerun `mazes/regime.py <budget> <seed>` for seeds 1–4. The
+checkpoints under `ckpt/` are gitignored and will not survive, so it restarts
+from scratch — roughly 1.5 hours as four concurrent single-threaded processes,
+which is how it was run here (this model is slower on 4 threads than on 1).
+
+
 ---
 
 ## Status of the evidence
@@ -408,11 +480,14 @@ smuggled in on the back of a positive `d*`.
 | corrected head expansion helps | **refuted** — fixes zero-shot, costs 0.04–0.05 nats trained |
 | maze loss as published | **bug** — chance at −1.18 not ln4; up to 301× gradient attenuation |
 | a regime where flat training fails | **found** — 13×13 rollout, d\* = 4 against d ≥ 24 available |
+| ladder extends reach in that regime | **refuted, n=5** — d\* saturates at 4 by rung two, every seed |
+| ladder beats flat at matched compute there | **untested** — head-to-head is n=1, run stopped at 26/50 |
 | retention | **withdrawn** — contradicted where cleanly testable |
 
-Not yet done: multi-seed replication **in mazes**. Language now has n=5 (§9);
-the maze ±0.08 floor is still a second *build*, not a second seed, which is the
-weaker instrument. Remaining budget-sweep cells (d=24 at 1200/2400, the whole d=16
+Not yet done: the regime test's matched-compute head-to-head at n=5 (§13) —
+stopped at n=1 by choice, so §12's decision rule was never evaluated. The maze
+±0.08 floor is still a second *build*, not a second seed, which is the weaker
+instrument; §13's ladder arm is the first five-seed maze result in the project. Remaining budget-sweep cells (d=24 at 1200/2400, the whole d=16
 block) are still running; they affect curve shape, not the verdicts above.
 
 Reproduce with `mazes/calib.py` (§11 loss, §12 regime), `mazes/sweep9.py` (budget sweep), `mazes/compare9.py`

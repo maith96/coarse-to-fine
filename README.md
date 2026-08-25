@@ -9,6 +9,19 @@ a coarse-grained version of ours.
 Three ladders across two domains. Every apparent win has now dissolved — two
 under a budget sweep, one under a reinstall.
 
+A fourth ladder was then run in a regime built so flat training *cannot* succeed
+(FINDINGS §12–13): on 13×13 mazes scored by whether the policy actually reaches
+the goal, flat training solves out to four steps of twenty-four available. The
+ladder reaches exactly as far — `d*` = 4, five seeds, no exceptions — and rungs
+trained on the horizons past the wall do not move it. The matched-compute
+head-to-head there is n=1 and so decides nothing; the ladder arm is n=5 and
+settles that half. The wall stops both arms alike, which points at capacity or
+credit assignment rather than at the training schedule.
+
+Found while building that test: **the maze loss was wrong** in all published
+maze work (§11) — up to 301× gradient attenuation on exactly the examples the
+net gets most wrong. Every maze number in this repository predates the fix.
+
 What survives is methodology, not mechanism — see [FINDINGS.md](FINDINGS.md).
 
 ---
@@ -199,6 +212,16 @@ cd mazes && python lad9.py 7000 && python sweep9.py 30000
 python compare9.py && python inspect9.py sw9_ctrl_d24_n3000_s0 24
 ```
 
+Regime test (§12–13), 13×13 with the corrected loss:
+
+```bash
+cd mazes && python calib.py 1500 13 2000     # does flat training fail here?
+for s in 0 1 2 3 4; do python regime.py 1700 $s & done   # ladder vs control
+```
+
+Run the seeds as concurrent single-threaded processes — this model is slower on
+4 threads than on 1. Seeds 1–4 of the head-to-head were not completed; see §13.
+
 Run each script from inside its own directory (modules import by bare name).
 Scripts are resumable and time-budgeted — the trailing integer is a seconds
 budget, after which they checkpoint and exit. All figures above come from
@@ -214,7 +237,10 @@ identical seeds.
 
 ## Limitations
 
-- Maze comparisons are **single-seed**, and the measured build-to-build noise
+- The regime test's matched-compute comparison (§13) is **n=1** — the run was
+  stopped at 26 of 50 jobs, so §12's pre-registered decision rule was never
+  evaluated. Its ladder arm is n=5 and is not affected.
+- Maze comparisons are otherwise **single-seed**, and the measured build-to-build noise
   floor there (~±0.08 on maze deltas) is wider than most effects claimed for
   that domain. Multi-seed replication in mazes is still the first thing this
   project needs. The language ladder now has n=5 (FINDINGS §9), where the
