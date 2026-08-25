@@ -19,3 +19,7 @@ shapes/*.txt
 shapes/*.pgn
 shapes/pg_*
 shapes/*.pt
+
+# compose/ run artefacts
+compose/*.log
+compose/ckpt/
