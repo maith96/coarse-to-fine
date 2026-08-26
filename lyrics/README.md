@@ -185,6 +185,32 @@ way to get it.**
 Sample quality tracks CE exactly: the flat model's output is the most coherent of
 the four conditions in `samples.txt`, the uniform-temperature cascade the least.
 
+## 7. Prompting it (`rap.py`)
+
+`python rap.py "i came up from nothing now the whole city know my name" 16`
+tokenises an arbitrary line, generates a fixed number of bars, and prints a
+verse and a hook. Two decoding conveniences the experiments deliberately avoided
+(they would have muddied the CE comparison, but are plainly right for reading
+output): nucleus sampling, and masking `<unk>`, which is 3.7% of the corpus and
+otherwise peppers every sample with holes that say nothing about the model.
+
+Line breaks are steered, not learned into shape: a bar is forced to run at least
+4 and at most 13 tokens. Without that the model runs on, since 64 tokens of
+context is about six lines and it has no representation of a bar as a unit.
+
+Output is locally plausible and globally incoherent, which is what 1.9M
+parameters and 3000 steps on 1.5M tokens buys. It holds register and syntax
+inside a bar, and drifts between them across a verse -- the second prompt in
+`results/lyr_prompted.txt` slides from street imagery into the relationship
+cluster by bar 4 and never comes back.
+
+The template-locked hook is a useful failure. Resampling under a fixed L4 path
+should preserve line length exactly, and it does not -- it changes the line
+count, because `\n` sits in the same L4 cluster as the function words (§1), so
+"resample within the template" can and does emit a line break. The type-balanced
+bisection puts the one token that *is* the template into the bucket the template
+is least able to protect.
+
 ---
 
 ## Reproducing
@@ -196,7 +222,8 @@ python gatelm.py 1,4,8,12,13 3600     # gate test
 python chain.py 99999                 # ladder vs controls
 python cascade.py 99999 300,600 0     # cascade vs flat, matched total compute
 python spec.py 700 300,600 0          # specialisation control
-python generate.py 600 0 100          # samples
+python generate.py 600 0 100          # decoder comparison samples
+python rap.py "your opening bar" 16   # prompted verse + hook
 ```
 
 Trailing integers are seconds budgets; scripts checkpoint and resume. Run from

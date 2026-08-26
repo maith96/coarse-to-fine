@@ -18,3 +18,4 @@ lyrics/raw/
 lyrics/*.json
 lyrics/*.log
 lyrics/samples.txt
+lyrics/prompted.txt

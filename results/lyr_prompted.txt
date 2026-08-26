@@ -1,0 +1,85 @@
+==============================================================
+PROMPT
+==============================================================
+i came up from nothing now the whole city know my name
+
+==============================================================
+VERSE  (16 bars, flat model, temp 0.90 / top-p 0.92)
+==============================================================
+we ain't scared to serve a black again
+now we ain't never forget me
+we were all,
+one day, i feel like to make a thug
+through the night, baby girl you do a god
+coming from the game
+and for the times, it's alright
+and i might have, it's true to be
+it's not on a real world
+then i think i feel that just a pilot
+i'm a nigga to feel for the motherfuckin' woman
+i'm walking that shit, i can talk about it
+even i can see you
+i hold your motherfuckin' time and some shine
+that i've been living, all about
+i only have you never been in the streets
+
+==============================================================
+HOOK  (4 bars, temp 0.75 -- hooks are simpler than verses)
+==============================================================
+i'm what i do?
+i'm the flow?
+i ain't seen it
+but i'm a legend
+
+==============================================================
+HOOK, TEMPLATE-LOCKED  (same L4 skeleton as above, words resampled)
+==============================================================
+i can't wanna see
+
+what i feel the
+this is of heaven
+i of that names
+
+
+==============================================================
+PROMPT
+==============================================================
+they said i wouldn't make it out the block alive
+
+==============================================================
+VERSE  (16 bars, flat model, temp 0.90 / top-p 0.92)
+==============================================================
+i'd stop trouble as we learn, you know that you said,
+hi, nigga, you know it's just good
+in the mirror, i see me and you couldn't be making
+i can't need to give the shit
+tell me you ever seen some niggas who would think
+let me get along, do it, gotta be a real now
+i love you, i wanna hate to you?
+how many dream, i can't love you, you can never have
+when your life is god
+you don t have ever plan to make you love you
+i don t wanna drive you don t think i mean it s
+just feel about you can reach my girlfriend
+have been through here in the right now
+i can t go to pay i
+now you can t stop thinking, keep it!
+feels so long way, but feel you, that's just left me
+
+==============================================================
+HOOK  (4 bars, temp 0.75 -- hooks are simpler than verses)
+==============================================================
+they say they can be a failure
+you know i am like this
+you think about that you can be out of
+if i just wanna be the outcast
+
+==============================================================
+HOOK, TEMPLATE-LOCKED  (same L4 skeleton as above, words resampled)
+==============================================================
+we got them need
+would legacy
+and there all my of one
+of the of the music
+a of her
+all is true, yeah, shittin'
