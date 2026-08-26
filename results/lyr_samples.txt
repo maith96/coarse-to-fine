@@ -1,0 +1,97 @@
+======================================================================
+PROMPT (held-out):
+======================================================================
+of course
+my orange box <unk> make the world go round
+plus i'm fucking bitches, ain't my homegirls now
+start
+
+----------------------------------------------------------------------
+FLAT  (single 8192-way head, temp 0.9)
+----------------------------------------------------------------------
+killing spree
+baby you talk to get mad cause i'm on the tv
+and i'm still tryna keep this bitch
+<unk>, i'm so much shit
+
+<unk> goddamn, that's why niggas not hard to fuck crack on that bitch, she carry us
+that's the young bitches on my face started on the street
+wolf <unk> with the <unk>, begging, pussy like my jaw
+who demand, i'm still be <unk>
+
+self esteem, <unk> cause a soldier, yes
+i'm an trunk, i'm not
+
+----------------------------------------------------------------------
+CASCADE  uniform temp 0.9 at every rung
+----------------------------------------------------------------------
+to the days why you got a nigga, but i ain't <unk> it all the changes 'bout mathematics them mm my <unk>.
+but look out the fuck everything my hitting cross a me
+sorry how a cuts right, wet
+i front bitch long <unk> with me
+i said you that bitch tonight to wait with your sofa <unk>
+
+i need a rhyme straight <unk>, the youth <unk>!
+k kendrick they believe that fun by my clique they got him and hardcore what she lit <unk> on a poet
+
+----------------------------------------------------------------------
+CASCADE  cold template / hot detail  (0.6,0.6,0.9,1.1,1.2)
+----------------------------------------------------------------------
+alert boy is about
+time don't the spills dreams
+i wish
+to my year with a year, don't do this is all the thirst niggas thing with i'm the fuck had up
+cause yo, he nah, oh, <unk>, i am
+
+and when i may and my new was haters on <unk> <unk> with it and white like <unk>
+<unk>
+yeah, but she with your <unk>? things, yeah, where they heard it back
+then, be ya test
+
+that's down then
+
+----------------------------------------------------------------------
+CASCADE  hot template / cold detail  (1.3,1.3,1.0,0.7,0.6)
+----------------------------------------------------------------------
+windows <unk>, pissed on a office mothafucker
+cause the westside turned to your hundred especially, so hear the scene
+i'm a was the hooker breasts crying grow it, god this american gang state insane, my pops
+and caught, round, like, don't beat
+oh through the youth
+you frontin' is gon payin', watch so pose your serpent
+pull it fine
+meal planet on your mind pack 'bout, pull a different guys <unk>
+evidence
+produced when so better talkin'
+
+like melody,
+
+----------------------------------------------------------------------
+REAL continuation
+----------------------------------------------------------------------
+stacking, <unk> in crack, gun packing
+nickname <unk> make the <unk> tote my <unk> as
+from gym class to english pass off a global
+the only nigga with a mobile, can't you see like total
+getting <unk> in <unk> and tastes
+ain't no telling where this felon is headin', just in case
+keep a shell at the tip of your <unk>, clear the space
+your brain was a terrible thing to waste
+' on gates, snatch <unk> name plates
+smokin' spliffs with niggas, real
+
+----------------------------------------------------------------------
+TEMPLATE-LOCKED  (real L1+L4 path, rungs 8/12/13 resampled)
+----------------------------------------------------------------------
+sniffin' at that was locked to college twenty
+raf
+in this? squad
+
+cause alright, stairs motherfuckers thank crowns beef
+i trial, none <unk> <unk>
+i scales yeah, all a <unk> mathers
+put the <unk>, at packin' <unk>
+i expect go my restless <unk> fresher in the eyes shoot men, only riding
+
+ho then i got the street live behind and <unk> boys in my groove just not jail, light a legs if mm is <unk> hanger <unk> knicks mixing
+only to the

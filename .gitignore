@@ -13,3 +13,8 @@ language/*.json
 language/*.log
 precision/*.json
 precision/*.log
+lyrics/hiphop.txt
+lyrics/raw/
+lyrics/*.json
+lyrics/*.log
+lyrics/samples.txt

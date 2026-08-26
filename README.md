@@ -167,6 +167,40 @@ seed at 300 steps (+0.363).
 (L1 2s, L4 52s, L8 57s, L12 53s, L13 54s) to reach 4.6245. The flat control
 reaches **4.5548 in ~216s** by training 1200 steps.
 
+### 5. Hip-hop lyrics: the ladder as a *decoder* (`lyrics/`) — failed, cleanly
+
+The one place the ladder might pay off without a compute argument: keep the
+coarse rungs at *generation* time instead of throwing them away. Factorise the
+next word across rungs — pick the semantic bucket, then refine inside it — on
+1.53M tokens of rap lyrics (5.3x the Shakespeare corpus, 36 artists).
+
+The gate passes and the ladder replicates the Shakespeare result almost exactly
+(+0.250 nats at L13 / 300 steps, against +0.262 for Shakespeare). Then, at
+matched total compute, the cascade loses at **every rung including the coarsest**:
+
+| rung | cascade | flat | delta |
+|---|---|---|---|
+| ->L1 | 0.1662 | 0.1609 | -0.005 |
+| L1->4 | 0.7649 | 0.7366 | -0.028 |
+| L4->8 | 1.9441 | 1.8383 | -0.106 |
+| L8->12 | 2.0607 | 1.8332 | -0.227 |
+| L12->13 | 0.3720 | 0.3068 | -0.065 |
+| **total** | **5.3079** | **4.8759** | **-0.432** |
+
+The specialisation control says why. Give the flat model the same per-model step
+count and it matches the coarse specialists to within +-0.012 nats at every rung
+— **a model trained only on the 2-way template task is no better at the template
+than one trained on the full 8192-way vocabulary.** Which is what the algebra
+says: at the optimum the factorisation telescopes back to the flat model exactly,
+so it is a reparametrisation, not extra information. All that survives is its 5x
+bill.
+
+What does survive is an interface, not a likelihood: per-rung temperature (cold
+template / hot detail) and template locking (freeze a real verse's coarse path,
+resample the words) are controls a flat softmax does not expose — though masking
+a flat softmax to a chosen cluster buys the same thing for free. Details and
+samples in [lyrics/README.md](lyrics/README.md).
+
 ---
 
 ## Reproducing
